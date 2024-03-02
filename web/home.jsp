@@ -15,10 +15,11 @@
     </head>
     <body>
         <%@include file="includes/nav.jsp" %>
+        <%@include file="includes/left-bar.jsp" %>
         <div class="container mx-0 px-0">
             <div class="row mx-0 px-0">
                 <div class=" d-flex col-md-12">
-                    <%@include file="includes/left-bar.jsp" %>
+                    
                     <div class="tab2 col-md-8">
                         <h1>
                             All courses

@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark" style="position: fixed; width: 100% ;z-index: 1000">
     <div class="container-fluid">
         <button id="toggleLeftBarBtn" style="height: 100%; "><i class="fas fa-bars"></i></button>
         <div class="collapse navbar-collapse  d-flex justify-content-end " id="navbarSupportedContent">

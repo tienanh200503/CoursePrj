@@ -6,6 +6,7 @@ package model;
 
 /**
  *
+
  * @author BIN
  */
 public class Course {
@@ -59,4 +60,5 @@ public class Course {
     
     
     
+
 }

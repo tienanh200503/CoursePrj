@@ -6,60 +6,59 @@ package model;
 
 /**
  *
- * @author Desktop
+
+ * @author BIN
  */
 public class Course {
-    private String title;
-    private String time;
-     private long  NumberOfLession;
-     private String[] videos;
+    private String course_name;
+    private String course_time;
+    private String course_price;
+    private int teacher_id;
+
     public Course() {
     }
 
-    public Course(String title, String time, long NumberOfLession, String[] videos) {
-        this.title = title;
-        this.time = time;
-        this.NumberOfLession = NumberOfLession;
-        this.videos = videos;
+    public Course( String course_name, String course_time, String course_price, int teacher_id) {
+        this.course_name = course_name;
+        this.course_time = course_time;
+        this.course_price = course_price;
+        this.teacher_id = teacher_id;
+    }
+
+    public String getCourse_name() {
+        return course_name;
+    }
+
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
+    }
+
+    public String getCourse_time() {
+        return course_time;
+    }
+
+    public void setCourse_time(String course_time) {
+        this.course_time = course_time;
+    }
+
+    public String getCourse_price() {
+        return course_price;
+    }
+
+    public void setCourse_price(String course_price) {
+        this.course_price = course_price;
+    }
+
+    public int getTeacher_id() {
+        return teacher_id;
+    }
+
+    public void setTeacher_id(int teacher_id) {
+        this.teacher_id = teacher_id;
     }
     
-    public Course(String title, String time, long NumberOfLession) {
-        this.title = title;
-        this.time = time;
-        this.NumberOfLession = NumberOfLession;
-    }
     
-    public String getTitle() {
-        return title;
-    }
+    
+    
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public long getNumberOfLession() {
-        return NumberOfLession;
-    }
-
-    public void setNumberOfLession(long NumberOfLession) {
-        this.NumberOfLession = NumberOfLession;
-    }
-
-    public String[] getVideos() {
-        return videos;
-    }
-
-    public void setVideos(String[] videos) {
-        this.videos = videos;
-    }
-     
-     
 }

@@ -8,14 +8,23 @@ package model;
  *
  * @author BIN
  */
-public class Session {
+public class Section {
     private int session;
+    private int c_id;
     private String session_name;
 
-    public Session() {
+    public Section(int session, int c_id, String session_name) {
+        this.session = session;
+        this.c_id = c_id;
+        this.session_name = session_name;
     }
-
-    public Session(int session, String session_name) {
+    
+    
+    
+    public Section() {
+    }
+    
+    public Section(int session, String session_name) {
         this.session = session;
         this.session_name = session_name;
     }
@@ -34,6 +43,14 @@ public class Session {
 
     public void setSession_name(String session_name) {
         this.session_name = session_name;
+    }
+
+    public int getC_id() {
+        return c_id;
+    }
+
+    public void setC_id(int c_id) {
+        this.c_id = c_id;
     }
     
     

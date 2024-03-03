@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.List;
+
 /**
  *
 
@@ -13,16 +15,25 @@ public class Course {
     private String course_name;
     private String course_time;
     private String course_price;
-    private int teacher_id;
+    private Teacher teacher;
+    List<Section> sections;
 
     public Course() {
     }
 
-    public Course( String course_name, String course_time, String course_price, int teacher_id) {
+    public Course(String course_name, String course_time, String course_price, Teacher teacher, List<Section> sections) {
         this.course_name = course_name;
         this.course_time = course_time;
         this.course_price = course_price;
-        this.teacher_id = teacher_id;
+        this.teacher = teacher;
+        this.sections = sections;
+    }
+    
+    public Course( String course_name, String course_time, String course_price, Teacher teacher) {
+        this.course_name = course_name;
+        this.course_time = course_time;
+        this.course_price = course_price;
+        this.teacher = teacher;
     }
 
     public String getCourse_name() {
@@ -49,12 +60,20 @@ public class Course {
         this.course_price = course_price;
     }
 
-    public int getTeacher_id() {
-        return teacher_id;
+    public Teacher getTeacher_id() {
+        return teacher;
     }
 
-    public void setTeacher_id(int teacher_id) {
-        this.teacher_id = teacher_id;
+    public void setTeacher_id(Teacher teacher_id) {
+        this.teacher = teacher_id;
+    }
+
+    public List<Section> getSections() {
+        return sections;
+    }
+
+    public void setSections(List<Section> sections) {
+        this.sections = sections;
     }
     
     

@@ -4,12 +4,17 @@
  */
 package servlet;
 
+import DAO.accountDAO.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Account;
 
 /**
  *
@@ -55,9 +60,8 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String auth = "goooog";
-        request.getSession().setAttribute("auth", auth);
-        response.sendRedirect("home.jsp");
+       
+        response.sendRedirect("login.jsp");
     }
 
     /**
@@ -71,7 +75,30 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        AccountDAO udao = new AccountDAO();
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        try {
+            Account user = udao.getAccount(email, password);
+            if(user!=null)
+            {
+                request.getSession().setAttribute("auth", user);
+                request.getSession().setAttribute("role", user.getRole());
+                response.sendRedirect("home.jsp");
+            }else
+            {
+                request.getSession().setAttribute("error", "cannot found");
+                response.sendRedirect("login.jsp");
+            }
+        } catch (SQLException e) {
+            try {
+                throw e;
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     /**

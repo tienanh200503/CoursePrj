@@ -57,19 +57,26 @@
 </style>
 <!-- Định nghĩa left-bar -->
 <div id="leftBar" class="tab1  flex-column justify-content-center px-0 col-md-3 bg-primary text-center text-decoration-none gap-3" style="height: 600px; display: flex">
-    <c:if test="${ empty auth}">
+    
+    <c:if test="${role == 1}">
+        <div class="but" ><a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-user-circle"></i> Thông tin cá nhân</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-book"></i> Khóa học của tôi</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="#"> <i class="fas fa-wallet"></i> Nạp Tiền</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="#">Log out</a></div>
+    </c:if>
+        <c:if test="${role == 2}">
+        <div class="but" ><a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-user-circle"></i> Add new course</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-book"></i> Update Course</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="#"> <i class="fas fa-wallet"></i> Delete Course</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="#">Log out</a></div>
+    </c:if>
+        <c:if test="${ empty auth}">
         <div class="but" style="  margin: 0 50px 0 50px  ">
             <button class="toggleCloseLoginForm" style=" background-color: transparent;border: none; color: white; text-decoration:none; border-radius: 5px" href="#" class="login-link">
                 <i  class="fas fa-user"></i> Login
             </button>
         </div>
         <div class="but"><a style="  color: white;text-decoration:none" href="#" class="register-link"><i class="fas fa-user-plus"></i> Đăng ký</a></div>
-    </c:if>
-    <c:if test="${auth != null}">
-        <div class="but" ><a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-user-circle"></i> Thông tin cá nhân</a></div>
-        <div class="but"> <a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-book"></i> Khóa học của tôi</a></div>
-        <div class="but"> <a style="  color: white; text-decoration:none" href="#"> <i class="fas fa-wallet"></i> Nạp Tiền</a></div>
-        <div class="but"> <a style="  color: white; text-decoration:none" href="#">Log out</a></div>
     </c:if>
 </div>
 <div id="logInForm" class="container" >
@@ -82,7 +89,7 @@
                 <form action="LoginServlet" method="post">
                     <div class="form-group">
                         <label>Email Address</label>
-                        <input type="email" name="email" class="form-control" placeholder="Email Adress" required="">
+                        <input type="name" name="email" class="form-control" placeholder="Email Adress" required="">
                     </div>
                     <div class="form-group">
                         <label>password</label>

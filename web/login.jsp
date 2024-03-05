@@ -21,7 +21,7 @@
                     <form action="LoginServlet" method="post">
                         <div class="form-group">
                             <label>Email Address</label>
-                            <input type="email" name="email" class="form-control" placeholder="Email Adress" required="">
+                            <input type="text" name="email" class="form-control" placeholder="Email Adress" required="">
                         </div>
                         <div class="form-group">
                             <label>password</label>

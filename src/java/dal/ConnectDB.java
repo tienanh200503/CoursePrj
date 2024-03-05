@@ -16,6 +16,7 @@ import java.util.logging.Logger;
  */
 public class ConnectDB implements DatabaseInfor{
      private static ConnectDB instance;
+    
 
     public Connection openConnection() throws ClassNotFoundException {
         try {

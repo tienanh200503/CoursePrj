@@ -82,12 +82,14 @@ public class LoginServlet extends HttpServlet {
             Account user = udao.getAccount(email, password);
             if(user!=null)
             {
+                request.getSession().removeAttribute("error");
                 request.getSession().setAttribute("auth", user);
                 request.getSession().setAttribute("role", user.getRole());
                 response.sendRedirect("home.jsp");
             }else
             {
-                request.getSession().setAttribute("error", "cannot found");
+                request.getSession().setAttribute("auth", null);
+                request.getSession().setAttribute("error", "invalid Account");
                 response.sendRedirect("login.jsp");
             }
         } catch (SQLException e) {

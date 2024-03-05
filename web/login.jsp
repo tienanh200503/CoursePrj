@@ -27,9 +27,13 @@
                             <label>password</label>
                             <input type="password" name="password" class="form-control" placeholder="password" required="">
                         </div>
+                        <p style="color: red">
+                            ${error}
+                        <p>
                         <div class="text-center">
                             <button class="btn btn-primary" type="submit"> Login</button>
                         </div>
+                       
                     </form>
                 </div>
             </div>

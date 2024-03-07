@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAO.accountDAO;
+package DAO;
 
 import dal.ConnectDB;
 import model.Account;
@@ -35,7 +35,7 @@ public class AccountDAO extends ConnectDB {
                     + "      ,[role]\n"
                     + "      ,[ATM]\n"
                     + "  FROM [dbo].[user]"
-                    + "where user_name =? and password=?  or email = ? and password=?";
+                    + "where user_name =? and password=? ";
             Connection con = this.openConnection();
             st = con.prepareStatement(sql);
             st.setString(1, username);
@@ -52,12 +52,14 @@ public class AccountDAO extends ConnectDB {
                 a.setMoney(rs.getDouble("ATM"));
                 a.setUserDate(rs.getString("user_date"));
                 a.setEmail(rs.getString("email"));
+                return a;
 
             }
-            return a;
+            
         } catch (SQLException e) {
             throw e;
         }
+        return null;
     }
 
     public Account addAccount(Account a) throws SQLException, ClassNotFoundException {

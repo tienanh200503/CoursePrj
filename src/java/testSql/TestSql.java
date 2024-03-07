@@ -4,7 +4,8 @@
  */
 package testSql;
 
-import DAO.accountDAO.AccountDAO;
+import DAO.AccountDAO;
+import DAO.CourseDAO;
 import java.sql.SQLException;
 
 /**
@@ -16,9 +17,12 @@ public class TestSql {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        AccountDAO account = new AccountDAO();
-        System.out.println(account.getAccount("user", "123"));
+    public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
+        
+        CourseDAO c = new CourseDAO();
+        System.out.println( c.getAllCourse());
+        
+        
     }
     
 }

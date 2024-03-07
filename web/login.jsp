@@ -21,15 +21,19 @@
                     <form action="LoginServlet" method="post">
                         <div class="form-group">
                             <label>Email Address</label>
-                            <input type="text" name="email" class="form-control" placeholder="Email Adress" required="">
+                            <input type="text" name="username" class="form-control" placeholder="Email Adress" required="">
                         </div>
                         <div class="form-group">
                             <label>password</label>
                             <input type="password" name="password" class="form-control" placeholder="password" required="">
                         </div>
+                        <p style="color: red">
+                            ${error}
+                        <p>
                         <div class="text-center">
                             <button class="btn btn-primary" type="submit"> Login</button>
                         </div>
+                       
                     </form>
                 </div>
             </div>

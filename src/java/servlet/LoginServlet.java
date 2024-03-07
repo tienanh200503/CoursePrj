@@ -4,16 +4,18 @@
  */
 package servlet;
 
-import DAO.accountDAO.AccountDAO;
+import DAO.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Account;
 
 /**
@@ -60,7 +62,16 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+       String username = this.get("username", request);
+       String password = this.get("password", request);
+        if (username != null && !username.equals("")) {
+            
+            HttpSession session = request.getSession();
+            session.setAttribute("username", username);
+            request.getRequestDispatcher("home.jsp").forward(request, response);
+            return;
+        }
+        
         response.sendRedirect("login.jsp");
     }
 
@@ -76,18 +87,22 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         AccountDAO udao = new AccountDAO();
-        String email = request.getParameter("email");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
         try {
-            Account user = udao.getAccount(email, password);
+            Account user = udao.getAccount(username, password);
             if(user!=null)
             {
+                request.getSession().removeAttribute("error");
                 request.getSession().setAttribute("auth", user);
                 request.getSession().setAttribute("role", user.getRole());
+                this.add("username", username, 2, response);
+                this.add("password", password, 2, response);
                 response.sendRedirect("home.jsp");
             }else
             {
-                request.getSession().setAttribute("error", "cannot found");
+                request.getSession().setAttribute("auth", null);
+                request.getSession().setAttribute("error", "invalid Account");
                 response.sendRedirect("login.jsp");
             }
         } catch (SQLException e) {
@@ -110,5 +125,24 @@ public class LoginServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+     public static String get(String name, HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if (c.getName().equalsIgnoreCase(name)) {
+                    return c.getValue();
+                }
+            }
 
+        }
+        return null;
+    }
+    public static Cookie add(String name, String value, int hours, HttpServletResponse response)
+    {
+        Cookie cookie = new Cookie(name,value);
+        cookie.setMaxAge(60*60*hours);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        return cookie;
+    }
 }

@@ -68,7 +68,7 @@
         <div class="but" ><a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-user-circle"></i> Add new course</a></div>
         <div class="but"> <a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-book"></i> Update Course</a></div>
         <div class="but"> <a style="  color: white; text-decoration:none" href="#"> <i class="fas fa-wallet"></i> Delete Course</a></div>
-        <div class="but"> <a style="  color: white; text-decoration:none" href="#">Log out</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="LogoutServlet">Log out</a></div>
     </c:if>
         <c:if test="${ empty auth}">
         <div class="but" style="  margin: 0 50px 0 50px  ">

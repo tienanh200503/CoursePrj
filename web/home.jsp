@@ -12,20 +12,35 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <%@include file="includes/head.jsp" %>
+        <link rel="stylesheet" href="css/home/home.css" type="text/css">
     </head>
     <body>
         <%@include file="includes/nav.jsp" %>
         <%@include file="includes/left-bar.jsp" %>
-        <div class="container mx-0 px-0">
-            <div class="row mx-0 px-0">
-                <div class=" d-flex col-md-12">
+        <div class="contain mx-10 px-0">
+            
+            
+            <div class="featuredCourse">
+                <c:forEach items="${sessionScope.listCourse}" var="c">
                     
-                    <div class="tab2 col-md-8">
-                        <h1>
-                            All courses
-                        </h1>
+                    <div class="course-Card">
+                        <div class="course-picture">
+                            <img src="${c.course_img}">
+                        </div>
+                        <div class="course-details">
+                            <h4>${c.course_name}</h4>
+                            <p>${c.teacher.teacher_name}</p>
+                            <div class="sub-details">
+                                <p>${c.sections.size()}</p>
+                                <p>
+                                    ${c.course_price}
+                                </p>
+                            </div>
+                                <p>${c.course_time}</p>
+                        </div>
+                        <button type="submit" value="MUA NGAY"></button>
                     </div>
-                </div>
+                </c:forEach>
             </div>
         </div>
 

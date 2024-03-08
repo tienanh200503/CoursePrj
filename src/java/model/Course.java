@@ -8,10 +8,11 @@ import java.util.List;
 
 /**
  *
-
+ *
  * @author BIN
  */
 public class Course {
+
     private int id;
     private String course_name;
     private int course_time;
@@ -19,7 +20,8 @@ public class Course {
     private Teacher teacher;
     private String courseDescribe;
     private String course_img;
-     private List<Section> sections;
+    private List<Section> sections;
+
     public Course(int id, String course_name, int course_time, Double course_price, Teacher teacher, String courseDescribe, String course_img, List<Section> sections) {
         this.id = id;
         this.course_name = course_name;
@@ -97,14 +99,5 @@ public class Course {
     public void setSections(List<Section> sections) {
         this.sections = sections;
     }
-    
-    
-
-    
-
-   
-    
-    
-    
 
 }

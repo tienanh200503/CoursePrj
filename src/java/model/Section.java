@@ -13,6 +13,7 @@ public class Section {
     private int c_id;
     private String section_name;
     private String section_video;
+    private String section;
 
     public Section(int session_id, int c_id, String section_name, String section_video) {
         this.section_id = session_id;
@@ -21,6 +22,12 @@ public class Section {
         this.section_video = section_video;
     }
 
+    public Section(String section_name, String section) {
+        this.section_name = section_name;
+        this.section = section;
+    }
+
+    
     public Section() {
     }
 
@@ -54,6 +61,14 @@ public class Section {
 
     public void setSection_video(String section_video) {
         this.section_video = section_video;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
     }
     
     

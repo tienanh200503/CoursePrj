@@ -24,10 +24,11 @@ public class SectionDAO extends ConnectDB{
     private PreparedStatement st;
     private ResultSet rs;
 
-     List<Section> listSections = new ArrayList<>();
+     
     public List<Section> getSectionByCid(int cid) throws SQLException, ClassNotFoundException {
+        List<Section> listSections = new ArrayList<>();
         try {
-            List<Section> listSections = new ArrayList<>();
+           
             sql = "SELECT TOP (1000) [section_id]\n"
                 + "      ,[course_id]\n"
                 + "      ,[section]\n"

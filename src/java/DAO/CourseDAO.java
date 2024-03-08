@@ -8,9 +8,11 @@ import dal.ConnectDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Course;
+import model.Section;
 import model.Teacher;
 
 /**
@@ -63,5 +65,77 @@ public class CourseDAO extends ConnectDB {
             throw e;
         }
         return listCourse;
+    }
+
+    public Course getCourse(int cid) throws Exception {
+        Course a = null;
+        List<Section> sections = new ArrayList<>();
+        try {
+
+            sql = "SELECT TOP (1000) \n"
+                    + "      [course_name]\n"
+                    + "      ,[course_time]\n"
+                    + "      ,[teacher_name]\n"
+                    + "      ,[course_price]\n"
+                    + "      ,[course_describe]\n"
+                    + "      ,[course_picture]\n"
+                    + "	  ,[section]\n"
+                    + "	  ,[section_name]\n"
+                    + "  FROM [course].[dbo].[course]\n"
+                    + "  JOIN [dbo].[section] ON section.course_id = course.course_id\n"
+                    + "  JOIN [dbo].[teacher] ON teacher.teacher_id = course.teacher_id\n"
+                    + "  WHERE [dbo].[course].course_id =?";
+            Connection con = this.openConnection();
+            st = con.prepareStatement(sql);
+            st.setInt(1, cid);
+
+            // Thực thi câu lệnh SQL và gán kết quả cho biến rs
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                if (a == null) { // Chỉ khởi tạo đối tượng Course một lần
+                    a = new Course();
+                    a.setId(cid);
+                    a.setCourse_name(rs.getString("course_name"));
+                    a.setCourse_time(rs.getInt("course_time"));
+                    a.setCourseDescribe(rs.getString("course_describe"));
+                    a.setCourse_price(rs.getDouble("course_price"));
+                    a.setCourse_img(rs.getString("course_picture"));
+
+                    Teacher teacher = new Teacher();
+                    teacher.setTeacher_name(rs.getString("teacher_name"));
+                    a.setTeacher(teacher);
+                }
+
+                // Khởi tạo và thiết lập thông tin cho đối tượng Section cho mỗi bản ghi
+                Section section = new Section();
+                section.setSection(rs.getString("section"));
+                section.setSection_name(rs.getString("section_name"));
+                sections.add(section);
+            }
+
+            if (a != null) {
+                // Đảm bảo đối tượng Section được thêm vào danh sách sections của Course nếu có
+                a.setSections(sections);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            throw e;
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (st != null) {
+                    st.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+
+        }
+        return a;
     }
 }

@@ -6,6 +6,7 @@ package testSql;
 
 import DAO.AccountDAO;
 import DAO.CourseDAO;
+import DAO.SectionDAO;
 import java.sql.SQLException;
 
 /**
@@ -19,8 +20,9 @@ public class TestSql {
      */
     public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
         
+        
         CourseDAO c = new CourseDAO();
-        System.out.println( c.getAllCourse());
+        System.out.println(c.getAllCourse());
         
         
     }

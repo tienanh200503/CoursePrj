@@ -61,7 +61,7 @@ public class DetailServlet extends HttpServlet {
             throws ServletException, IOException {
        
     try {
-        int cid = 2; 
+        int cid = Integer.parseInt(request.getParameter("cid")); 
         CourseDAO cdao = new CourseDAO();
         Course detail = cdao.getCourse(cid);
         

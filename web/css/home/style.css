@@ -26,9 +26,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 }
 .course-Card:hover{
    
-    border: 1px solid gray;
-    border-radius: 10px;
-    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    border: 0;
+    border-radius: 0;
+    box-shadow: 0;
 }
 
 .course-Card .course-picture img{
@@ -73,5 +73,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 {transform: scale(1.1);
  background-color: black;
  color: white
-
- /* Thu nhỏ nút */}
+}
+.title-course
+{   
+    width: 30%;
+     margin-left: 3rem;
+     border-bottom: 1px orange solid;
+ }

@@ -22,7 +22,10 @@ public class TestSql {
         
         
         CourseDAO c = new CourseDAO();
-        System.out.println(c.getCourse(1).getCourse_name());
+        System.out.println(c.getCourse(2).getCourse_price());
+        AccountDAO a = new AccountDAO();
+        System.out.println(a.getAccountById(2).getMoney());
+        
         
         
     }

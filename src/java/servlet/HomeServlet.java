@@ -81,7 +81,14 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            CourseDAO cdao = new CourseDAO();
+            List<Course> listCourse = cdao.getAllCourse();
+            request.getSession().setAttribute("listCourse", listCourse);
+            response.sendRedirect("home.jsp");
+        } catch (Exception ex) {
+            Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

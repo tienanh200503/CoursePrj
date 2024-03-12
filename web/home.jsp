@@ -25,7 +25,7 @@
 
 
             <h2 class="title-course">
-                 <i class="fas fa-book"></i> Khóa học nổi bật <i class="fas fa-fire fa-xs" style="color: red;"></i>
+                <i class="fas fa-book"></i> Khóa học nổi bật <i class="fas fa-fire fa-xs" style="color: red;"></i>
             </h2>
 
             <div class="featuredCourse" style="margin-bottom: 3rem ">
@@ -63,7 +63,9 @@
 
             </div>
             <h2 class="title-course" >
+
                 <i class="fas fa-book"></i>  Khóa học Hiện có   <i class="fas fa-badge" style="color: gold;"></i>
+
             </h2>
 
             <div class="featuredCourse" style="">
@@ -90,9 +92,9 @@
             </div>
         </div>
 
-    
 
-</div>
+
+    </div>
 
 </div>
 

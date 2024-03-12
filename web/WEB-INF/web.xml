@@ -17,8 +17,20 @@
         <servlet-class>servlet.DetailServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CourseController</servlet-name>
+        <servlet-class>Controller.CourseController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>PayCourseServlet</servlet-name>
         <servlet-class>servlet.PayCourseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PayServlet</servlet-name>
+        <servlet-class>servlet.PayServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>payATMServlet</servlet-name>
+        <servlet-class>servlet.payATMServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -37,8 +49,20 @@
         <url-pattern>/DetailServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>CourseController</servlet-name>
+        <url-pattern>/CourseController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>PayCourseServlet</servlet-name>
         <url-pattern>/PayCourseServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PayServlet</servlet-name>
+        <url-pattern>/PayServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>payATMServlet</servlet-name>
+        <url-pattern>/payATMServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

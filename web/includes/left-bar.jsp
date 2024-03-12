@@ -36,41 +36,42 @@
         border-radius: 1rem;
     }
     .overlay {
-    background-color: rgba(0, 0, 0, 0.05); /* Màu nền với độ mờ 50% */
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 500; /* Đảm bảo overlay hiển thị phía trên form */
-}
-.card{
-    position: fixed;
-    top: 100px;
-    bottom: 100px;
-    left: 100px;
-    right: 100px;
-    z-index: 400; /* Đảm bảo overlay hiển thị phía trên form */
-}
+        background-color: rgba(0, 0, 0, 0.5); /* Màu nền với độ mờ 50% */
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 500; /* Đảm bảo overlay hiển thị phía trên form */
+    }
+    .card{
+        position: fixed;
+        top: 100px;
+        bottom: 100px;
+        left: 100px;
+        right: 100px;
+        z-index: 400; /* Đảm bảo overlay hiển thị phía trên form */
+    }
 
 
 </style>
 <!-- Định nghĩa left-bar -->
 <div id="leftBar" class="tab1  flex-column justify-content-center px-0 col-md-3 bg-primary text-center text-decoration-none gap-3" style="height: 600px; display: flex">
-    
+
     <c:if test="${role == 1}">
         <div class="but" ><a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-user-circle"></i> Thông tin cá nhân</a></div>
         <div class="but"> <a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-book"></i> Khóa học của tôi</a></div>
         <div class="but"> <a style="  color: white; text-decoration:none" href="#"> <i class="fas fa-wallet"></i> Nạp Tiền</a></div>
-        <div class="but"> <a style="  color: white; text-decoration:none" href="#">Log out</a></div>
-    </c:if>
-        <c:if test="${role == 2}">
-        <div class="but" ><a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-user-circle"></i> Add new course</a></div>
-        <div class="but"> <a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-book"></i> Update Course</a></div>
-        <div class="but"> <a style="  color: white; text-decoration:none" href="#"> <i class="fas fa-wallet"></i> Delete Course</a></div>
         <div class="but"> <a style="  color: white; text-decoration:none" href="LogoutServlet">Log out</a></div>
     </c:if>
-        <c:if test="${ empty auth}">
+    <c:if test="${role == 2}">
+        <div class="but" ><a style="  color: white; text-decoration:none" href="CourseController" > <i class="fas fa-user-circle"></i> Course</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-book"></i> Section</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="#"> <i class="fas fa-wallet"></i> Teacher</a></div>
+        
+        <div class="but"> <a style="  color: white; text-decoration:none" href="LogoutServlet">Log out</a></div>
+    </c:if>
+    <c:if test="${ empty auth}">
         <div class="but" style="  margin: 0 50px 0 50px  ">
             <button class="toggleCloseLoginForm" style=" background-color: transparent;border: none; color: white; text-decoration:none; border-radius: 5px" href="#" class="login-link">
                 <i  class="fas fa-user"></i> Login
@@ -111,13 +112,68 @@
         // Ẩn left-bar mặc định khi trang được tải
         $("#leftBar").hide();
         $("#logInForm").hide();
+        $("#add-course-form").hide();
+        if (localStorage.getItem('updateCourseFormVisible') === 'true') {
+            $("#update-course-form").show();
+        } else {
+            $("#update-course-form").hide();
+        }
+
+        // Function to toggle update course form visibility
+        function toggleUpdateCourseForm() {
+            $("#update-course-form").toggle();
+            localStorage.setItem('updateCourseFormVisible', $("#update-course-form").is(":visible"));
+        }
+
+
+        // Xử lý sự kiện click trên nút cập nhật khóa học
+
+        // Function to toggle left bar visibility
+        function toggleLeftBar() {
+            $("#leftBar").toggle();
+        }
+
+        // Function to toggle login form visibility
+        function toggleLoginForm() {
+            $("#logInForm").toggle();
+        }
+
+        // Function to toggle add course form visibility
+        function toggleAddCourseForm() {
+            $("#add-course-form").toggle();
+        }
+
 
         // Xử lý sự kiện click trên nút tắt/bật left-bar
         $("#toggleLeftBarBtn").click(function () {
-            $("#leftBar").toggle();
+            toggleLeftBar();
         });
+
+        // Xử lý sự kiện click trên nút tắt/bật login form
         $(".toggleCloseLoginForm").click(function () {
-            $("#logInForm").toggle();
+            toggleLoginForm();
         });
+
+        // Xử lý sự kiện click trên nút thêm khóa học
+        $("#add-course-button").click(function () {
+            toggleAddCourseForm();
+        });
+        $("#add-course-close").click(function () {
+            toggleAddCourseForm();
+        });
+
+        $(".update-course-button").click(function () {
+            toggleUpdateCourseForm();
+        });
+        $("#update-course-close").click(function () {
+            toggleUpdateCourseForm();
+        });
+        $("#done-course-update").click(function () {
+            toggleUpdateCourseForm();
+        });
+
     });
+
+
+
 </script>

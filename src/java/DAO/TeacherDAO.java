@@ -49,4 +49,47 @@ public class TeacherDAO extends ConnectDB {
         }
         return null;
     }
+    public void deleteTeacherByid(int teacher_id) throws ClassNotFoundException
+    {
+        try {
+            con = openConnection();
+            sql="delete From teacher where teacher_id = ?";
+            st = con.prepareStatement(sql);
+            st.setInt(1, teacher_id);
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updateTeacherById(int teacher_id, Teacher t) throws ClassNotFoundException
+    {
+         try {
+            con = openConnection();
+            sql="Update teacher set  teacher_name=? where teacher_id = ?";
+            st = con.prepareStatement(sql);
+            
+            st.setString(1, t.getTeacher_name());
+            st.setInt(2, teacher_id);
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void insertTeacher(Teacher t) throws ClassNotFoundException
+    {
+        try {
+            con = openConnection();
+            sql="insert into teacher values(?)";
+            st = con.prepareStatement(sql);
+            
+            st.setString(1, t.getTeacher_name());
+            
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

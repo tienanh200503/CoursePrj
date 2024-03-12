@@ -7,7 +7,11 @@ package testSql;
 import DAO.AccountDAO;
 import DAO.CourseDAO;
 import DAO.SectionDAO;
+import DAO.TeacherDAO;
 import java.sql.SQLException;
+import model.Course;
+import model.Section;
+import model.Teacher;
 
 /**
  *
@@ -22,9 +26,11 @@ public class TestSql {
         
         
         CourseDAO c = new CourseDAO();
-        System.out.println(c.getCourse(1).getCourse_name());
+        System.out.println(c.getCourseById(1));
         
+       
         
+       
     }
     
 }

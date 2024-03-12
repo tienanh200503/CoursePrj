@@ -63,7 +63,7 @@
 
             </div>
             <h2 class="title-course" >
-                <i class="fas fa-book"></i>  Khóa học Hiện có   <i class="fas fa-badge" style="color: gold;"></i>
+                <i class="fas fa-book"></i>  Khóa học Hiện có   
             </h2>
 
             <div class="featuredCourse" style="">

@@ -33,6 +33,16 @@ public class Course {
         this.sections = sections;
     }
 
+    public Course(String course_name, int course_time, Double course_price, Teacher teacher, String courseDescribe, String course_img) {
+        this.course_name = course_name;
+        this.course_time = course_time;
+        this.course_price = course_price;
+        this.teacher = teacher;
+        this.courseDescribe = courseDescribe;
+        this.course_img = course_img;
+        
+    }
+    
     public Course() {
     }
 

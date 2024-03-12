@@ -70,6 +70,11 @@ public class Section {
     public void setSection(String section) {
         this.section = section;
     }
+
+    @Override
+    public String toString() {
+        return "Section{" + "section_id=" + section_id + ", c_id=" + c_id + ", section_name=" + section_name + ", section_video=" + section_video + ", section=" + section + '}';
+    }
     
     
     

@@ -138,4 +138,116 @@ public class CourseDAO extends ConnectDB {
         }
         return a;
     }
+
+    public Course getCourseById(int cid) throws Exception {
+        Course a = new Course();
+        List<Section> sections = new ArrayList<>();
+         TeacherDAO teacherDAO = new TeacherDAO();
+            SectionDAO sectionDAO = new SectionDAO();
+        try {
+
+            sql = "SELECT TOP (1000) [course_id]\n"
+                    + "      ,[course_name]\n"
+                    + "      ,[course_time]\n"
+                    + "      ,[teacher_id]\n"
+                    + "      ,[course_price]\n"
+                    + "      ,[course_describe]\n"
+                    + "      ,[course_picture]\n"
+                    + "  FROM [course].[dbo].[course]"
+                    + "  WHERE [dbo].[course].course_id =?";
+            Connection con = this.openConnection();
+            st = con.prepareStatement(sql);
+            st.setInt(1, cid);
+
+            // Thực thi câu lệnh SQL và gán kết quả cho biến rs
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+               
+
+                Teacher t = new Teacher();
+                a.setId(rs.getInt("course_id"));
+                a.setCourse_name(rs.getString("course_name"));
+                a.setCourse_time(rs.getInt("course_time"));
+                a.setCourseDescribe(rs.getString("course_describe"));
+                a.setCourse_price(rs.getDouble("course_price"));
+                a.setTeacher(teacherDAO.getTeacherById(rs.getInt("teacher_id")));
+                a.setSections(sectionDAO.getSectionByCid(rs.getInt("course_id")));
+                a.setCourse_img(rs.getString("course_picture"));
+                return a;
+            }
+
+            
+        } catch (ClassNotFoundException | SQLException e) {
+            throw e;
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (st != null) {
+                    st.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+
+        }
+        return a;
+    }
+
+    public void deleteCourse(int id) throws ClassNotFoundException {
+        try {
+            con = openConnection();
+            sql = "DELETE FROM course WHERE course_id=?";
+            st = con.prepareStatement(sql);
+            st.setInt(1, id);
+//            được sử dụng để thực thi các câu lệnh SQL không trả về kết quả, trả về số hàng bị ảnh hưởng
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateCourse(Course c, int id) throws SQLException, ClassNotFoundException {
+        try {
+            con = openConnection();
+            sql = "update course set course_name=?, course_time=?, teacher_id=?, course_price=?, course_describe=?, course_picture=? where course_id=?";
+            st = con.prepareStatement(sql);
+            st.setString(1, c.getCourse_name());
+            st.setInt(2, c.getCourse_time());
+            st.setInt(3, c.getTeacher().getTeacher_id());
+            st.setDouble(4, c.getCourse_price());
+            st.setString(5, c.getCourseDescribe());
+            st.setString(6, c.getCourse_img());
+            st.setInt(7, id);
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void insertCourse(Course c) throws SQLException, ClassNotFoundException {
+        try {
+            con = openConnection();
+            sql = "insert into course(course_name, course_time, teacher_id, course_price, course_describe, course_picture)"
+                    + "values(?,?,?,?,?,?)";
+            st = con.prepareStatement(sql);
+            st.setString(1, c.getCourse_name());
+            st.setInt(2, c.getCourse_time());
+            st.setInt(3, c.getTeacher().getTeacher_id());
+            st.setDouble(4, c.getCourse_price());
+            st.setString(5, c.getCourseDescribe());
+            st.setString(6, c.getCourse_img());
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

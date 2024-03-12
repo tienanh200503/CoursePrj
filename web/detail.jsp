@@ -8,6 +8,7 @@
 <%@page import="java.text.NumberFormat"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -139,9 +140,10 @@
             }
         </style>
     </head>
+
+    <%@include file="includes/nav.jsp" %>
+    <%@include file="includes/left-bar.jsp" %>
     <body>
-        <%@include file="includes/nav.jsp" %>
-        <%@include file="includes/left-bar.jsp" %>
 
         <div class="container">
             <c:set var="amount" value="${detail.course_price}"/>
@@ -158,7 +160,7 @@
                     <ul class="session">
                         <c:forEach var="section" items="${detail.sections}">
                             <li class="session-link"> ${section.section} : ${section.section_name}</li>
-                        </c:forEach>
+                            </c:forEach>
                     </ul>
                 </div>
 
@@ -179,15 +181,21 @@
 
                         <dt>Số bài học:</dt>
                         <dd>${detail.getSections().size()}</dd>
-                        
+
                         <dt>Giá:</dt>
                         <dd><%= price %></dd>
                     </dl>
                 </div>
 
                 <div class="buy-button">
-                    <button>Buy now</button>
+                    <form action="PayCourseServlet" method="post">
+                        <input type="hidden" name="courseId" value="${detail.getId()}">
+                        <div class="buy-button">
+                            <button type="submit">Buy now</button>
+                        </div>
+                    </form>
                 </div>
+
             </div>
         </div>
 

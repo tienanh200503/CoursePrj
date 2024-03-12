@@ -62,12 +62,13 @@
         <div class="but" ><a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-user-circle"></i> Thông tin cá nhân</a></div>
         <div class="but"> <a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-book"></i> Khóa học của tôi</a></div>
         <div class="but"> <a style="  color: white; text-decoration:none" href="#"> <i class="fas fa-wallet"></i> Nạp Tiền</a></div>
-        <div class="but"> <a style="  color: white; text-decoration:none" href="#">Log out</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="LogoutServlet">Log out</a></div>
     </c:if>
     <c:if test="${role == 2}">
-        <div class="but" ><a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-user-circle"></i> Add new course</a></div>
-        <div class="but"> <a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-book"></i> Update Course</a></div>
-        <div class="but"> <a style="  color: white; text-decoration:none" href="#"> <i class="fas fa-wallet"></i> Delete Course</a></div>
+        <div class="but" ><a style="  color: white; text-decoration:none" href="CourseController" > <i class="fas fa-user-circle"></i> Course</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-book"></i> Section</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="#"> <i class="fas fa-wallet"></i> Teacher</a></div>
+        
         <div class="but"> <a style="  color: white; text-decoration:none" href="LogoutServlet">Log out</a></div>
     </c:if>
     <c:if test="${ empty auth}">

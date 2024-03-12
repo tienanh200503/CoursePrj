@@ -25,11 +25,11 @@ public class TestSql {
     public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
         
         
-        CourseDAO c = new CourseDAO();
-
-        System.out.println(c.getCourseById(1));
-
-        System.out.println(c.getCourse(2).getCourse_price());
+//        CourseDAO c = new CourseDAO();
+//
+//        System.out.println(c.getCourseById(1));
+//
+//        System.out.println(c.getCourse(2).getCourse_price());
         AccountDAO a = new AccountDAO();
         System.out.println(a.getAccountById(2).getMoney());
         

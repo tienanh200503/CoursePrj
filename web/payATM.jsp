@@ -67,17 +67,17 @@
     <body>
         <%@include file="includes/nav.jsp" %>
         <%@include file="includes/left-bar.jsp" %>
-
-        <div class="container">
-            <div class="content">
-                <h2>Hệ thống tự động 24/24.</h2>
-                <h3>Quý khách vui chuyển khoản với nội dung đúng tài khoản </h3>
-                <p>Sau 15 phút nếu không nhận được tiền tại web liên hệ zalo 00000000 để được hỗ trợ!.<p>
-                <p>Nếu nạp sai cú pháp sẽ xử lý trong vòng 24h.</p>
-                <img src="image/pay.jpg" alt="Payment Instructions"/>
+        <form action="payATMServlet">
+            <div class="container">
+                <div class="content">
+                    <h2>Hệ thống tự động 24/24.</h2>
+                    <h3>Quý khách vui chuyển khoản với nội dung đúng tài khoản </h3>
+                    <p>Sau 15 phút nếu không nhận được tiền tại web liên hệ zalo 00000000 để được hỗ trợ!.<p>
+                    <p>Nếu nạp sai cú pháp sẽ xử lý trong vòng 24h.</p>
+                    <img src="image/pay.jpg" alt="Payment Instructions"/>
+                </div>
             </div>
-        </div>
-
+        </form>
         <%@include file="includes/footer.jsp" %>
     </body>
 </html>

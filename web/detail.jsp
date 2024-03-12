@@ -4,6 +4,8 @@
     Author     : BIN
 --%>
 
+<%@page import="java.util.Locale"%>
+<%@page import="java.text.NumberFormat"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.HttpSession" %>
@@ -144,6 +146,11 @@
     <body>
 
         <div class="container">
+            <c:set var="amount" value="${detail.course_price}"/>
+            <% 
+                NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi","VN"));
+                String price = formatter.format((double) pageContext.getAttribute("amount"));
+            %>
             <div class="course-detail">
                 <h1>${detail.getCourse_name()}</h1>
                 <img src="${detail.getCourse_img()}" alt="Course Image"/>
@@ -176,7 +183,7 @@
                         <dd>${detail.getSections().size()}</dd>
 
                         <dt>Giá:</dt>
-                        <dd>${detail.getCourse_price()}VNĐ</dd>
+                        <dd><%= price %></dd>
                     </dl>
                 </div>
 

@@ -66,10 +66,21 @@ public class LoginServlet extends HttpServlet {
        String password = this.get("password", request);
         if (username != null && !username.equals("")) {
             
-            HttpSession session = request.getSession();
-            session.setAttribute("username", username);
-            request.getRequestDispatcher("home.jsp").forward(request, response);
-            return;
+           try {
+               AccountDAO adao = new AccountDAO();
+               Account ac = adao.getAccount(username, password);
+               request.getSession().setAttribute("auth", ac);
+               request.getSession().setAttribute("username",username );
+               request.getSession().setAttribute("password",password );
+               request.getSession().setAttribute("role",ac.getRole() );
+               
+               request.getRequestDispatcher("HomeServlet").forward(request, response);
+               return;
+           } catch (ClassNotFoundException ex) {
+               Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+           } catch (SQLException ex) {
+               Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+           }
         }
         
         response.sendRedirect("login.jsp");

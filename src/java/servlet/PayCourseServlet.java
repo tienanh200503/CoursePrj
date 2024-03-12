@@ -82,17 +82,17 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
         if (confirm != null && confirm.equals("confirm")) {
             // Lấy thông tin tài khoản từ session
             AccountDAO adao = new AccountDAO();
-            Double account = adao.getAccountById(2).getMoney();
+            Double account_money = adao.getAccountById(2).getMoney();
             // Lấy thông tin khóa học
             CourseDAO cdao = new CourseDAO();
             Double course = cdao.getCourse(2).getCourse_price(); // Thay thế 2 bằng ID của khóa học
 
             // Kiểm tra xem tài khoản có đủ tiền để mua khóa học không
-            if (account < course) {
+            if (account_money  < course) {
                 request.setAttribute("notification", "Vui lòng nạp thêm tiền");
-                request.getRequestDispatcher("HomeServlet").forward(request, response);
+                request.getRequestDispatcher("atm.jsp").forward(request, response);
             } else {
-                Double total = account - course;
+                Double total = account_money  - course;
                 adao.updateAccountATM(2, total);
                 request.getRequestDispatcher("LoginServlet").forward(request, response);
             }

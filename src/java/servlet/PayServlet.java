@@ -5,23 +5,21 @@
 package servlet;
 
 import DAO.AccountDAO;
-import DAO.CourseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 
 /**
  *
  * @author BIN
  */
-public class PayCourseServlet extends HttpServlet {
+public class PayServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +38,10 @@ public class PayCourseServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PayCourseServlet</title>");
+            out.println("<title>Servlet PayServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PayCourseServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PayServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -72,38 +70,30 @@ public class PayCourseServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
- @Override
-protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    try {
-        HttpSession session = request.getSession();
-        String confirm = request.getParameter("confirm");
-        if (confirm != null && confirm.equals("confirm")) {
-            // Lấy thông tin tài khoản từ session
-            AccountDAO adao = new AccountDAO();
-            Double account_money = adao.getAccountById(2).getMoney();
-            // Lấy thông tin khóa học
-            CourseDAO cdao = new CourseDAO();
-            Double course = cdao.getCourse(2).getCourse_price(); // Thay thế 2 bằng ID của khóa học
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String atm = request.getParameter("atm");
+        Double load = null;
+        if (atm != null && !atm.isEmpty()) {
+            try {
+                load = Double.valueOf(atm);
+                AccountDAO adao = new AccountDAO();
+                Double moneyUser = adao.getAccountById(1).getMoney();
+                Double total = load + moneyUser;
+                adao.updateAccountATM(1, total);
+                response.sendRedirect("payATMServlet");
+                return;
+            } catch (NumberFormatException e) {
 
-            // Kiểm tra xem tài khoản có đủ tiền để mua khóa học không
-            if (account_money  < course) {
-                request.setAttribute("notification", "Vui lòng nạp thêm tiền");
-                request.getRequestDispatcher("atm.jsp").forward(request, response);
-            } else {
-                Double total = account_money  - course;
-                adao.updateAccountATM(2, total);
-                request.getRequestDispatcher("LoginServlet").forward(request, response);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(PayServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(PayServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
-            // Nếu không có xác nhận, chuyển hướng đến trang "buy.jsp"
-            response.sendRedirect("buy.jsp");
         }
-    } catch (Exception ex) {
-        Logger.getLogger(PayCourseServlet.class.getName()).log(Level.SEVERE, null, ex);
+        response.sendRedirect("payATMServlet");
     }
-}
-
 
     /**
      * Returns a short description of the servlet.

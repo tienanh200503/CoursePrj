@@ -1,0 +1,34 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : Mar 14, 2024, 12:43:02 AM
+    Author     : Desktop
+*/
+footer {
+    margin-top: 50px;
+    background-color: #333; /* Màu nền của footer */
+    color: #fff; /* Màu chữ */
+    padding: 50px 0; /* Khoảng cách phần nội dung với biên */
+    text-align: center; /* Canh giữa nội dung */
+}
+
+.footer-content {
+    max-width: 800px; /* Độ rộng tối đa của nội dung */
+    margin: 0 auto; /* Căn giữa nội dung */
+}
+
+.footer-content h2 {
+    margin-bottom: 20px; /* Khoảng cách giữa tiêu đề và nội dung */
+}
+
+.social-icons {
+    margin-top: 20px; /* Khoảng cách giữa nội dung và biểu tượng mạng xã hội */
+}
+
+.social-icons a {
+    color: #fff; /* Màu của biểu tượng mạng xã hội */
+    margin: 0 10px; /* Khoảng cách giữa các biểu tượng */
+    font-size: 24px; /* Kích thước của biểu tượng */
+}

@@ -1,0 +1,20 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : Mar 14, 2024, 1:18:47 AM
+    Author     : Desktop
+*/
+#toggleLeftBarBtn {
+    height: 100%;
+    background-color: transparent; /* Màu nền trong suốt */
+    border: none; /* Loại bỏ viền */
+    cursor: pointer; /* Đổi con trỏ thành dấu nhắc tay */
+    padding: 0; /* Xóa khoảng cách đệm */
+}
+
+
+#toggleLeftBarBtn:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Màu nền khi rê chuột hoặc nhấn */
+}

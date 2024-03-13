@@ -109,7 +109,7 @@ public class LoginServlet extends HttpServlet {
                 request.getSession().setAttribute("role", user.getRole());
                 this.add("username", username, 2, response);
                 this.add("password", password, 2, response);
-                response.sendRedirect("home.jsp");
+                response.sendRedirect("HomeServlet");
             }else
             {
                 request.getSession().setAttribute("auth", null);

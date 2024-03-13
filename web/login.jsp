@@ -14,7 +14,7 @@
     </head>
     <body>
          <%@include file="includes/nav.jsp" %>
-        <div class="container">
+        <div class="container hidden" >
             <div class="card w-50 mx-auto my-5">
                 <div class="card-header text-center"> Login Form</div>
                 <div class="card-body">

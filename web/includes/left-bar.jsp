@@ -56,20 +56,20 @@
 
 </style>
 <!-- Định nghĩa left-bar -->
-<div id="leftBar" class="tab1  flex-column justify-content-center px-0 col-md-3 bg-primary text-center text-decoration-none gap-3" style="height: 600px; display: flex">
+<div id="leftBar" class="tab1  flex-column justify-content-center px-0 col-md-3 bg-primary text-center text-decoration-none gap-3" style="display: none;height: 600px; display: flex">
 
     <c:if test="${role == 1}">
         <div class="but" ><a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-user-circle"></i> Thông tin cá nhân</a></div>
         <div class="but"> <a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-book"></i> Khóa học của tôi</a></div>
         <div class="but"> <a style="  color: white; text-decoration:none" href="#"> <i class="fas fa-wallet"></i> Nạp Tiền</a></div>
-        <div class="but"> <a style="  color: white; text-decoration:none" href="LogoutServlet">Log out</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/LogoutServlet">Log out</a></div>
     </c:if>
     <c:if test="${role == 2}">
         <div class="but" ><a style="  color: white; text-decoration:none" href="CourseController" > <i class="fas fa-user-circle"></i> Course</a></div>
         <div class="but"> <a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-book"></i> Section</a></div>
         <div class="but"> <a style="  color: white; text-decoration:none" href="#"> <i class="fas fa-wallet"></i> Teacher</a></div>
         
-        <div class="but"> <a style="  color: white; text-decoration:none" href="LogoutServlet">Log out</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/LogoutServlet">Log out</a></div>
     </c:if>
     <c:if test="${ empty auth}">
         <div class="but" style="  margin: 0 50px 0 50px  ">
@@ -80,7 +80,7 @@
         <div class="but"><a style="  color: white;text-decoration:none" href="#" class="register-link"><i class="fas fa-user-plus"></i> Đăng ký</a></div>
     </c:if>
 </div>
-<div id="logInForm" class="container" >
+        <div id="logInForm" class="container" style="display: none" >
 
     <div class="overlay">
         <div class="card w-50 mx-auto my-5" >
@@ -90,7 +90,7 @@
                 <form action="LoginServlet" method="post">
                     <div class="form-group">
                         <label>Email Address</label>
-                        <input type="name" name="email" class="form-control" placeholder="Email Adress" required="">
+                        <input type="text" name="username" class="form-control" placeholder="UserName" required="">
                     </div>
                     <div class="form-group">
                         <label>password</label>
@@ -110,9 +110,9 @@
 <script>
     $(document).ready(function () {
         // Ẩn left-bar mặc định khi trang được tải
-        $("#leftBar").hide();
-        $("#logInForm").hide();
-        $("#add-course-form").hide();
+//        $("#leftBar").hide();
+//        $("#logInForm").hide();
+//        $("#add-course-form").hide();
         if (localStorage.getItem('updateCourseFormVisible') === 'true') {
             $("#update-course-form").show();
         } else {
@@ -132,36 +132,36 @@
         function toggleLeftBar() {
             $("#leftBar").toggle();
         }
-
+//
         // Function to toggle login form visibility
         function toggleLoginForm() {
             $("#logInForm").toggle();
         }
-
-        // Function to toggle add course form visibility
+//
+//        // Function to toggle add course form visibility
         function toggleAddCourseForm() {
             $("#add-course-form").toggle();
         }
-
-
-        // Xử lý sự kiện click trên nút tắt/bật left-bar
+//
+//
+//        // Xử lý sự kiện click trên nút tắt/bật left-bar
         $("#toggleLeftBarBtn").click(function () {
             toggleLeftBar();
         });
-
-        // Xử lý sự kiện click trên nút tắt/bật login form
+//
+//        // Xử lý sự kiện click trên nút tắt/bật login form
         $(".toggleCloseLoginForm").click(function () {
             toggleLoginForm();
         });
-
-        // Xử lý sự kiện click trên nút thêm khóa học
+//
+//        // Xử lý sự kiện click trên nút thêm khóa học
         $("#add-course-button").click(function () {
             toggleAddCourseForm();
         });
         $("#add-course-close").click(function () {
             toggleAddCourseForm();
         });
-
+//
         $(".update-course-button").click(function () {
             toggleUpdateCourseForm();
         });
@@ -171,8 +171,9 @@
         $("#done-course-update").click(function () {
             toggleUpdateCourseForm();
         });
-
+//
     });
+
 
 
 

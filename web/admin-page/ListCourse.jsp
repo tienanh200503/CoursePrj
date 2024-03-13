@@ -17,7 +17,7 @@
         <%@include file="../includes/nav.jsp" %>
         <%@include file="../includes/left-bar.jsp" %>
         <table class="table-course" border="1">
-            <thead>
+            <thead class="thead-form" style="background-color: #0d6efd;">
                 <tr>
                     <th>
                         ID
@@ -99,18 +99,6 @@
         <%@include file="addCourse.jsp" %>
         <%@include file="editCourse.jsp" %>
         <%@include file="../includes/footer.jsp" %>
-        <script>
-            function handleLinkClick(event) {
-                event.preventDefault(); // Ngăn chặn hành vi mặc định của sự kiện click
-
-                // Thực hiện bất kỳ xử lý nào bạn muốn ở đây
-                // Ví dụ: Gửi yêu cầu AJAX hoặc xử lý dữ liệu
-
-                // Sau đó, chuyển hướng người dùng đến URL được chỉ định trong href
-                window.location.href = event.currentTarget.getAttribute("href");
-                }
-            }
-            );
-        </script>
+        
     </body>
 </html>

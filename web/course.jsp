@@ -37,7 +37,7 @@
                             </div>
                             <div class="ml-2" style="padding-left:1rem ">
                                 <p style="border-bottom: 0.5px ; border-bottom-color: white ; border-bottom:  solid">
-                                    <a style="color: black; text-decoration: none" href="#">Bài 1: cơ bản C++ </a>
+                                    <a style="color: black; text-decoration: none" href="#">Bài 1: Cơ bản C++ </a>
                                 </p>
                                 <p style="border-bottom: 0.5px ; border-color: white ; border-bottom:  solid">
                                     <a style="color: black; text-decoration: none" href="#">Bài 2: Các loại toán tử</a>

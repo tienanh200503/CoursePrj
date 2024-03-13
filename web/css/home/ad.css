@@ -1,0 +1,66 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : Mar 13, 2024, 9:36:22 PM
+    Author     : Desktop
+*/
+
+.table-ad{
+    text-align: center;
+    margin-bottom: 50px;
+    
+}
+.contain .table-ad div
+{
+    
+    max-height: 350px;
+    overflow: hidden;
+        
+}
+.contain .table-ad div img
+{
+    background-color: gray; 
+    width: 60%;
+    transition: opacity 0.5s ease-in;
+    
+}
+.contain .table-ad div button
+{
+    
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 100%;
+}
+
+#image {
+    width: 85%;
+    transition: opacity 0.5s ease-in;
+    height: 200px;
+    border-radius: 10px; 
+}
+
+
+
+#prevB {
+    
+    transform: translateX(50%);
+    
+}
+#nextB {
+    
+    transform: translateX(-50%);
+    
+}
+#prevB:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#nextB:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+} 

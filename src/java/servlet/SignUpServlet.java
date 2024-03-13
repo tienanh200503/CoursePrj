@@ -84,43 +84,43 @@ public class SignUpServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     private static final long serialVersionUID = 1L;
-@Override 
-     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Lấy dữ liệu từ form
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String email = request.getParameter("email");
-
-        // Kiểm tra tính hợp lệ của dữ liệu (bạn có thể thêm logic kiểm tra ở đây)
-
-        // Tạo đối tượng Account
-        Account account = new Account();
-        account.setUsername(username);
-        account.setPassword(password);
-        account.setEmail(email);
-        // Đặt các thuộc tính khác của Account (nếu có)
-
-        try {
-            // Tạo đối tượng AccountDAO
-            AccountDAO accountDAO = new AccountDAO();
-
-            // Kiểm tra tài khoản đã tồn tại hay chưa
-            if (accountDAO.checkValid(account)) {
-                request.setAttribute("errorMessage", "Tài khoản đã tồn tại");
-                request.getRequestDispatcher("signUpForm.jsp").forward(request, response);
-                return;
-            }
-
-            // Thêm tài khoản mới vào cơ sở dữ liệu
-            accountDAO.addAccount(account);
-
-            // Chuyển hướng đến trang thành công 
-            response.sendRedirect("loginForm.jsp"); // Cần sửa thêm ở đây
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("errorMessage", "Đã xảy ra lỗi trong quá trình đăng ký");
-            request.getRequestDispatcher("signUpForm.jsp").forward(request, response);
-        }
-    }
+//@Override 
+//     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        // Lấy dữ liệu từ form
+//        String username = request.getParameter("username");
+//        String password = request.getParameter("password");
+//        String email = request.getParameter("email");
+//
+//        // Kiểm tra tính hợp lệ của dữ liệu (bạn có thể thêm logic kiểm tra ở đây)
+//
+//        // Tạo đối tượng Account
+//        Account account = new Account();
+//        account.setUsername(username);
+//        account.setPassword(password);
+//        account.setEmail(email);
+//        // Đặt các thuộc tính khác của Account (nếu có)
+//
+//        try {
+//            // Tạo đối tượng AccountDAO
+//            AccountDAO accountDAO = new AccountDAO();
+//
+//            // Kiểm tra tài khoản đã tồn tại hay chưa
+//            if (accountDAO.checkValid(account)) {
+//                request.setAttribute("errorMessage", "Tài khoản đã tồn tại");
+//                request.getRequestDispatcher("signUpForm.jsp").forward(request, response);
+//                return;
+//            }
+//
+//            // Thêm tài khoản mới vào cơ sở dữ liệu
+//            accountDAO.addAccount(account);
+//
+//            // Chuyển hướng đến trang thành công 
+//            response.sendRedirect("loginForm.jsp"); // Cần sửa thêm ở đây
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            request.setAttribute("errorMessage", "Đã xảy ra lỗi trong quá trình đăng ký");
+//            request.getRequestDispatcher("signUpForm.jsp").forward(request, response);
+//        }
+//    }
 }
 

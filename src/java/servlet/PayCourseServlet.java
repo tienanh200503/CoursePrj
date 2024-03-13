@@ -4,23 +4,24 @@
  */
 package servlet;
 
+import DAO.AccountDAO;
 import DAO.CourseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Course;
+import javax.servlet.http.HttpSession;
+
 
 /**
  *
- * @author Desktop
+ * @author BIN
  */
-public class HomeServlet extends HttpServlet {
+public class PayCourseServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +40,10 @@ public class HomeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HomeServlet</title>");            
+            out.println("<title>Servlet PayCourseServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet HomeServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PayCourseServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,14 +61,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            CourseDAO cdao = new CourseDAO();
-            List<Course> listCourse = cdao.getAllCourse();
-            request.getSession().setAttribute("listCourse", listCourse);
-            response.sendRedirect("home.jsp");
-        } catch (Exception ex) {
-            Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -78,18 +72,38 @@ public class HomeServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
+ @Override
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    try {
+        HttpSession session = request.getSession();
+        String confirm = request.getParameter("confirm");
+        if (confirm != null && confirm.equals("confirm")) {
+            // Lấy thông tin tài khoản từ session
+            AccountDAO adao = new AccountDAO();
+            Double account_money = adao.getAccountById(2).getMoney();
+            // Lấy thông tin khóa học
             CourseDAO cdao = new CourseDAO();
-            List<Course> listCourse = cdao.getAllCourse();
-            request.getSession().setAttribute("listCourse", listCourse);
-            response.sendRedirect("home.jsp");
-        } catch (Exception ex) {
-            Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Double course = cdao.getCourse(2).getCourse_price(); // Thay thế 2 bằng ID của khóa học
+
+            // Kiểm tra xem tài khoản có đủ tiền để mua khóa học không
+            if (account_money  < course) {
+                request.setAttribute("notification", "Vui lòng nạp thêm tiền");
+                request.getRequestDispatcher("atm.jsp").forward(request, response);
+            } else {
+                Double total = account_money  - course;
+                adao.updateAccountATM(2, total);
+                request.getRequestDispatcher("LoginServlet").forward(request, response);
+            }
+        } else {
+            // Nếu không có xác nhận, chuyển hướng đến trang "buy.jsp"
+            response.sendRedirect("buy.jsp");
         }
+    } catch (Exception ex) {
+        Logger.getLogger(PayCourseServlet.class.getName()).log(Level.SEVERE, null, ex);
     }
+}
+
 
     /**
      * Returns a short description of the servlet.

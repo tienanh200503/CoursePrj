@@ -4,23 +4,18 @@
  */
 package servlet;
 
-import DAO.CourseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Course;
 
 /**
  *
- * @author Desktop
+ * @author BIN
  */
-public class HomeServlet extends HttpServlet {
+public class payATMServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +34,10 @@ public class HomeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HomeServlet</title>");            
+            out.println("<title>Servlet payATMServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet HomeServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet payATMServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,14 +55,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            CourseDAO cdao = new CourseDAO();
-            List<Course> listCourse = cdao.getAllCourse();
-            request.getSession().setAttribute("listCourse", listCourse);
-            response.sendRedirect("home.jsp");
-        } catch (Exception ex) {
-            Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        response.sendRedirect("payATM.jsp");
     }
 
     /**
@@ -81,14 +69,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            CourseDAO cdao = new CourseDAO();
-            List<Course> listCourse = cdao.getAllCourse();
-            request.getSession().setAttribute("listCourse", listCourse);
-            response.sendRedirect("home.jsp");
-        } catch (Exception ex) {
-            Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

@@ -7,9 +7,6 @@ package servlet;
 import DAO.CourseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +15,9 @@ import model.Course;
 
 /**
  *
- * @author Desktop
+ * @author BIN
  */
-public class HomeServlet extends HttpServlet {
+public class DetailServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +36,10 @@ public class HomeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HomeServlet</title>");            
+            out.println("<title>Servlet DetailServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet HomeServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DetailServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,15 +57,28 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       
+    try {
+        int cid = Integer.parseInt(request.getParameter("cid")); 
+        CourseDAO cdao = new CourseDAO();
+        Course detail = cdao.getCourse(cid);
+        
+        if (detail != null) {
+            request.setAttribute("detail", detail);
+            request.getRequestDispatcher("detail.jsp").forward(request, response);
+        } else {
+            
+        }
+    } catch (Exception ex) {
         try {
-            CourseDAO cdao = new CourseDAO();
-            List<Course> listCourse = cdao.getAllCourse();
-            request.getSession().setAttribute("listCourse", listCourse);
-            response.sendRedirect("home.jsp");
-        } catch (Exception ex) {
-            Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
+        } catch (Exception ex1) {
+            java.util.logging.Logger.getLogger(DetailServlet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex1);
         }
     }
+}
+
+    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -81,14 +91,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            CourseDAO cdao = new CourseDAO();
-            List<Course> listCourse = cdao.getAllCourse();
-            request.getSession().setAttribute("listCourse", listCourse);
-            response.sendRedirect("home.jsp");
-        } catch (Exception ex) {
-            Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

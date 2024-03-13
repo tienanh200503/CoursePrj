@@ -25,7 +25,7 @@
 
             .form-container {
                 text-align: center;
-               
+
             }
 
             .form-container h1 {
@@ -93,16 +93,16 @@
             </div>
 
 
-<div class="container">
-    <div class="instruction-container">
-        <h2>Hướng dẫn nạp tiền:</h2>
-        <p>Để nạp tiền vào tài khoản của bạn, vui lòng nhập số tiền bạn muốn nạp vào ô trống bên trên. Sau đó, nhấn vào nút "Nạp".</p>
-        <p>Hệ thống sẽ chuyển bạn đến trang thanh toán để hoàn tất giao dịch. Hãy làm theo hướng dẫn trên màn hình để hoàn tất giao dịch nạp tiền.</p>
-        <p>Nếu bạn cần hỗ trợ, vui lòng liên hệ tổng đài 24/7 theo số điện thoại )0866715667 hoặc gửi email tới Codecuchuoi.com.</p>
-    </div>
-</div>
-
-    <%@include file="includes/footer.jsp" %>
-</body>
+            <div class="container">
+                <div class="instruction-container">
+                    <h2>Hướng dẫn nạp tiền:</h2>
+                    <p>Để nạp tiền vào tài khoản của bạn, vui lòng nhập số tiền bạn muốn nạp vào ô trống bên trên. Sau đó, nhấn vào nút "Nạp".</p>
+                    <p>Hệ thống sẽ chuyển bạn đến trang thanh toán để hoàn tất giao dịch. Hãy làm theo hướng dẫn trên màn hình để hoàn tất giao dịch nạp tiền.</p>
+                    <p>Nếu bạn cần hỗ trợ, vui lòng liên hệ tổng đài 24/7 theo số điện thoại )0866715667 hoặc gửi email tới Codecuchuoi.com.</p>
+                </div>
+            </div>
+        </form>
+            <%@include file="includes/footer.jsp" %>
+    </body>
 
 </html>

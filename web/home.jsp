@@ -70,7 +70,6 @@
                         </div>
 
                     </div>
-
                 </c:forEach>
 
             </div>

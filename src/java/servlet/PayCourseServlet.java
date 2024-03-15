@@ -6,8 +6,11 @@ package servlet;
 
 import DAO.AccountDAO;
 import DAO.CourseDAO;
+import DAO.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -15,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Order;
 
 /**
  *
@@ -63,22 +67,24 @@ public class PayCourseServlet extends HttpServlet {
 
         try {
             HttpSession session = request.getSession(false);
+            int uid = Integer.parseInt(request.getParameter("uid"));
             int cid = Integer.parseInt(request.getParameter("cid"));
             String confirm = request.getParameter("confirm");
             if ("confirm".equals(confirm) && session != null) {
-                // Lấy thông tin tài khoản từ session
                 AccountDAO adao = new AccountDAO();
-                Double account_money = adao.getAccountById(2).getMoney();
-                // Lấy thông tin khóa học
+                Double account_money = adao.getAccountById(uid).getMoney();
                 CourseDAO cdao = new CourseDAO();
-                Double course = cdao.getCourse(cid).getCourse_price(); // Thay thế 2 bằng ID của khóa học
-
-                // Kiểm tra xem tài khoản có đủ tiền để mua khóa học không
+                Double course = cdao.getCourse(cid).getCourse_price();
                 if (account_money < course) {
                     request.getRequestDispatcher("atm.jsp").forward(request, response);
                 } else {
                     Double total = account_money - course;
-                    adao.updateAccountATM(2, total);
+                    adao.updateAccountATM(uid, total);
+                    LocalDate today = LocalDate.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    String formattedDate = today.format(formatter);
+                    OrderDAO odao = new OrderDAO();
+                    odao.insertOrder(new Order(uid, cid, formattedDate));
                     request.getRequestDispatcher("HomeServlet").forward(request, response);
                 }
             } else {

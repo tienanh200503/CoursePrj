@@ -67,7 +67,7 @@ public class DetailServlet extends HttpServlet {
             request.setAttribute("detail", detail);
             request.getRequestDispatcher("detail.jsp").forward(request, response);
         } else {
-            
+            request.getRequestDispatcher("detail.jsp").forward(request, response);
         }
     } catch (Exception ex) {
         try {

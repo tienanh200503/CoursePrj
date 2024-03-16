@@ -23,6 +23,15 @@ public class Section {
         this.section_video = section_video;
     }
 
+    public Section(int section_id, int c_id, String section_name, String section_video, String section, boolean status) {
+        this.section_id = section_id;
+        this.c_id = c_id;
+        this.section_name = section_name;
+        this.section_video = section_video;
+        this.section = section;
+        this.status = status;
+    }
+    
     public Section(String section_name, String section) {
         this.section_name = section_name;
         this.section = section;

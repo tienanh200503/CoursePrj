@@ -9,45 +9,66 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 
 .contain
 {
-    margin-top:100px; 
+    margin-top:65px;
     display: flex;
-    
+
 }
 .video
 {
-    width: 60;
+    height: 100%;
+    
+}
+#myVideo
+{
+    border-radius: 10px;
+    width: 70%;
 }
 .list-section
 {
+    position: fixed;
+    right: 0;
     border: rgba(0 ,0 ,0, 0.5);
-    width: 40%;
-    
+    width: 30%;
+
 }
 .s-heading
 {
-        border: rgba(0 ,0 ,0, 0.5);
-        background-color:#f05123;
-        border-radius: 10%;
+    border: rgba(0 ,0 ,0, 0.5);
+    background-color:#f05123;
+    border-radius: 10%;
+    text-align: center;
 
 }
 .s-heading h1
 {
-    padding: 5px;
+    padding: 5px 5px 0 5px;
+    
 }
 
 .s-details
 {
-   border-bottom:  rgba(0 ,0 ,0, 0.5);
-        
+    border-bottom:  rgba(0 ,0 ,0, 0.5);
+
 
 }
 .s-details p
 {
-   border-bottom:  rgba(0 ,0 ,0, 0.2) 0.5px solid;
-   
+    border-bottom:  rgba(0 ,0 ,0, 0.2) 0.5px solid;
+
 
 }
 .s-details p:hover
 {
     background-color: rgba(0,0,0,0.6);
+}
+.lesson
+{
+    border-bottom: gray 1px solid;
+    padding: 0.5rem;
+}
+.lesson:hover
+{
+    transition: ease-in 0.3s ;
+   background-color:   rgba(128, 128, 128, 0.5);
+   
 }

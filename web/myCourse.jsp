@@ -31,17 +31,15 @@
             <a id="done" href="myCourseServlet?status=1" >Đã hoàn thành</a>
             <a id="not" href="myCourseServlet?status=0">Chưa hoàn thành</a>
         </div>
-
+        
         <div id="list">
-            <c:forEach var="c" items="${sessionScope.listSection}">
+            <c:forEach var="c" items="${sessionScope.listCourse}">
                 <div id="section">
-                    <p>${c.section_name}</p>
-                    <video width="320" height="240" controls>
-                        <source src="${c.section_video}" type="video/mp4">
-                    </video>
-                    <p>${c.section}</p>
-                    <p>Course ${c.c_id}</p>
-                    <a href="#">${c.status?"":"Go on"}</a>
+                    <p>${c.course_name}</p>
+                    <img src="${c.course_img}" alt="alt"/>
+                    <p>Teacher: ${c.teacher.teacher_name}</p>
+                    <a href="#"></a>
+                    
                 </div>
             </c:forEach>
         </div>

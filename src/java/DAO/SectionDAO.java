@@ -45,6 +45,7 @@ public class SectionDAO extends ConnectDB {
             while (rs.next()) {
                 Section s = new Section();
                 s.setC_id(rs.getInt("course_id"));
+                s.setSection(rs.getString("section"));
                 s.setSection_id(rs.getInt("section_id"));
                 s.setSection_name(rs.getString("section_name"));
                 s.setSection_video(rs.getString("section_video"));

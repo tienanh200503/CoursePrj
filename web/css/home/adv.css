@@ -3,9 +3,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
 */
 /* 
+    Created on : Mar 14, 2024, 11:00:54 AM
+    Author     : Desktop
+*/
+
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : Mar 14, 2024, 10:59:59 AM
+    Author     : Desktop
+*/
+
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
     Created on : Mar 13, 2024, 9:36:22 PM
     Author     : Desktop
 */
+
 
 .table-ad{
     text-align: center;
@@ -15,17 +34,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 .contain .table-ad div
 {
     
-    max-height: 350px;
+    max-height: 500px;
     overflow: hidden;
         
 }
-.contain .table-ad div img
-{
-    background-color: gray; 
-    width: 60%;
-    transition: opacity 0.5s ease-in;
-    
-}
+
 .contain .table-ad div button
 {
     
@@ -39,9 +52,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 }
 
 #image {
-    width: 85%;
+    max-width: 100%; /* Đảm bảo ảnh không vượt quá chiều rộng của phần tử cha */
+    width: 90%;
+    height: 200px; 
     transition: opacity 0.5s ease-in;
-    height: 200px;
+
     border-radius: 10px; 
 }
 

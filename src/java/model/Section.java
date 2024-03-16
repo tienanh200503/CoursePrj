@@ -14,6 +14,7 @@ public class Section {
     private String section_name;
     private String section_video;
     private String section;
+    private boolean status;
 
     public Section(int session_id, int c_id, String section_name, String section_video) {
         this.section_id = session_id;
@@ -25,6 +26,14 @@ public class Section {
     public Section(String section_name, String section) {
         this.section_name = section_name;
         this.section = section;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     

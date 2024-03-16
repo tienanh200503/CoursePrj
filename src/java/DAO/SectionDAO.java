@@ -55,13 +55,15 @@ public class SectionDAO extends ConnectDB {
         List<Section> listSections = new ArrayList<>();
         try {
 
-            sql = "SELECT TOP (1000) [section_id]\n"
+            sql = "SELECT [section_id]\n"
                     + "      ,[course_id]\n"
                     + "      ,[section]\n"
                     + "      ,[section_name]\n"
                     + "      ,[section_video]\n"
                     + "      ,[status]\n"
-                    + "  FROM [course].[dbo].[section]"
+
+                    + "  FROM [dbo].[section]"
+
                     + "Where course_id=? ";
 
             con = openConnection();
@@ -104,6 +106,7 @@ public class SectionDAO extends ConnectDB {
                 s.setSection(rs.getString("section"));
                 s.setSection_name(rs.getString("section_name"));
                 s.setSection_video(rs.getString("section_video"));
+                s.setStatus(rs.getBoolean("status"));
                 return s;
 
             }
@@ -117,14 +120,15 @@ public class SectionDAO extends ConnectDB {
     public void updateSection(Section s, int sid) throws ClassNotFoundException {
         try {
             con = openConnection();
-            sql = "Update section set  course_id=?,section=?, section_name=?,section_video=?   where section_id = ?";
+            sql = "Update section set  course_id=?,section=?, section_name=?,section_video=?, status=?   where section_id = ?";
             st = con.prepareStatement(sql);
 
             st.setInt(1, s.getC_id());
             st.setString(2, s.getSection());
             st.setString(3, s.getSection_name());
             st.setString(4, s.getSection_video());
-            st.setInt(5, sid);
+            st.setBoolean(5, s.isStatus());
+            st.setInt(6, sid);
             st.executeUpdate();
             st.close();
         } catch (SQLException e) {
@@ -150,12 +154,13 @@ public class SectionDAO extends ConnectDB {
     public void insertSection(Section s) throws ClassNotFoundException {
         try {
             con = openConnection();
-            sql = "insert into section(course_id,section,section_name,section_video) values(?,?,?,?)";
+            sql = "insert into section(course_id,section,section_name,section_video, status) values(?,?,?,?,?)";
             st = con.prepareStatement(sql);
             st.setInt(1, s.getC_id());
             st.setString(2, s.getSection());
             st.setString(3, s.getSection_name());
             st.setString(4, s.getSection_video());
+            st.setBoolean(5, s.isStatus());
             st.executeUpdate();
             st.close();
         } catch (SQLException e) {

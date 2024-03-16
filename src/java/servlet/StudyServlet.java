@@ -5,6 +5,7 @@
 package servlet;
 
 import DAO.CourseDAO;
+import DAO.SectionDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Course;
+import model.Section;
 
 /**
  *
@@ -38,7 +40,7 @@ public class StudyServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet StudyServlet</title>");            
+            out.println("<title>Servlet StudyServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet StudyServlet at " + request.getContextPath() + "</h1>");
@@ -60,16 +62,44 @@ public class StudyServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            int cid= 2;
-            
+            int cid = 2;
             CourseDAO cdao = new CourseDAO();
             Course c = cdao.getCourseById(cid);
+            SectionDAO sdao = new SectionDAO();
             request.getSession().setAttribute("c", c);
-            response.sendRedirect("course.jsp");
+            if (request.getParameter("sid") == null) {
+                Section s = c.getSections().get(0);
+                request.getSession().setAttribute("sCurrent", s);
+                if (s.isStatus() == false) {
+                    boolean status = Boolean.parseBoolean(request.getParameter("status"));
+                    if (status) {
+                        Section ss = sdao.getSectionById(s.getSection_id());
+                        Section updateSection = new Section(ss.getSection_id(), ss.getC_id(), ss.getSection_name(), ss.getSection_video(), ss.getSection(), status);
+                        sdao.updateSection(updateSection, s.getSection_id());
+
+                    }
+                }
+                response.sendRedirect("course.jsp?sid=" + s.getSection_id() + "&cid=" + c.getId());
+            } else {
+
+                Section ss = sdao.getSectionById(Integer.parseInt(request.getParameter("sid")));
+                request.getSession().setAttribute("sCurrent", ss);
+                response.sendRedirect("course.jsp?sid=" + ss.getSection_id() + "&cid=" + c.getId());
+                if (ss.isStatus() == false) {
+                    boolean status = Boolean.parseBoolean(request.getParameter("status"));
+                    if (status) {
+                        
+                        Section updateSection = new Section(ss.getSection_id(), ss.getC_id(), ss.getSection_name(), ss.getSection_video(), ss.getSection(), status);
+                        sdao.updateSection(updateSection, ss.getSection_id());
+
+                    }
+                }
+            }
+
         } catch (Exception ex) {
             Logger.getLogger(StudyServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     /**

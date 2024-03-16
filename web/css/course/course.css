@@ -1,0 +1,53 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : Mar 14, 2024, 1:15:20 PM
+    Author     : Desktop
+*/
+
+.contain
+{
+    margin-top:100px; 
+    display: flex;
+    
+}
+.video
+{
+    width: 60;
+}
+.list-section
+{
+    border: rgba(0 ,0 ,0, 0.5);
+    width: 40%;
+    
+}
+.s-heading
+{
+        border: rgba(0 ,0 ,0, 0.5);
+        background-color:#f05123;
+        border-radius: 10%;
+
+}
+.s-heading h1
+{
+    padding: 5px;
+}
+
+.s-details
+{
+   border-bottom:  rgba(0 ,0 ,0, 0.5);
+        
+
+}
+.s-details p
+{
+   border-bottom:  rgba(0 ,0 ,0, 0.2) 0.5px solid;
+   
+
+}
+.s-details p:hover
+{
+    background-color: rgba(0,0,0,0.6);
+}

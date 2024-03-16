@@ -64,12 +64,15 @@
     <h3>Bạn có chắc chắn muốn thực hiện mua khóa học này?</h3>
     <div class="button-container">
         <%
+            int uid= Integer.parseInt(request.getParameter("uid"));
             int cid = Integer.parseInt(request.getParameter("cid"));
             HttpSession sessions = request.getSession();
             sessions.setAttribute("cid", cid);
+            sessions.setAttribute("uid", uid);
         %>
         <form action="PayCourseServlet" method="get">
-            <input type="hidden" name="cid" value="<%= cid%>">
+            <input type="hidden" name="uid" value="<%= uid %>">
+            <input type="hidden" name="cid" value="<%= cid %>">
             <button type="submit" name="confirm" value="confirm">Xác nhận</button>
         </form>
         <button onclick="window.history.back()">Hủy bỏ</button>

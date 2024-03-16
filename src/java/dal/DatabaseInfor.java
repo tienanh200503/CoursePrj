@@ -12,5 +12,7 @@ public interface DatabaseInfor {
     String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     String url = "jdbc:sqlserver://ZANISMINHTEPS:1433;databaseName=course;";
     String user = "sa";
+
     String pass = "admin";
+
 }

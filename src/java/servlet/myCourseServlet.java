@@ -4,27 +4,26 @@
  */
 package servlet;
 
-import DAO.AccountDAO;
-import DAO.CourseDAO;
-import DAO.OrderDAO;
+import DAO.SectionDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.sql.SQLException;
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Order;
+import model.Section;
 
 /**
  *
- * @author BIN
+ * @author Zanis
  */
-public class PayCourseServlet extends HttpServlet {
+public class myCourseServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +42,10 @@ public class PayCourseServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PayCourseServlet</title>");
+            out.println("<title>Servlet myCourseServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PayCourseServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet myCourseServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,34 +63,16 @@ public class PayCourseServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+            int status = Integer.parseInt(request.getParameter("status"));
         try {
-            HttpSession session = request.getSession(false);
-            int uid = Integer.parseInt(request.getParameter("uid"));
-            int cid = Integer.parseInt(request.getParameter("cid"));
-            String confirm = request.getParameter("confirm");
-            if ("confirm".equals(confirm) && session != null) {
-                AccountDAO adao = new AccountDAO();
-                Double account_money = adao.getAccountById(uid).getMoney();
-                CourseDAO cdao = new CourseDAO();
-                Double course = cdao.getCourse(cid).getCourse_price();
-                if (account_money < course) {
-                    request.getRequestDispatcher("atm.jsp").forward(request, response);
-                } else {
-                    Double total = account_money - course;
-                    adao.updateAccountATM(uid, total);
-                    LocalDate today = LocalDate.now();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                    String formattedDate = today.format(formatter);
-                    OrderDAO odao = new OrderDAO();
-                    odao.insertOrder(new Order(uid, cid, formattedDate));
-                    request.getRequestDispatcher("HomeServlet").forward(request, response);
-                }
-            } else {
-
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(PayCourseServlet.class.getName()).log(Level.SEVERE, null, ex);
+            SectionDAO sec = new SectionDAO();
+            List<Section> list = sec.getSectionByStatus(status);    
+            request.getSession().setAttribute("listSection", list);
+            response.sendRedirect("myCourse.jsp");
+        } catch (SQLException ex) {
+            Logger.getLogger(myCourseServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(myCourseServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -106,7 +87,7 @@ public class PayCourseServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        processRequest(request, response);
     }
 
     /**

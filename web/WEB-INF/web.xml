@@ -13,10 +13,10 @@
         <servlet-class>servlet.HomeServlet</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>SignUpServlet</servlet-name>
         <servlet-class>servlet.SignUpServlet</servlet-class>
-
+    </servlet>
+    <servlet>
         <servlet-name>DetailServlet</servlet-name>
         <servlet-class>servlet.DetailServlet</servlet-class>
     </servlet>
@@ -35,7 +35,10 @@
     <servlet>
         <servlet-name>payATMServlet</servlet-name>
         <servlet-class>servlet.payATMServlet</servlet-class>
-
+    </servlet>
+    <servlet>
+        <servlet-name>StudyServlet</servlet-name>
+        <servlet-class>servlet.StudyServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -50,10 +53,10 @@
         <url-pattern>/HomeServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>SignUpServlet</servlet-name>
         <url-pattern>/SignUpServlet</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DetailServlet</servlet-name>
         <url-pattern>/DetailServlet</url-pattern>
     </servlet-mapping>
@@ -72,11 +75,12 @@
     <servlet-mapping>
         <servlet-name>payATMServlet</servlet-name>
         <url-pattern>/payATMServlet</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StudyServlet</servlet-name>
+        <url-pattern>/StudyServlet</url-pattern>
     </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
 </web-app>

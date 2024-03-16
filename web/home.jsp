@@ -14,7 +14,7 @@
         <%@include file="includes/head.jsp" %>
 
         <link rel="stylesheet" href="css/home/style.css" type="text/css">
-        <link rel="stylesheet" href="css/home/ad.css" type="text/css">
+        <link rel="stylesheet" href="css/home/adv.css" type="text/css">
         <link rel="stylesheet" href="css/footer.css" type="text/css">
          <link rel="stylesheet" href="css/nav.css" type="text/css">
 
@@ -112,7 +112,7 @@
 
 <script>
    $(document).ready(function () {
-    const images = ["image/logo/banner1.png", "image/logo/banner2.png", "image/logo/banner3.png"]; // Danh sách các ảnh
+    const images = ["image/logo/1.png", "image/logo/2.png", "image/logo/3.png"]; // Danh sách các ảnh
     let currentImageIndex = 0;
 
     function showNextImage() {

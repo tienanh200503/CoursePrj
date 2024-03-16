@@ -12,6 +12,7 @@ footer {
     color: #fff; /* Màu chữ */
     padding: 50px 0; /* Khoảng cách phần nội dung với biên */
     text-align: center; /* Canh giữa nội dung */
+    z-index: 1000;
 }
 
 .footer-content {

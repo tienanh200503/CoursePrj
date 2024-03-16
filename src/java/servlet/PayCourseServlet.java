@@ -6,8 +6,11 @@ package servlet;
 
 import DAO.AccountDAO;
 import DAO.CourseDAO;
+import DAO.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -15,7 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import model.Order;
 
 /**
  *
@@ -61,7 +64,35 @@ public class PayCourseServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        try {
+            HttpSession session = request.getSession(false);
+            int uid = Integer.parseInt(request.getParameter("uid"));
+            int cid = Integer.parseInt(request.getParameter("cid"));
+            String confirm = request.getParameter("confirm");
+            if ("confirm".equals(confirm) && session != null) {
+                AccountDAO adao = new AccountDAO();
+                Double account_money = adao.getAccountById(uid).getMoney();
+                CourseDAO cdao = new CourseDAO();
+                Double course = cdao.getCourse(cid).getCourse_price();
+                if (account_money < course) {
+                    request.getRequestDispatcher("atm.jsp").forward(request, response);
+                } else {
+                    Double total = account_money - course;
+                    adao.updateAccountATM(uid, total);
+                    LocalDate today = LocalDate.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    String formattedDate = today.format(formatter);
+                    OrderDAO odao = new OrderDAO();
+                    odao.insertOrder(new Order(uid, cid, formattedDate));
+                    request.getRequestDispatcher("HomeServlet").forward(request, response);
+                }
+            } else {
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(PayCourseServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -72,38 +103,11 @@ public class PayCourseServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
- @Override
-protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    try {
-        HttpSession session = request.getSession();
-        String confirm = request.getParameter("confirm");
-        if (confirm != null && confirm.equals("confirm")) {
-            // Lấy thông tin tài khoản từ session
-            AccountDAO adao = new AccountDAO();
-            Double account_money = adao.getAccountById(2).getMoney();
-            // Lấy thông tin khóa học
-            CourseDAO cdao = new CourseDAO();
-            Double course = cdao.getCourse(2).getCourse_price(); // Thay thế 2 bằng ID của khóa học
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-            // Kiểm tra xem tài khoản có đủ tiền để mua khóa học không
-            if (account_money  < course) {
-                request.setAttribute("notification", "Vui lòng nạp thêm tiền");
-                request.getRequestDispatcher("atm.jsp").forward(request, response);
-            } else {
-                Double total = account_money  - course;
-                adao.updateAccountATM(2, total);
-                request.getRequestDispatcher("LoginServlet").forward(request, response);
-            }
-        } else {
-            // Nếu không có xác nhận, chuyển hướng đến trang "buy.jsp"
-            response.sendRedirect("buy.jsp");
-        }
-    } catch (Exception ex) {
-        Logger.getLogger(PayCourseServlet.class.getName()).log(Level.SEVERE, null, ex);
     }
-}
-
 
     /**
      * Returns a short description of the servlet.

@@ -82,7 +82,7 @@ public class PayServlet extends HttpServlet {
                 Double moneyUser = adao.getAccountById(1).getMoney();
                 Double total = load + moneyUser;
                 adao.updateAccountATM(1, total);
-                response.sendRedirect("payATMServlet");
+                request.getRequestDispatcher("payATM.jsp").forward(request, response);
                 return;
             } catch (NumberFormatException e) {
 

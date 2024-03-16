@@ -27,8 +27,20 @@ public class TestSql {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
+
        SectionDAO s = new SectionDAO();
        s.getSectionById(3);
+
+        
+        
+        CourseDAO c = new CourseDAO();
+        SectionDAO sec = new SectionDAO();
+        System.out.println(sec.getSectionById(1).getSection_name());
+
+        System.out.println(c.getCourse(2).getCourse_price());
+        AccountDAO a = new AccountDAO();
+        System.out.println(a.getAccountById(2).getMoney());
+
         
 
         System.out.println(s.getSectionById(3).isStatus());

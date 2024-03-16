@@ -24,6 +24,33 @@ public class SectionDAO extends ConnectDB {
     private PreparedStatement st;
     private ResultSet rs;
 
+    public List<Section> getSectionByStatus(int status) throws SQLException, ClassNotFoundException {
+        List<Section> list = new ArrayList<>();
+        try {
+
+            sql = "SELECT * FROM [course].[dbo].[section] WHERE status="+status;
+            con = openConnection();
+            st = con.prepareStatement(sql);
+            rs = st.executeQuery();
+            
+            while (rs.next()) {
+                Section s = new Section();
+                s.setC_id(rs.getInt("course_id"));
+                s.setSection(rs.getString("section"));
+                s.setSection_id(rs.getInt("section_id"));
+                s.setSection_name(rs.getString("section_name"));
+                s.setSection_video(rs.getString("section_video"));
+                s.setStatus(rs.getBoolean("status"));
+                list.add(s);
+            }
+
+        } catch (SQLException e) {
+            throw e;
+        }
+        return list;
+
+    }
+
     public List<Section> getSectionByCid(int cid) throws SQLException, ClassNotFoundException {
         List<Section> listSections = new ArrayList<>();
         try {
@@ -34,7 +61,9 @@ public class SectionDAO extends ConnectDB {
                     + "      ,[section_name]\n"
                     + "      ,[section_video]\n"
                     + "      ,[status]\n"
+
                     + "  FROM [dbo].[section]"
+
                     + "Where course_id=? ";
 
             con = openConnection();

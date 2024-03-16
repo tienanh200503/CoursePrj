@@ -26,6 +26,8 @@ public class TestSql {
         
         
         CourseDAO c = new CourseDAO();
+        SectionDAO sec = new SectionDAO();
+        System.out.println(sec.getSectionById(1).getSection_name());
 
         System.out.println(c.getCourse(2).getCourse_price());
         AccountDAO a = new AccountDAO();

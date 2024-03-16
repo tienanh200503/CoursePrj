@@ -4,6 +4,7 @@
  */
 package servlet;
 
+import DAO.OrderDAO;
 import DAO.SectionDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Course;
 import model.Section;
 
 /**
@@ -64,16 +66,11 @@ public class myCourseServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             int status = Integer.parseInt(request.getParameter("status"));
-        try {
+            OrderDAO order = new OrderDAO();
             SectionDAO sec = new SectionDAO();
-            List<Section> list = sec.getSectionByStatus(status);    
-            request.getSession().setAttribute("listSection", list);
+            List<Course> list = order.getCourseId(1,status);
+            request.getSession().setAttribute("listCourse", list);
             response.sendRedirect("myCourse.jsp");
-        } catch (SQLException ex) {
-            Logger.getLogger(myCourseServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(myCourseServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**

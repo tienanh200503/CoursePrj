@@ -16,12 +16,15 @@ public class Section {
     private String section;
     private boolean status;
 
-    public Section(int session_id, int c_id, String section_name, String section_video) {
-        this.section_id = session_id;
+    public Section(int c_id, String section_name, String section_video, String section, boolean status) {
         this.c_id = c_id;
         this.section_name = section_name;
         this.section_video = section_video;
+        this.section = section;
+        this.status = status;
     }
+
+    
 
     public Section(int section_id, int c_id, String section_name, String section_video, String section, boolean status) {
         this.section_id = section_id;

@@ -28,9 +28,9 @@ public class TestSql {
      */
     public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
 
-       SectionDAO s = new SectionDAO();
-        System.out.println(s.getAllSections());
-
+      
+        TeacherDAO t = new TeacherDAO();
+        System.out.println(t.getAllTeacher());
         
         
 

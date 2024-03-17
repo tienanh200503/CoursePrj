@@ -50,6 +50,32 @@ public class SectionDAO extends ConnectDB {
         return list;
 
     }
+    public List<Section> getAllSections() throws SQLException, ClassNotFoundException {
+        List<Section> list = new ArrayList<>();
+        try {
+
+            sql = "SELECT * FROM [course].[dbo].[section]";
+            con = openConnection();
+            st = con.prepareStatement(sql);
+            rs = st.executeQuery();
+            
+            while (rs.next()) {
+                Section s = new Section();
+                s.setC_id(rs.getInt("course_id"));
+                s.setSection(rs.getString("section"));
+                s.setSection_id(rs.getInt("section_id"));
+                s.setSection_name(rs.getString("section_name"));
+                s.setSection_video(rs.getString("section_video"));
+                s.setStatus(rs.getBoolean("status"));
+                list.add(s);
+            }
+
+        } catch (SQLException e) {
+            throw e;
+        }
+        return list;
+
+    }
 
     public List<Section> getSectionByCid(int cid) throws SQLException, ClassNotFoundException {
         List<Section> listSections = new ArrayList<>();

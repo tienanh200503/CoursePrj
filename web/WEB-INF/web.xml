@@ -48,6 +48,10 @@
         <servlet-name>SectionServlet</servlet-name>
         <servlet-class>Controller.SectionController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TeacherController</servlet-name>
+        <servlet-class>Controller.TeacherController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>SectionServlet</servlet-name>
         <url-pattern>/SectionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeacherController</servlet-name>
+        <url-pattern>/TeacherController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

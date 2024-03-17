@@ -13,8 +13,8 @@
         <div class="collapse navbar-collapse  d-flex justify-content-end " id="navbarSupportedContent" >
             <img src="image/logo/CODE.png" alt="alt" style="width: auto; height: 3rem; border-radius: 50% "/>
             <div class="" style="display: flex; width: 40%; gap: 10px; padding:5px">
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" action="SearchServlet" method="post">
+                    <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <ul class="navbar-nav  ml-5 mb-2 mb-lg-0">

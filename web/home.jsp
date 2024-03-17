@@ -94,7 +94,7 @@
                                 <p style="color: #333; opacity: 0.5; margin: 0"> By ${c.teacher.teacher_name}</p>
                                 <p class="price" style="color: #f05123"> <%= formattedAmount2%></p>
                             </div>
-                            <button class="buy-button" type="submit" ><a href="DetailServlet?cid=${c.id}">MUA NGAY</a></button>
+                            <button class="buy-button" type="submit" ><a href="DetailServlet?uid=${u.id}&cid=${c.id}">MUA NGAY</a></button>
                         </div>
                     </div>
                 </c:forEach>

@@ -7,7 +7,7 @@
 
 <div id="add-course-form" class="hidden" >
     <div class="overlay">
-        <form class="card card-add-form mx-auto" action="../CourseController" method="GET">
+        <form class="card card-add-form mx-auto" action="../CourseController" method="GET" style="transition: ease-in 0.5s">
             <i id="add-course-close" class="fas fa-times"></i>
             <h3 class="form-heading">Add New Course</h3>
             <input type="hidden" name="command" value="ADD" />

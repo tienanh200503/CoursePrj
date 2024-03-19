@@ -9,7 +9,7 @@
 <style>
     #leftBar {
         position: fixed;
-        top: 0;
+        top: 60px;
         left: 0;
         bottom: 0;
         z-index: 900; /* Đảm bảo left-bar nằm trên các phần tử khác */
@@ -56,18 +56,19 @@
 
 </style>
 <!-- Định nghĩa left-bar -->
-<div id="leftBar" class="tab1  flex-column justify-content-center px-0 col-md-3 bg-primary text-center text-decoration-none gap-3" style="display: none;height: 600px; display: flex">
+
+    <div id="leftBar" class="tab1  flex-column justify-content-center px-0 col-md-3 bg-primary text-center text-decoration-none gap-3" style="height: 600px; display: flex">
 
     <c:if test="${role == 1}">
         <div class="but" ><a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-user-circle"></i> Thông tin cá nhân</a></div>
-        <div class="but"> <a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-book"></i> Khóa học của tôi</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="myCourse.jsp" > <i class="fas fa-book"></i> Khóa học của tôi</a></div>
         <div class="but"> <a style="  color: white; text-decoration:none" href="#"> <i class="fas fa-wallet"></i> Nạp Tiền</a></div>
         <div class="but"> <a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/LogoutServlet">Log out</a></div>
     </c:if>
     <c:if test="${role == 2}">
-        <div class="but" ><a style="  color: white; text-decoration:none" href="CourseController" > <i class="fas fa-user-circle"></i> Course</a></div>
-        <div class="but"> <a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-book"></i> Section</a></div>
-        <div class="but"> <a style="  color: white; text-decoration:none" href="#"> <i class="fas fa-wallet"></i> Teacher</a></div>
+        <div class="but" ><a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/CourseController" > <i class="fas fa-user-circle"></i> Course</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/SectionServlet" > <i class="fas fa-book"></i> Section</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/TeacherController"> <i class="fas fa-wallet"></i> Teacher</a></div>
         
         <div class="but"> <a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/LogoutServlet">Log out</a></div>
     </c:if>
@@ -106,11 +107,12 @@
 </div>
 
 
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
         // Ẩn left-bar mặc định khi trang được tải
-//        $("#leftBar").hide();
+        $("#leftBar").hide();
 //        $("#logInForm").hide();
 //        $("#add-course-form").hide();
         if (localStorage.getItem('updateCourseFormVisible') === 'true') {

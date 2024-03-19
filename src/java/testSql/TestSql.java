@@ -6,11 +6,18 @@ package testSql;
 
 import DAO.AccountDAO;
 import DAO.CourseDAO;
+import DAO.OrderDAO;
 import DAO.SectionDAO;
 import DAO.TeacherDAO;
 import java.sql.SQLException;
+
 import model.Account;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import model.Course;
+import model.Order;
 import model.Section;
 import model.Teacher;
 
@@ -24,8 +31,13 @@ public class TestSql {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
+
+      
+        TeacherDAO t = new TeacherDAO();
+        System.out.println(t.getAllTeacher());
         
         
+
 //        CourseDAO c = new CourseDAO();
 //
 //        System.out.println(c.getCourseById(1));
@@ -35,12 +47,8 @@ public class TestSql {
         Account b = new Account();
         b.setUsername("admin");
         System.out.println(a.addAccount(b));
-        
-
-        
-       
-        
-       
     }
+       
+    
     
 }

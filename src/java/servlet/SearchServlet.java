@@ -4,22 +4,23 @@
  */
 package servlet;
 
-import DAO.AccountDAO;
+import DAO.CourseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Course;
 
 /**
  *
  * @author BIN
  */
-public class PayServlet extends HttpServlet {
+public class SearchServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +39,10 @@ public class PayServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PayServlet</title>");
+            out.println("<title>Servlet SearchServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PayServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SearchServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -73,26 +74,17 @@ public class PayServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String atm = request.getParameter("atm");
-        Double load = null;
-        if (atm != null && !atm.isEmpty()) {
-            try {
-                load = Double.valueOf(atm);
-                AccountDAO adao = new AccountDAO();
-                Double moneyUser = adao.getAccountById(1).getMoney();
-                Double total = load + moneyUser;
-                adao.updateAccountATM(1, total);
-                request.getRequestDispatcher("payATM.jsp").forward(request, response);
-                return;
-            } catch (NumberFormatException e) {
-
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(PayServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(PayServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try {
+            request.setCharacterEncoding("UTF-8");
+            String search = request.getParameter("search");
+            CourseDAO cdao = new CourseDAO();
+            List<Course> list = cdao.getCourseByName(search);
+            request.getSession().setAttribute("listCourse", list);
+            response.sendRedirect("search.jsp");
+        } catch (Exception ex) {
+            Logger.getLogger(SearchServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        response.sendRedirect("payATMServlet");
+
     }
 
     /**

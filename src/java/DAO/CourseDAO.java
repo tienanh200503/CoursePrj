@@ -142,8 +142,8 @@ public class CourseDAO extends ConnectDB {
     public Course getCourseById(int cid) throws Exception {
         Course a = new Course();
         List<Section> sections = new ArrayList<>();
-         TeacherDAO teacherDAO = new TeacherDAO();
-            SectionDAO sectionDAO = new SectionDAO();
+        TeacherDAO teacherDAO = new TeacherDAO();
+        SectionDAO sectionDAO = new SectionDAO();
         try {
 
             sql = "SELECT TOP (1000) [course_id]\n"
@@ -163,7 +163,6 @@ public class CourseDAO extends ConnectDB {
             rs = st.executeQuery();
 
             while (rs.next()) {
-               
 
                 Teacher t = new Teacher();
                 a.setId(rs.getInt("course_id"));
@@ -177,7 +176,6 @@ public class CourseDAO extends ConnectDB {
                 return a;
             }
 
-            
         } catch (ClassNotFoundException | SQLException e) {
             throw e;
         } finally {
@@ -249,5 +247,64 @@ public class CourseDAO extends ConnectDB {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Course> getCourseByName(String course_name) throws Exception {
+        List<Course> listCourse = new ArrayList<>();
+        Course a = null;
+        try {
+
+            sql = "SELECT TOP (1000)[dbo].[course].[course_id]\n"
+                    + "      ,[course_name]\n"
+                    + "      ,[course_time]\n"
+                    + "      ,[teacher_name]\n"
+                    + "      ,[course_price]\n"
+                    + "      ,[course_describe]\n"
+                    + "      ,[course_picture]\n"
+                    + "  FROM [course].[dbo].[course]\n"
+                    + "  JOIN [dbo].[teacher] ON teacher.teacher_id = course.teacher_id\n"
+                    + "  WHERE [dbo].[course].course_name like ?";
+            Connection con = this.openConnection();
+            st = con.prepareStatement(sql);
+            st.setString(1, "%" + course_name + "%");
+
+            // Thực thi câu lệnh SQL và gán kết quả cho biến rs
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                a = new Course();
+                a.setId(rs.getInt("course_id"));
+                a.setCourse_name(rs.getString("course_name"));
+                a.setCourse_time(rs.getInt("course_time"));
+                a.setCourseDescribe(rs.getString("course_describe"));
+                a.setCourse_price(rs.getDouble("course_price"));
+                a.setCourse_img(rs.getString("course_picture"));
+
+                Teacher teacher = new Teacher();
+                teacher.setTeacher_name(rs.getString("teacher_name"));
+                a.setTeacher(teacher);
+
+                listCourse.add(a);
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            throw e;
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (st != null) {
+                    st.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                throw e;
+            }
+
+        }
+        return listCourse;
     }
 }

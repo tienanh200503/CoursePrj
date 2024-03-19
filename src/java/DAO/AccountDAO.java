@@ -62,7 +62,7 @@ public class AccountDAO extends ConnectDB {
         return null;
     }
 
-    public Account getAccountById(int course_id) throws ClassNotFoundException, SQLException {
+    public Account getAccountById(int user_id) throws ClassNotFoundException, SQLException {
         try {
             Account a = new Account();
             sql = "SELECT TOP (1000) [user_id]\n"
@@ -76,7 +76,7 @@ public class AccountDAO extends ConnectDB {
                     + "  where user_id =?";
             Connection con = this.openConnection();
             st = con.prepareStatement(sql);
-            st.setInt(1, course_id);
+            st.setInt(1, user_id);
 
             rs = st.executeQuery();
 

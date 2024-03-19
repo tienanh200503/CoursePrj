@@ -4,6 +4,11 @@
     Author     : Desktop
 --%>
 
+<%@page import="DAO.CourseDAO"%>
+<%@page import="model.Section"%>
+<%@page import="model.Course"%>
+<%@page import="DAO.SectionDAO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,49 +16,127 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <%@include file="includes/head.jsp" %>
+        <link rel="stylesheet" href="css/footer.css" type="text/css">
+        <link rel="stylesheet" href="css/course/course.css" type="text/css">
+        <link rel="stylesheet" href="css/course/course1.css" type="text/css">
     </head>
     <body>
+        <%
+            SectionDAO sdao = new SectionDAO();
+            int cid = Integer.parseInt(request.getParameter("cid"));
+            String sid = request.getParameter("sid");
+
+
+        %>
+
         <%@include file="includes/nav.jsp" %>
         <%@include file="includes/left-bar.jsp" %>
-        <div class=" mx-0 px-0" style="width: 100%" >
-            <div class="row mx-0 px-0">
-                <div class=" d-flex justify-ítems-center px-0" style="overflow: unset; ">
+        <div>
 
-
-                    <div class="video  "style="width: 80%" ; style="overflow: unset" >
-                        <video style="width: 100% ; height: 100%" autoplay="" controls>
-                            <source src="video/video1.mp4" type="video/mp4">
-                            <!-- Nếu trình duyệt không hỗ trợ định dạng video/mp4 -->
-
+            <div class="">
+                <div class="contain" style="overflow: unset;">
+                    <div class="video" style="width: 70%; overflow: unset;">
+                        <video id="myVideo" style="width: 100%; height: 100%;" autoplay="" controls>
+                            <c:choose>
+                                <c:when test="${sCurrent == null}">
+                                    <source src="${c.sections.get(0).section_video}" type="video/mp4"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <source src="${sCurrent.section_video}" type="video/mp4"/>
+                                </c:otherwise>
+                            </c:choose>
                         </video>
-                        <h2> Cơ bản về C</h2>
+                        <c:choose>
+                            <c:when test="${sCurrent == null}">
+                                <h2>${c.sections.get(0).section_name}</h2>
+                            </c:when>
+                            <c:otherwise>
+                                <h2>${sCurrent.section_name}</h2>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
-                    <div class="bg-secondary " style="width: 20%; padding-top: 40px; position: fixed; right: 0; height: 100% ">
-                        <div style="margin-top: 1.5rem">
-                            <div class="bg-success" style="border:1px ; border-color: black ; border: solid; text-align: center">
-                                <h1>
-                                    Nội Dung Khóa Học
-                                </h1>
+                    <div class="list-section">
+                        <div>
+                            <div class="s-heading">
+                                <h3>Nội Dung Khóa Học</h3>
                             </div>
-                            <div class="ml-2" style="padding-left:1rem ">
-                                <p style="border-bottom: 0.5px ; border-bottom-color: white ; border-bottom:  solid">
-                                    <a style="color: black; text-decoration: none" href="#">Bài 1: Cơ bản C++ </a>
-                                </p>
-                                <p style="border-bottom: 0.5px ; border-color: white ; border-bottom:  solid">
-                                    <a style="color: black; text-decoration: none" href="#">Bài 2: Các loại toán tử</a>
-                                </p>
-                                <p style="border-bottom: 0.5px ; border-color: white ; border-bottom:  solid">
-                                    <a style="color: black; text-decoration: none" href="#">Bài 3: Loop</a>
-                                </p>
+                            <div class="s-details" >
+                                <c:forEach var="s" items="${c.sections}">
+
+                                    <c:choose>
+                                        <c:when test="${s.status == true}">
+                                            <div class="lesson" style="display:flex">
+                                                <div  style="width: 70%">
+                                                    <a style=" font-size: 1rem;color: black; text-decoration: none" href="StudyServlet?sid=${s.section_id}&cid=<%=cid%>" >${s.section}: ${s.section_name}</a>
+
+                                                </div>
+                                                <span class="success-icon" style="color: white; background-color: #008000; /* Màu xanh */
+                                                      font-size: 16px; border-radius: 100%; /* Kích thước */">&#10004;</span>
+                                                      
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise >
+                                            <div class="lesson"><a style=" font-size: 1rem ;color: black; text-decoration: none" href="StudyServlet?sid=${s.section_id}&cid=<%=cid%>">${s.section}: ${s.section_name}</a></div>
+
+                                        </c:otherwise>
+                                    </c:choose>
+
+
+                                </c:forEach>
                             </div>
                         </div>
-
-
                     </div>
-
                 </div>
             </div>
         </div>
+        <script>
+            var video = document.getElementById("myVideo");
+            var status = false;
+            console.log(video.currentTime);
+            console.log("Thời gian hiện tại của video: " + video.currentTime);
+// Đợi cho video chạy ít nhất 10 giây rồi thay đổi trạng thái
+            video.addEventListener('timeupdate', function () {
+                console.log("Thời gian hiện tại của video: " + video.currentTime);
+                if (video.currentTime >= 3 && status != true) { // Kiểm tra khi nào video đã chạy ít nhất 10 giây và trạng thái vẫn là false
+                    var xhr = new XMLHttpRequest();
+                    var params = 'sid=' + getParameterByName('sid') + '&currentTime=' + video.currentTime + '&status=' + status;
+                    xhr.open('GET', 'StudyServlet?' + params, true);
+
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+
+                            status = true;
+                            console.log('Trạng thái từ server: ' + status);
+                            if (status) {
+                                console.log('Video đã được chạy ít nhất 10 giây và trạng thái từ server là true.');
+                                // Thực hiện các hành động khác nếu cần thiết
+                            }
+                        } else {
+                            console.log('Yêu cầu AJAX không thành công.');
+                        }
+                    };
+                    xhr.send();
+                }
+            }); // Dấu ngoặc ở đây không cần thiết
+            function getParameterByName(name, url) {
+                if (!url)
+                    url = window.location.href;
+                name = name.replace(/[\[\]]/g, '\\$&');
+                var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                        results = regex.exec(url);
+                if (!results)
+                    return null;
+                if (!results[2])
+                    return '';
+                return decodeURIComponent(results[2].replace(/\+/g, ' '));
+            }
+
+            // Lấy giá trị của tham số "sid" từ URL
+            var sectionId = getParameterByName('sid');
+
+            // In ra console để kiểm tra
+            console.log("Giá trị của tham số 'sid': " + sectionId);
+        </script>
         <%@include file="includes/footer.jsp" %>
     </body>
 </html>

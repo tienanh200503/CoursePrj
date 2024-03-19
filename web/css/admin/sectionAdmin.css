@@ -3,16 +3,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
 */
 /* 
-    Created on : Mar 9, 2024, 9:12:43 AM
+    Created on : Mar 17, 2024, 1:56:17 PM
     Author     : Desktop
 */
-
 .table-course
 {
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    border-bottom:0; 
+    border-bottom:0;
     margin: 100px 0 0 0;
 }
 .table-course thead
@@ -21,8 +20,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     border-bottom: 1px solid orange;
 
 }
-.card-add-form{
+.card-add-form {
     width: 30%;
+    height: 50%;
+    
 }
 #add-course-form input, textArea
 {
@@ -45,7 +46,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 }
 .button-choice{
     display: flex;
-    
+
 }
 
 #add-course-close ,#update-course-close{
@@ -84,25 +85,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 }
 
 .table-course tbody tr:nth-child(even) {
-    background-color: #f2f2f2;  
+    background-color: #f2f2f2;
 }
 .table-course tbody tr:hover {
-    background-color: #ddd;  
+    background-color: #ddd;
 }
 
 .table-course tbody tr {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);  
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
 }
 
 .table-course th, .table-course td {
-    border: none;  
+    border: none;
 }
 .form-group
 {
     margin-bottom: 5px;
 }
-.form-group input, textarea 
-{ 
+.form-group input, textarea
+{
     border: rgba(0,0,0,0.1) solid 0.5px;
     border-radius: 1rem;
     padding: 10px;
@@ -111,15 +112,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 .form-heading
 {
     font-family: "Arial", sans-serif;
-     font-weight: bold; /* Độ đậm */
+    font-weight: bold; /* Độ đậm */
     color: #333; /* Màu chữ */
     text-align: center; /* Căn giữa */
-   
+
     text-transform: uppercase; /* Chuyển đổi văn bản thành chữ hoa */
 }
 .button-choice
-{justify-content: end;
- margin-right: 5px;
+{
+    justify-content: end;
+    margin-right: 5px;
 }
 
 .thead-form
@@ -128,25 +130,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     color: black; /* Màu chữ */
     font: bold;
 }
-.thead-form th 
+.thead-form th
 {
     padding: 10px 15px; /* Khoảng cách bên trong ô */
     text-align: left; /* Căn lề văn bản */
     font-weight: bold; /* Độ đậm */
     border-bottom: 2px solid white; /* Đường viền dưới */
     border-right: 1px solid rgba(0, 0, 0, 0.3);
-    text-transform:uppercase; 
+    text-transform:uppercase;
 }
 .thead-form th:first-child
 {
-    border-top-left-radius: 5px; 
+    border-top-left-radius: 5px;
 }
 .thead-form th:last-child
 {
-    border-top-right-radius: 5px; 
+    border-top-right-radius: 5px;
 }
 td{
-     border-right: 1px solid rgba(0, 0, 0, 0.9);
+    border-right: 1px solid rgba(0, 0, 0, 0.9);
 }
 td:last-child {
     border-right: none; /* Loại bỏ đường viền bên phải của ô cuối cùng */
@@ -154,4 +156,24 @@ td:last-child {
 .hidden{
     display: none;
 }
+.form-group select {
+    width: 100%; /* Chiều rộng 100% của phần tử cha */
+    padding: 10px; /* Khoảng cách bên trong của phần tử */
+    font-size: 16px; /* Cỡ chữ */
+    border: 1px solid #ccc; /* Viền của select */
+    border-radius: 5px; /* Bo tròn góc */
+    transition:  0.9s ease; /* Hiệu ứng transition cho tất cả thuộc tính */
+}
 
+/* Thiết lập kiểu chữ và màu sắc cho option */
+.form-group select option {
+    font-size: 14px; /* Cỡ chữ */
+    color: #333; /* Màu chữ */
+    background-color: #fff; /* Màu nền của option */
+    transition: background-color 0.3s ease; /* Hiệu ứng transition chỉ cho background-color */
+}
+
+/* Thiết lập kiểu chữ và màu sắc cho option khi được chọn */
+.form-group select option:checked {
+    background-color: #f0f0f0; /* Màu nền của option được chọn */
+}

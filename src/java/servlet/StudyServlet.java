@@ -4,22 +4,24 @@
  */
 package servlet;
 
-import DAO.AccountDAO;
+import DAO.CourseDAO;
+import DAO.SectionDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Course;
+import model.Section;
 
 /**
  *
- * @author BIN
+ * @author Desktop
  */
-public class PayServlet extends HttpServlet {
+public class StudyServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +40,10 @@ public class PayServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PayServlet</title>");
+            out.println("<title>Servlet StudyServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PayServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet StudyServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,7 +61,45 @@ public class PayServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            int cid = 2;
+            CourseDAO cdao = new CourseDAO();
+            Course c = cdao.getCourseById(cid);
+            SectionDAO sdao = new SectionDAO();
+            request.getSession().setAttribute("c", c);
+            if (request.getParameter("sid") == null) {
+                Section s = c.getSections().get(0);
+                request.getSession().setAttribute("sCurrent", s);
+                if (s.isStatus() == false) {
+                    boolean status = Boolean.parseBoolean(request.getParameter("status"));
+                    if (status) {
+                        Section ss = sdao.getSectionById(s.getSection_id());
+                        Section updateSection = new Section(ss.getSection_id(), ss.getC_id(), ss.getSection_name(), ss.getSection_video(), ss.getSection(), status);
+                        sdao.updateSection(updateSection, s.getSection_id());
+
+                    }
+                }
+                response.sendRedirect("course.jsp?sid=" + s.getSection_id() + "&cid=" + c.getId());
+            } else {
+
+                Section ss = sdao.getSectionById(Integer.parseInt(request.getParameter("sid")));
+                request.getSession().setAttribute("sCurrent", ss);
+                response.sendRedirect("course.jsp?sid=" + ss.getSection_id() + "&cid=" + c.getId());
+                if (ss.isStatus() == false) {
+                    boolean status = Boolean.parseBoolean(request.getParameter("status"));
+                    if (status) {
+                        
+                        Section updateSection = new Section(ss.getSection_id(), ss.getC_id(), ss.getSection_name(), ss.getSection_video(), ss.getSection(), status);
+                        sdao.updateSection(updateSection, ss.getSection_id());
+
+                    }
+                }
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(StudyServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -73,26 +113,7 @@ public class PayServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String atm = request.getParameter("atm");
-        Double load = null;
-        if (atm != null && !atm.isEmpty()) {
-            try {
-                load = Double.valueOf(atm);
-                AccountDAO adao = new AccountDAO();
-                Double moneyUser = adao.getAccountById(1).getMoney();
-                Double total = load + moneyUser;
-                adao.updateAccountATM(1, total);
-                request.getRequestDispatcher("payATM.jsp").forward(request, response);
-                return;
-            } catch (NumberFormatException e) {
-
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(PayServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(PayServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        response.sendRedirect("payATMServlet");
+        processRequest(request, response);
     }
 
     /**

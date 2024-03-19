@@ -113,6 +113,11 @@
                 margin-top: 10px;
             }
 
+            .buy-button button a {
+                color: black; /* Đặt màu chữ thành đen */
+                text-decoration: none; /* Loại bỏ gạch chân */
+            }
+
             .buy-button button {
                 padding: 10px 20px;
                 font-size: 18px;
@@ -139,16 +144,25 @@
                 }
             }
         </style>
-    </head>
 
+    </head>
     <%@include file="includes/nav.jsp" %>
     <%@include file="includes/left-bar.jsp" %>
     <body>
 
         <div class="container">
+            <%
+                int uid = 0;
+                String uidString = request.getParameter("uid");
+                if (uidString != null && !uidString.isEmpty()) {
+                    uid = Integer.parseInt(uidString);
+                }
+                HttpSession sessions = request.getSession();
+                sessions.setAttribute("uid", uid);
+            %>
             <c:set var="amount" value="${detail.course_price}"/>
-            <% 
-                NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi","VN"));
+            <%
+                NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
                 String price = formatter.format((double) pageContext.getAttribute("amount"));
             %>
             <div class="course-detail">
@@ -183,19 +197,25 @@
                         <dd>${detail.getSections().size()}</dd>
 
                         <dt>Giá:</dt>
-                        <dd><%= price %></dd>
+                        <dd><%= price%></dd>
                     </dl>
                 </div>
 
                 <div class="buy-button">
-                    <form action="PayCourseServlet" method="post">
-                        <input type="hidden" name="courseId" value="${detail.getId()}">
-                        <div class="buy-button">
-                            <button type="submit">Buy now</button>
-                        </div>
-                    </form>
+                    <div class="buy-button">
+                        <%
+                            if (uid == 0) {
+                        %>
+                        <button type="button" class="buy-button-link" onclick="window.location.href = 'login.jsp'">Buy now</button>
+                        <%
+                        } else {
+                        %>
+                        <button type="submit" class="buy-button-link"><a href="buy.jsp?uid=${uid}&cid=${detail.getId()}">Buy now</a></button>
+                        <%
+                            }
+                        %>
+                    </div>
                 </div>
-
             </div>
         </div>
 

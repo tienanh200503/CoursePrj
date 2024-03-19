@@ -10,8 +10,12 @@ import DAO.OrderDAO;
 import DAO.SectionDAO;
 import DAO.TeacherDAO;
 import java.sql.SQLException;
+
+import model.Account;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import model.Course;
 import model.Order;
 import model.Section;
@@ -34,9 +38,15 @@ public class TestSql {
         
         
 
-      
-
-       
+//        CourseDAO c = new CourseDAO();
+//
+//        System.out.println(c.getCourseById(1));
+//
+//        System.out.println(c.getCourse(2).getCourse_price());
+        AccountDAO a = new AccountDAO();
+        Account b = new Account();
+        b.setUsername("admin");
+        System.out.println(a.addAccount(b));
     }
        
     

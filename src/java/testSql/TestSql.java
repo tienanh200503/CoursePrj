@@ -9,6 +9,7 @@ import DAO.CourseDAO;
 import DAO.SectionDAO;
 import DAO.TeacherDAO;
 import java.sql.SQLException;
+import model.Account;
 import model.Course;
 import model.Section;
 import model.Teacher;
@@ -31,7 +32,9 @@ public class TestSql {
 //
 //        System.out.println(c.getCourse(2).getCourse_price());
         AccountDAO a = new AccountDAO();
-        System.out.println(a.getAccountById(2).getMoney());
+        Account b = new Account();
+        b.setUsername("admin");
+        System.out.println(a.addAccount(b));
         
 
         

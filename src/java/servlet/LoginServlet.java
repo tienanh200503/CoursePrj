@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        String username = this.get("username", request);
-       String password = this.get("password", request);
+       String password = this.get("pass", request);
         if (username != null && !username.equals("")) {
             
            try {
@@ -71,7 +71,7 @@ public class LoginServlet extends HttpServlet {
                Account ac = adao.getAccount(username, password);
                request.getSession().setAttribute("auth", ac);
                request.getSession().setAttribute("username",username );
-               request.getSession().setAttribute("password",password );
+               request.getSession().setAttribute("pass",password );
                request.getSession().setAttribute("role",ac.getRole() );
                
                request.getRequestDispatcher("HomeServlet").forward(request, response);
@@ -83,7 +83,7 @@ public class LoginServlet extends HttpServlet {
            }
         }
         
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("loginForm.jsp");
     }
 
     /**
@@ -99,7 +99,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         AccountDAO udao = new AccountDAO();
         String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String password = request.getParameter("pass");
         try {
             Account user = udao.getAccount(username, password);
             if(user!=null)
@@ -108,13 +108,13 @@ public class LoginServlet extends HttpServlet {
                 request.getSession().setAttribute("auth", user);
                 request.getSession().setAttribute("role", user.getRole());
                 this.add("username", username, 2, response);
-                this.add("password", password, 2, response);
+                this.add("pass", password, 2, response);
                 response.sendRedirect("home.jsp");
             }else
             {
                 request.getSession().setAttribute("auth", null);
-                request.getSession().setAttribute("error", "invalid Account");
-                response.sendRedirect("login.jsp");
+                request.getSession().setAttribute("error", "Wrong user or password. Please enter again");
+                response.sendRedirect("loginForm.jsp");
             }
         } catch (SQLException e) {
             try {

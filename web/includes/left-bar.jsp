@@ -113,8 +113,7 @@
     $(document).ready(function () {
         // Ẩn left-bar mặc định khi trang được tải
         $("#leftBar").hide();
-//        $("#logInForm").hide();
-//        $("#add-course-form").hide();
+//       
         if (localStorage.getItem('updateCourseFormVisible') === 'true') {
             $("#update-course-form").show();
         } else {

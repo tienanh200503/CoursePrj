@@ -1,6 +1,6 @@
 <%-- 
-    Document   : editCourse
-    Created on : Mar 9, 2024, 12:17:32?PM
+    Document   : UpdateCourse
+    Created on : Mar 20, 2024, 12:37:54?AM
     Author     : Desktop
 --%>
 
@@ -9,7 +9,7 @@
 <%@page import="model.Course"%>
 <%@page import="model.Course"%>
 <taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div id="update-course-form" class="hidden">
+<div id="update-course-form" class="">
     <%
         // Ki?m tra xem request parameter "cid" có t?n t?i hay không
         if (request.getParameter("cid") != null) {
@@ -27,7 +27,7 @@
     %>
     <div class="overlay">
 
-        <form class="card card-update-form  mx-auto" action="../CourseController" method="GET">
+        <form class="card card-update-form  mx-auto" action="../CourseController" method="GET" style="width: 30%">
             <div id="update-course-close" style="width: 20%">
                 <i class="add-course-button fas fa-times"></i>
             </div>
@@ -41,7 +41,7 @@
                 <input type="text" name="course_time" placeholder="Course Time" value="${course.course_time}" />
             </div>
             <div class="form-group">
-                <select class="form-group" name="t_id">
+                <select class="form-group" name="c_id">
                     <c:forEach var="t" items="${teachers}">
                         <option value="${t.teacher_id}" <c:if test="${t.teacher_id==teacher.teacher_id}">selected</c:if>   >${t.teacher_name}</option>
                     </c:forEach>

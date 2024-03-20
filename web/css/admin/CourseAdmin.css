@@ -3,7 +3,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
 */
 /* 
-    Created on : Mar 18, 2024, 8:45:39 PM
+    Created on : Mar 18, 2024, 8:46:52 PM
+    Author     : Desktop
+*/
+
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : Mar 9, 2024, 9:12:43 AM
     Author     : Desktop
 */
 
@@ -33,6 +42,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 .card-add-form{
     width: 30%;
 }
+.card-update-form{
+    width: 30%;
+}
+
 #add-course-form input, textArea
 {
     width: 100%;
@@ -168,7 +181,7 @@ td:last-child {
     padding: 10px; /* Khoảng cách bên trong của phần tử */
     font-size: 16px; /* Cỡ chữ */
     border: 1px solid #ccc; /* Viền của select */
-    border-radius: 5px; /* Bo tròn góc */
+    border-radius: 1rem; /* Bo tròn góc */
     transition:  0.9s ease; /* Hiệu ứng transition cho tất cả thuộc tính */
 }
 
@@ -183,4 +196,8 @@ td:last-child {
 /* Thiết lập kiểu chữ và màu sắc cho option khi được chọn */
 .form-group select option:checked {
     background-color: #f0f0f0; /* Màu nền của option được chọn */
+}
+.card-add-form
+{
+    height: 75%;
 }

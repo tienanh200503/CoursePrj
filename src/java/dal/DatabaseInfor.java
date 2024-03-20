@@ -11,6 +11,7 @@ package dal;
 public interface DatabaseInfor {
     String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     String url = "jdbc:sqlserver://127.0.0.1:1433;databaseName=course;";
+
     String user = "sa";
     String pass = "Letienks1@";
 

@@ -131,8 +131,8 @@ public class IsLoginFilter implements Filter {
         boolean isLoginServlet = httpRequest.getRequestURI().equals(loginServletURI);
         boolean isSearch = httpRequest.getRequestURI().equals(searchURI);
         boolean isSearchServlet = httpRequest.getRequestURI().equals(searchServlet);
-
-        if (isLoggedIn || isLoginRequest || isHomeServlet || isDetailPage || isHomeURIJsp || isCSSRequest || isLoginServlet || isSearch || isSearchServlet || isRegister || isRegisterServlet) {
+        boolean isImageResource = httpRequest.getRequestURI().matches(".*\\.(jpg|jpeg|png|gif|webp)$");
+        if (isLoggedIn || isLoginRequest || isHomeServlet || isDetailPage || isHomeURIJsp || isCSSRequest || isLoginServlet || isSearch || isSearchServlet || isRegister || isRegisterServlet ||isImageResource) {
             // Nếu người dùng đã đăng nhập hoặc đang yêu cầu vào trang đăng nhập,
             // trang home hoặc trang detail, chuyển tiếp yêu cầu tới servlet tiếp theo
             chain.doFilter(request, response);

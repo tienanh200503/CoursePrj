@@ -28,17 +28,18 @@
         <%@include file="includes/nav.jsp" %>
         <%@include file="includes/left-bar.jsp" %>
         <div id="status">
-            <a id="done" href="myCourseServlet?status=1" >Đã hoàn thành</a>
+            <a id="done" href="myCourseServlet?status=1">Đã hoàn thành</a>
             <a id="not" href="myCourseServlet?status=0">Chưa hoàn thành</a>
         </div>
-        
         <div id="list">
+            <% boolean st = (boolean)request.getSession().getAttribute("st"); %>
             <c:forEach var="c" items="${sessionScope.listCourse}">
+                
                 <div id="section">
                     <p>${c.course_name}</p>
                     <img src="${c.course_img}" alt="alt"/>
                     <p>Teacher: ${c.teacher.teacher_name}</p>
-                    <a href="#"></a>
+                    <a href="#"><%= st?"":"Hoc Tiep" %></a>
                     
                 </div>
             </c:forEach>

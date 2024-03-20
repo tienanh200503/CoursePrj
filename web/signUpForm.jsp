@@ -20,18 +20,19 @@
             <div class="card w-50 mx-auto my-10">
                 <div class="card-header text-center"> Sign Up Form</div>
                 <div class="card-body">
-                    <form action="LoginServlet" method="post">
+                    <form action="signUpp" method="post">
+                        <p class="text-danger">${mess}</p>
                         <div class="form-group">
                             <label>Enter your email</label>
                             <input type="email" name="email" class="form-control" placeholder="Enter your email" required="">
                         </div>
                         <div class="form-group">
                             <label>Create a password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Create a password" required="">
+                            <input type="password" name="pass" class="form-control" placeholder="Create a password" required="">
                         </div>
                         <div class="form-group">
                             <label>Confirm password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Confirm password" required="">
+                            <input type="password" name="repass" class="form-control" placeholder="Confirm password" required="">
                         </div>
                         <div class="form-group">
                             <label>Enter a user name</label>

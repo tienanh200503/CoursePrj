@@ -32,6 +32,7 @@
                         <p>
                         <div class="text-center">
                             <button class="btn btn-primary" type="submit"> Login</button>
+                            <a href="signUp" class="btn btn-primary">Sign up</a>
                         </div>
                        
                     </form>

@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -59,7 +60,23 @@ public class PayServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            int id = Integer.parseInt(request.getParameter("uid"));
+            String atmParam = request.getParameter("atm");
+            if (atmParam != null && !atmParam.isEmpty()) {
+                try {
+                    Double money = Double.parseDouble(atmParam);
+                    AccountDAO adao = new AccountDAO();
+                    Double moneyUser = adao.getAccountById(id).getMoney();
+                    Double total = money + moneyUser;
+                    adao.updateAccountATM(id, total);
+                    request.getRequestDispatcher("payATM.jsp").forward(request, response);
+                } catch (NumberFormatException | ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(PayServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }      
+        } 
     }
 
     /**
@@ -73,26 +90,7 @@ public class PayServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String atm = request.getParameter("atm");
-        Double load = null;
-        if (atm != null && !atm.isEmpty()) {
-            try {
-                load = Double.valueOf(atm);
-                AccountDAO adao = new AccountDAO();
-                Double moneyUser = adao.getAccountById(1).getMoney();
-                Double total = load + moneyUser;
-                adao.updateAccountATM(1, total);
-                request.getRequestDispatcher("payATM.jsp").forward(request, response);
-                return;
-            } catch (NumberFormatException e) {
 
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(PayServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(PayServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        response.sendRedirect("payATMServlet");
     }
 
     /**

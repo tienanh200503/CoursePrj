@@ -80,7 +80,6 @@ public class InforServlet extends HttpServlet {
             }
         } catch (NumberFormatException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(InforServlet.class.getName()).log(Level.SEVERE, null, ex);
-            response.sendRedirect("error.jsp");
         }
     }
 

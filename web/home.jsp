@@ -13,7 +13,7 @@
         <title>JSP Page</title>
         <%@include file="includes/head.jsp" %>
 
-        <link rel="stylesheet" href="css/home/style.css" type="text/css">
+        <link rel="stylesheet" href="css/home/style1.css" type="text/css">
         <link rel="stylesheet" href="css/home/adv.css" type="text/css">
         <link rel="stylesheet" href="css/footer.css" type="text/css">
          <link rel="stylesheet" href="css/nav.css" type="text/css">
@@ -103,9 +103,7 @@
 
 
 
-    </div>
-
-</div>
+  
 
 
 

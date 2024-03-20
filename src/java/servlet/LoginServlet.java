@@ -99,7 +99,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         AccountDAO udao = new AccountDAO();
         String username = request.getParameter("username");
-        String password = request.getParameter("pass");
+        String password = request.getParameter("password");
         try {
             Account user = udao.getAccount(username, password);
             if(user!=null)

@@ -25,7 +25,7 @@
                         </div>
                         <div class="form-group">
                             <label>password</label>
-                            <input type="password" name="password" class="form-control" placeholder="password" required="">
+                            <input type="password" name="pass" class="form-control" placeholder="password" required="">
                         </div>
                         <p style="color: red">
                             ${error}

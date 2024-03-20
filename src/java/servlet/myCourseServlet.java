@@ -96,7 +96,7 @@ public class myCourseServlet extends HttpServlet {
             request.getSession().setAttribute("listCourse", listNot);
             response.sendRedirect("myCourse.jsp");
         } else {
-            list = ord.getCourseId(1);
+            list = ord.getCourseId(uid);
             for (Course course : list) {
                 List<Section> secList = course.getSections();
                 for (Section section : secList) {

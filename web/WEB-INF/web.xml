@@ -68,14 +68,16 @@
     <servlet>
         <servlet-name>SectionServlet</servlet-name>
         <servlet-class>Controller.SectionController</servlet-class>
-
-
     </servlet>
     <servlet>
         <servlet-name>TeacherController</servlet-name>
         <servlet-class>Controller.TeacherController</servlet-class>
     </servlet>
     <!-- Servlet Mappings -->
+    <servlet>
+        <servlet-name>InforServlet</servlet-name>
+        <servlet-class>servlet.InforServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -135,6 +137,10 @@
     <servlet-mapping>
         <servlet-name>TeacherController</servlet-name>
         <url-pattern>/TeacherController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InforServlet</servlet-name>
+        <url-pattern>/InforServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

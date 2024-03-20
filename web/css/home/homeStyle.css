@@ -3,6 +3,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
 */
 /* 
+    Created on : Mar 20, 2024, 10:39:54 PM
+    Author     : Desktop
+*/
+
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
     Created on : Mar 20, 2024, 2:54:22 PM
     Author     : Desktop
 */
@@ -30,14 +39,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     width: 100%; /* Chiều rộng của mỗi ô là 100% của container */
     box-sizing: border-box; /* Đảm bảo padding và border không tăng kích thước của khối */
    border: 0;
+    transition: transform 0.3s ease;
+    border-radius: 10px
     
     
 }
 .course-Card:hover{
    
-    border: 0;
-    border-radius: 0;
-    box-shadow: 0;
+   
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 .course-Card .course-picture img{

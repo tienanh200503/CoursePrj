@@ -68,6 +68,7 @@ public class myCourseServlet extends HttpServlet {
             throws ServletException, IOException {
 
         int status = Integer.parseInt(request.getParameter("status"));
+        request.getSession().setAttribute("status", status);
         int uid = Integer.parseInt(request.getParameter("uid"));
         int count = 0;
         OrderDAO ord = new OrderDAO();

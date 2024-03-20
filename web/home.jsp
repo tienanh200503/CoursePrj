@@ -13,10 +13,10 @@
         <title>JSP Page</title>
         <%@include file="includes/head.jsp" %>
 
-        <link rel="stylesheet" href="css/home/style1.css" type="text/css">
-        <link rel="stylesheet" href="css/home/adv.css" type="text/css">
+        <link rel="stylesheet" href="css/home/homeStyle.css" type="text/css">
+        <link rel="stylesheet" href="css/home/adv1.css" type="text/css">
         <link rel="stylesheet" href="css/footer.css" type="text/css">
-         <link rel="stylesheet" href="css/nav.css" type="text/css">
+        <link rel="stylesheet" href="css/StyleNav.css" type="text/css">
 
     </head>
 

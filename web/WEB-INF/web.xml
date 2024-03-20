@@ -37,8 +37,12 @@
         <servlet-class>servlet.payATMServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>myCourseServlet</servlet-name>
-        <servlet-class>servlet.myCourseServlet</servlet-class>
+        <servlet-name>SignUp</servlet-name>
+        <servlet-class>servlet.SignUp</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyCourseServlet</servlet-name>
+        <servlet-class>servlet.MyCourseServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>StudyServlet</servlet-name>
@@ -94,7 +98,11 @@
         <url-pattern>/payATMServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>myCourseServlet</servlet-name>
+        <servlet-name>SignUp</servlet-name>
+        <url-pattern>/signUp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyCourseServlet</servlet-name>
         <url-pattern>/myCourseServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -113,6 +121,7 @@
         <servlet-name>TeacherController</servlet-name>
         <url-pattern>/TeacherController</url-pattern>
     </servlet-mapping>
+
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>

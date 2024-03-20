@@ -4,6 +4,7 @@
  */
 package servlet;
 
+import DAO.CourseDAO;
 import DAO.OrderDAO;
 import DAO.SectionDAO;
 import java.io.IOException;
@@ -44,7 +45,7 @@ public class myCourseServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet myCourseServlet</title>");            
+            out.println("<title>Servlet myCourseServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet myCourseServlet at " + request.getContextPath() + "</h1>");
@@ -65,12 +66,54 @@ public class myCourseServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            int status = Integer.parseInt(request.getParameter("status"));
-            OrderDAO order = new OrderDAO();
-            SectionDAO sec = new SectionDAO();
-            List<Course> list = order.getCourseId(1,status);
-            request.getSession().setAttribute("listCourse", list);
+
+        int status = Integer.parseInt(request.getParameter("status"));
+        int count = 0;
+        OrderDAO ord = new OrderDAO();
+        CourseDAO cou = new CourseDAO();
+        SectionDAO sec = new SectionDAO();
+        List<Course> listNot = new ArrayList<>();
+        List<Course> listDone = new ArrayList<>();
+        List<Course> list = new ArrayList<>();
+        if (status == 0) {
+            list = ord.getCourseId(1);
+            for (Course course : list) {
+                List<Section> secList = course.getSections();
+                for (Section section : secList) {
+                    if (section.isStatus() == false) {
+                        count++;
+                    }
+                }
+                if (count == 0) {
+                    listDone.add(course);
+                } else {
+                    listNot.add(course);
+                    count = 0;
+                }
+            }
+            request.getSession().setAttribute("st", false);
+            request.getSession().setAttribute("listCourse", listNot);
             response.sendRedirect("myCourse.jsp");
+        } else {
+            list = ord.getCourseId(1);
+            for (Course course : list) {
+                List<Section> secList = course.getSections();
+                for (Section section : secList) {
+                    if (section.isStatus() == false) {
+                        count++;
+                    }
+                }
+                if (count == 0) {
+                    listDone.add(course);
+                } else {
+                    listNot.add(course);
+                    count = 0;
+                }
+            }
+            request.getSession().setAttribute("st", true);
+            request.getSession().setAttribute("listCourse", listDone);
+            response.sendRedirect("myCourse.jsp");
+        }
     }
 
     /**

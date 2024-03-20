@@ -4,6 +4,7 @@
     Author     : Zanis
 --%>
 
+<%@page import="model.Account"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,16 +28,21 @@
 
         <%@include file="includes/nav.jsp" %>
         <%@include file="includes/left-bar.jsp" %>
+         <% Account ac = (Account) request.getSession().getAttribute("auth");
+                
+            %>
         <h2 class="title-course">
                 <i class="fas fa-book"></i> My Courses 
             </h2>
         <div id="status">
-            <a id="done" href="myCourseServlet?status=1">Đã hoàn thành</a>
-            <a id="not" href="myCourseServlet?status=0">Chưa hoàn thành</a>
+            <a id="done" href="myCourseServlet?status=1&uid=<%= ac.getId() %>">Đã hoàn thành</a>
+            <a id="not" href="myCourseServlet?status=0&uid=<%= ac.getId() %>">Chưa hoàn thành</a>
         </div>
         <br>
         <div class="featuredCourse" style="margin-top: 1rem">
-            <% boolean st = (boolean) request.getSession().getAttribute("st");%>
+            <% boolean st = (boolean) request.getSession().getAttribute("st");
+                
+            %>
             <c:forEach  var="c" items="${sessionScope.listCourse}">
 
                 <div class="course-Card">

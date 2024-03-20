@@ -62,7 +62,7 @@
     <c:if test="${role == 1}">
         <div class="but" ><a style="  color: white; text-decoration:none" href="InforServlet?uid=${auth.id}"> <i class="fas fa-user-circle"></i> Thông tin cá nhân</a></div>
 
-        <div class="but"> <a style="  color: white; text-decoration:none" href="myCourseServlet?status=1" > <i class="fas fa-book"></i> Khóa học của tôi</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="myCourseServlet?status=0&uid=${auth.id}" > <i class="fas fa-book"></i> Khóa học của tôi</a></div>
 
         <div class="but"> <a style="  color: white; text-decoration:none" href="#"> <i class="fas fa-wallet"></i> Nạp Tiền</a></div>
         <div class="but"> <a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/LogoutServlet">Log out</a></div>

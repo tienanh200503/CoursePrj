@@ -5,6 +5,7 @@
 package servlet;
 
 import DAO.CourseDAO;
+import DAO.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -62,7 +63,9 @@ public class HomeServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             CourseDAO cdao = new CourseDAO();
+            OrderDAO odao = new OrderDAO();
             List<Course> listCourse = cdao.getAllCourse();
+            request.getSession().setAttribute("hotCourses", odao.getTop4BestOfCourse());
             request.getSession().setAttribute("listCourse", listCourse);
             response.sendRedirect("home.jsp");
         } catch (Exception ex) {

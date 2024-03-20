@@ -43,10 +43,8 @@ public class TestSql {
 //        System.out.println(c.getCourseById(1));
 //
 //        System.out.println(c.getCourse(2).getCourse_price());
-        AccountDAO a = new AccountDAO();
-        Account b = new Account();
-        b.setUsername("admin");
-        System.out.println(a.addAccount(b));
+        OrderDAO odao= new OrderDAO();
+        System.out.println(odao.getTop4BestOfCourse());
     }
        
     

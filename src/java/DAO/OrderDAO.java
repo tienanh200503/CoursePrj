@@ -57,7 +57,7 @@ public class OrderDAO extends ConnectDB {
                 c.setSections(secList);
                 list.add(c);
             }
-            
+
         } catch (Exception e) {
         }
         return list;
@@ -80,5 +80,29 @@ public class OrderDAO extends ConnectDB {
                 con.close();
             }
         }
+    }
+
+    public List<Course> getTop4BestOfCourse() {
+        SectionDAO sec = new SectionDAO();
+        CourseDAO cdao = new CourseDAO();
+        List<Course> list = new ArrayList<>();
+        try {
+
+            sql = "  Select top 4 course_id from [order]\n"
+                    + "group by course_id\n"
+                    + "order by count(*) desc";
+            con = openConnection();
+            st = con.prepareStatement(sql);
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                List<Section> secList = sec.getSectionByCid(rs.getInt("course_id"));
+                Course c = cdao.getCourseById(rs.getInt("course_id"));
+                list.add(c);
+            }
+
+        } catch (Exception e) {
+        }
+        return list;
     }
 }

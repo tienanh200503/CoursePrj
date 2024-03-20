@@ -41,7 +41,7 @@
             </h2>
 
             <div class="featuredCourse" style="margin-bottom: 3rem ">
-                <c:forEach begin="0" end="7" var="c" items="${sessionScope.listCourse}">
+                <c:forEach begin="0" end="3" var="c" items="${sessionScope.hotCourses}">
                     <c:set var="amount" value="${c.course_price}" />
                     <%
                         NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
@@ -78,7 +78,7 @@
             </h2>
 
             <div class="featuredCourse" style="">
-                <c:forEach begin="0" end="7" var="c" items="${sessionScope.listCourse}">
+                <c:forEach  var="c" items="${sessionScope.listCourse}">
                     <c:set var="amount2" value="${c.course_price}" />
                     <%
                         NumberFormat formatter2 = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));

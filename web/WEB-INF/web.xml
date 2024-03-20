@@ -55,6 +55,8 @@
     <servlet>
         <servlet-name>SectionServlet</servlet-name>
         <servlet-class>Controller.SectionController</servlet-class>
+
+
     </servlet>
     <servlet>
         <servlet-name>TeacherController</servlet-name>

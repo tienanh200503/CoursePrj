@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <%@include file="../includes/head.jsp" %>
-        <link href="../css/admin/admin.css" typetext="text/css" rel="stylesheet"/>
+        <link href="../css/admin/AdminStyle.css" typetext="text/css" rel="stylesheet"/>
     </head>
     <body>
         <%@include file="../includes/nav.jsp" %>

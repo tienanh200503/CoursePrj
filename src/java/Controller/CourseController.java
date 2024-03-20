@@ -183,7 +183,7 @@ public class CourseController extends HttpServlet {
         String name = request.getParameter("course_name");
 
         int course_time = Integer.parseInt(request.getParameter("course_time"));
-        int teacher_id = Integer.parseInt(request.getParameter("teacher_id"));
+        int teacher_id = Integer.parseInt(request.getParameter("t_id"));
         double course_price = Double.parseDouble(request.getParameter("course_price"));
         String course_describe = request.getParameter("course_describe");
         String course_picture = "image/"+request.getParameter("course_picture");

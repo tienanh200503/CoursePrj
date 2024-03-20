@@ -66,9 +66,9 @@
         <div class="but"> <a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/LogoutServlet">Log out</a></div>
     </c:if>
     <c:if test="${role == 2}">
-        <div class="but" ><a style="  color: white; text-decoration:none" href="CourseController" > <i class="fas fa-user-circle"></i> Course</a></div>
-        <div class="but"> <a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-book"></i> Section</a></div>
-        <div class="but"> <a style="  color: white; text-decoration:none" href="#"> <i class="fas fa-wallet"></i> Teacher</a></div>
+        <div class="but" ><a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/CourseController" > <i class="fas fa-user-circle"></i> Course</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/SectionServlet" > <i class="fas fa-book"></i> Section</a></div>
+        <div class="but"> <a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/TeacherController"> <i class="fas fa-wallet"></i> Teacher</a></div>
         
         <div class="but"> <a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/LogoutServlet">Log out</a></div>
     </c:if>
@@ -113,8 +113,7 @@
     $(document).ready(function () {
         // Ẩn left-bar mặc định khi trang được tải
         $("#leftBar").hide();
-//        $("#logInForm").hide();
-//        $("#add-course-form").hide();
+//       
         if (localStorage.getItem('updateCourseFormVisible') === 'true') {
             $("#update-course-form").show();
         } else {

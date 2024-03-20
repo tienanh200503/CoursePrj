@@ -2,16 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package servlet;
+package Controller;
 
-import DAO.CourseDAO;
-import DAO.OrderDAO;
-import DAO.SectionDAO;
+import DAO.TeacherDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.AbstractList;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,14 +14,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Course;
-import model.Section;
+import model.Teacher;
 
 /**
  *
- * @author Zanis
+ * @author Desktop
  */
-public class myCourseServlet extends HttpServlet {
+public class TeacherController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,10 +39,10 @@ public class myCourseServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet myCourseServlet</title>");
+            out.println("<title>Servlet TeacherController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet myCourseServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet TeacherController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -66,53 +60,33 @@ public class myCourseServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
 
-        int status = Integer.parseInt(request.getParameter("status"));
-        int count = 0;
-        OrderDAO ord = new OrderDAO();
-        CourseDAO cou = new CourseDAO();
-        SectionDAO sec = new SectionDAO();
-        List<Course> listNot = new ArrayList<>();
-        List<Course> listDone = new ArrayList<>();
-        List<Course> list = new ArrayList<>();
-        if (status == 0) {
-            list = ord.getCourseId(1);
-            for (Course course : list) {
-                List<Section> secList = course.getSections();
-                for (Section section : secList) {
-                    if (section.isStatus() == false) {
-                        count++;
-                    }
-                }
-                if (count == 0) {
-                    listDone.add(course);
-                } else {
-                    listNot.add(course);
-                    count = 0;
-                }
+            String theCommand = request.getParameter("command");
+            if (theCommand == null) {
+                theCommand = "LIST";
             }
-            request.getSession().setAttribute("st", false);
-            request.getSession().setAttribute("listCourse", listNot);
-            response.sendRedirect("myCourse.jsp");
-        } else {
-            list = ord.getCourseId(1);
-            for (Course course : list) {
-                List<Section> secList = course.getSections();
-                for (Section section : secList) {
-                    if (section.isStatus() == false) {
-                        count++;
-                    }
-                }
-                if (count == 0) {
-                    listDone.add(course);
-                } else {
-                    listNot.add(course);
-                    count = 0;
-                }
+            switch (theCommand) {
+                case "LIST":
+                    ListTeacher(request, response);
+                    break;
+                case "ADD":
+                    addTeacher(request, response);
+                    break;
+
+                case "UPDATE":
+                    updateTeacher(request, response);
+                    break;
+                case "DELETE":
+                    deleteTeacher(request, response);
+                    break;
+                default:
+                    ListTeacher(request, response);
             }
-            request.getSession().setAttribute("st", true);
-            request.getSession().setAttribute("listCourse", listDone);
-            response.sendRedirect("myCourse.jsp");
+
+        } catch (Exception ex) {
+
+            Logger.getLogger(CourseController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -139,5 +113,45 @@ public class myCourseServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void ListTeacher(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, Exception {
+        TeacherDAO tdao = new TeacherDAO();
+        List<Teacher> teachers = tdao.getAllTeacher();
+        request.getSession().setAttribute("teacherList", teachers);
+        response.sendRedirect("admin-page/ListTeacher.jsp");
+
+    }
+
+    private void addTeacher(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ClassNotFoundException, Exception {
+        TeacherDAO tdao = new TeacherDAO();
+
+        String name = request.getParameter("teacher_name");
+
+        Teacher t = new Teacher();
+        t.setTeacher_name(name);
+        tdao.insertTeacher(t);
+        ListTeacher(request, response);
+
+    }
+
+    private void updateTeacher(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ClassNotFoundException, Exception {
+
+        TeacherDAO tdao = new TeacherDAO();
+        int tid = Integer.parseInt(request.getParameter("tid"));
+
+        String name = request.getParameter("teacher_name");
+
+        Teacher t = new Teacher(tid, name);
+        
+        tdao.updateTeacherById(tid, t);
+        ListTeacher(request, response);
+
+    }
+
+    private void deleteTeacher(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ClassNotFoundException, Exception {
+        int tid = Integer.parseInt(request.getParameter("tid"));;
+        new TeacherDAO().deleteTeacherByid(tid);
+        ListTeacher(request, response);
+    }
 
 }

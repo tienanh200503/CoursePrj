@@ -7,7 +7,9 @@
 <%@page import="DAO.CourseDAO"%>
 <%@page import="DAO.SectionDAO"%>
 <%@page import="model.Section"%>
-<div id="update-course-form" class="hidden">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div id="update-course-form" class="hidden" >
     <%
         // Ki?m tra xem request parameter "cid" có t?n t?i hay không
         if (request.getParameter("sid") != null) {
@@ -33,7 +35,7 @@
             <h3 class="form-heading" style="margin-bottom:  0">Edit Section</h3>
             <input type="hidden" name="command" value="UPDATE" />
             <input type="hidden" name="sid" value="${section.section_id}" />
-            <input type="hidden" name="status" value="false" />
+            <input type="hidden" name="status" value="${section.status}" />
             <div class="form-group">
                 <input type="text" name="section" placeholder="Bài" value="${section.section}" />
             </div>

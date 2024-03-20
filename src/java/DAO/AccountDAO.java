@@ -103,28 +103,21 @@ public class AccountDAO extends ConnectDB {
         try {
 
             sql = "INSERT INTO [dbo].[user]\n"
-                    + "           ([password]\n"
-                    + "           ,[user_name]\n"
-                    + "           ,[user_date]\n"
-                    + "           ,[email]\n"
-                    + "           ,[role]\n"
-                    + "           ,[ATM])\n"
-                    + "     VALUES\n"
-                    + "           (<?, nchar(50),>\n"
-                    + "           ,<?, nchar(50),>\n"
-                    + "           ,<?, date,>\n"
-                    + "           ,<?, nchar(50),>\n"
-                    + "           ,<?, nchar(20),>\n"
-                    + "           ,<?, nchar(10),>)";
+                    + "    ([password]\n"
+                    + "    ,[user_name]\n"
+                    + "    ,[email]\n"
+                    + "    ,[role])\n" +
+            "VALUES (?, ?, ?, ?)";
+                    
+                    
+                   
 
             con = openConnection();
             st = con.prepareStatement(sql);
             st.setString(1, a.getPassword());
             st.setString(2, a.getUsername());
-            st.setString(3, a.getUserDate());
-            st.setString(4, a.getEmail());
-            st.setInt(5, a.getRole());
-            st.setDouble(6, a.getMoney());
+            st.setString(3, a.getEmail());
+            st.setInt(4, a.getRole());
 
             rs = st.executeQuery();
             return a;
@@ -160,34 +153,34 @@ public class AccountDAO extends ConnectDB {
         }
         return false;
     }
-    
+
     public void updateAccountATM(int user_id, double newATM) throws ClassNotFoundException, SQLException {
-    try {
-        // Tạo câu lệnh SQL để cập nhật cột ATM cho tài khoản có user_id tương ứng
-        String sql = "UPDATE [course].[dbo].[user] SET ATM = ? WHERE user_id = ?";
-        
-        // Mở kết nối đến cơ sở dữ liệu
-        Connection con = this.openConnection();
-        
-        // Tạo prepared statement với câu lệnh SQL đã chuẩn bị
-        PreparedStatement st = con.prepareStatement(sql);
-        
-        // Đặt giá trị mới cho cột ATM
-        st.setDouble(1, newATM);
-        
-        // Đặt user_id cho điều kiện WHERE
-        st.setInt(2, user_id);
-        
-        // Thực thi câu lệnh SQL để cập nhật dữ liệu
-        st.executeUpdate();
-        
-        // Đóng kết nối và tài nguyên
-        st.close();
-        con.close();
-        
-    } catch (SQLException e) {
-        throw e;
+        try {
+            // Tạo câu lệnh SQL để cập nhật cột ATM cho tài khoản có user_id tương ứng
+            String sql = "UPDATE [course].[dbo].[user] SET ATM = ? WHERE user_id = ?";
+
+            // Mở kết nối đến cơ sở dữ liệu
+            Connection con = this.openConnection();
+
+            // Tạo prepared statement với câu lệnh SQL đã chuẩn bị
+            PreparedStatement st = con.prepareStatement(sql);
+
+            // Đặt giá trị mới cho cột ATM
+            st.setDouble(1, newATM);
+
+            // Đặt user_id cho điều kiện WHERE
+            st.setInt(2, user_id);
+
+            // Thực thi câu lệnh SQL để cập nhật dữ liệu
+            st.executeUpdate();
+
+            // Đóng kết nối và tài nguyên
+            st.close();
+            con.close();
+
+        } catch (SQLException e) {
+            throw e;
+        }
     }
-}
 
 }

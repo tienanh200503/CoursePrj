@@ -159,7 +159,7 @@ public class SectionController extends HttpServlet {
         Boolean status = Boolean.parseBoolean(request.getParameter("status"));
           
 
-       Section s = new Section(c_id, section_name, section_video, section, true);
+       Section s = new Section(c_id, section_name, section_video, section, false);
         sdao.insertSection(s);
         ListSection(request, response);
 
@@ -179,7 +179,7 @@ public class SectionController extends HttpServlet {
         Boolean status = Boolean.parseBoolean(request.getParameter("status"));
           
 
-       Section s = new Section(c_id, section_name, section_video, section, true);
+       Section s = new Section(c_id, section_name, section_video, section, status);
         sdao.updateSection(s, sid);
         ListSection(request, response);
         

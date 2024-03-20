@@ -62,7 +62,7 @@ public class StudyServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            int cid = 2;
+            int cid = Integer.parseInt(request.getParameter("cid"));
             CourseDAO cdao = new CourseDAO();
             Course c = cdao.getCourseById(cid);
             SectionDAO sdao = new SectionDAO();

@@ -8,14 +8,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 */
 
 #status{
-    margin-top: 100px;
+    margin-top: 1.5rem;
   
     
 }
 
 #done{
     text-decoration: none;
-    margin-left: 200px;
+    margin-left: 100px;
     padding: 20px;
     background: #007bff;
      color: white;
@@ -44,3 +44,66 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     font-size: 20px;
     
 }
+.featuredCourse {
+    display: grid;
+    grid-template-columns: repeat(4, 20%); /* 5 cột, mỗi cột chiếm 20% */
+    grid-template-rows: auto auto; /* Hai hàng tự động */
+    gap: 20px; /* Khoảng cách giữa các ô */
+    justify-content: center; /* Căn giữa các cột */
+    align-items: center; /* Căn giữa các hàng */
+   margin-top: 0;
+}
+
+.course-Card {
+    width: 100%; /* Chiều rộng của mỗi ô là 100% của container */
+    box-sizing: border-box; /* Đảm bảo padding và border không tăng kích thước của khối */
+   border: 0;
+    
+    
+}
+.course-Card:hover{
+   
+    border: 0;
+    border-radius: 0;
+    box-shadow: 0;
+}
+
+.course-Card .course-picture img{
+    width: 100%;
+    border-radius:10px;
+}
+.course-details h3
+{
+   font-size: 1rem;
+}
+.course-details a
+{
+    text-decoration: none;
+    color: #888;
+}
+.sub-details
+{
+   
+    display: flex;
+    justify-content: space-between;
+      margin-right:3rem;
+     /* Căn giữa các hàng */
+}
+.sub-details p
+{
+  
+    font-size:0.7rem; 
+     /* Căn giữa các hàng */
+}
+.sub-details p
+{margin: 0;
+ 
+ text-wrap: nowrap;
+}
+.title-course
+{   
+    width: 30%;
+     margin-left: 3rem;
+     margin-top: 4.5rem;
+     border-bottom: 1px orange solid;
+ }

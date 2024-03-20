@@ -27,23 +27,37 @@
 
         <%@include file="includes/nav.jsp" %>
         <%@include file="includes/left-bar.jsp" %>
+        <h2 class="title-course">
+                <i class="fas fa-book"></i> My Courses 
+            </h2>
         <div id="status">
             <a id="done" href="myCourseServlet?status=1">Đã hoàn thành</a>
             <a id="not" href="myCourseServlet?status=0">Chưa hoàn thành</a>
         </div>
-        <div id="list">
-            <% boolean st = (boolean)request.getSession().getAttribute("st"); %>
-            <c:forEach var="c" items="${sessionScope.listCourse}">
-                
-                <div id="section">
-                    <p>${c.course_name}</p>
-                    <img src="${c.course_img}" alt="alt"/>
-                    <p>Teacher: ${c.teacher.teacher_name}</p>
-                    <a href="#"><%= st?"":"Hoc Tiep" %></a>
-                    
+        <br>
+        <div class="featuredCourse" style="margin-top: 1rem">
+            <% boolean st = (boolean) request.getSession().getAttribute("st");%>
+            <c:forEach  var="c" items="${sessionScope.listCourse}">
+
+                <div class="course-Card">
+                    <div class="course-picture">
+                        <img src="${c.course_img}">
+                    </div>
+                    <div class="course-details">
+                        <h3>${c.course_name}</h3>
+                        <div class="sub-details">
+                            <p style="color: #333;opacity: 0.5; margin: 0"> By ${c.teacher.teacher_name}</p>
+                        </div>
+                        <a href="StudyServlet?cid=${c.id}"><%= st ? "" : "Hoc Tiep"%></a
+                    </div>
+
                 </div>
+                    </div>
             </c:forEach>
-        </div>
+
+        
+    </div >  
+        
         <%@include file="includes/footer.jsp" %>
     </body>
 </html>

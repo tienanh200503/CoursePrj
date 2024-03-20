@@ -99,7 +99,7 @@
                 console.log("Thời gian hiện tại của video: " + video.currentTime);
                 if (video.currentTime >= 3 && status != true) { // Kiểm tra khi nào video đã chạy ít nhất 10 giây và trạng thái vẫn là false
                     var xhr = new XMLHttpRequest();
-                    var params = 'sid=' + getParameterByName('sid') + '&currentTime=' + video.currentTime + '&status=' + status;
+                    var params ='cid='+getParameterByName('cid')+ '&sid=' + getParameterByName('sid') + '&currentTime=' + video.currentTime + '&status=' + status;
                     xhr.open('GET', 'StudyServlet?' + params, true);
 
                     xhr.onreadystatechange = function () {

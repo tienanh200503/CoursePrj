@@ -76,7 +76,7 @@ public class PayCourseServlet extends HttpServlet {
                 CourseDAO cdao = new CourseDAO();
                 Double course = cdao.getCourse(cid).getCourse_price();
                 if (account_money < course) {
-                    request.getRequestDispatcher("atm.jsp").forward(request, response);
+                    request.getRequestDispatcher("atm.jsp?uid=" + uid).forward(request, response);
                 } else {
                     Double total = account_money - course;
                     adao.updateAccountATM(uid, total);
@@ -87,10 +87,9 @@ public class PayCourseServlet extends HttpServlet {
                     odao.insertOrder(new Order(uid, cid, formattedDate));
                     request.getRequestDispatcher("HomeServlet").forward(request, response);
                 }
-            }else
-            {   
-                    
-                    }
+            } else {
+
+            }
         } catch (Exception ex) {
             Logger.getLogger(PayCourseServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -4,6 +4,10 @@
     Author     : BIN
 --%>
 
+<%@page import="model.Course"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
+<%@page import="DAO.OrderDAO"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.text.NumberFormat"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -202,20 +206,36 @@
                 </div>
 
                 <div class="buy-button">
-                    <div class="buy-button">
-                        <%
-                            if (uid == 0) {
-                        %>
-                        <button type="button" class="buy-button-link" onclick="window.location.href = 'login.jsp'">Buy now</button>
-                        <%
-                        } else {
-                        %>
-                        <button type="submit" class="buy-button-link"><a href="buy.jsp?uid=${uid}&cid=${detail.getId()}">Buy now</a></button>
-                        <%
+                    <c:set var="id" value="${detail.id}"/>
+                    <%
+                        int id = Integer.parseInt(String.valueOf(pageContext.findAttribute("id")));
+                        OrderDAO odao = new OrderDAO();
+                        List<Course> course = odao.getCourseId(uid);
+                        boolean bought = false; // Biến để kiểm tra xem người dùng đã mua hay chưa
+                        for (Course i : course) {
+                            if (i.getId() == id) {
+                                bought = true;
+                                break; // Người dùng đã mua, không cần kiểm tra các khóa học khác
                             }
-                        %>
-                    </div>
+                        }
+                        if (bought) {
+                    %>
+                    <button type="submit" class="buy-button-link"><a href="StudyServlet?cid=${detail.getId()}&sid=1">Học Ngay</a></button>
+                    <%
+                    } else {
+                        if (uid == 0) {
+                    %>
+                    <button type="button" class="buy-button-link" onclick="window.location.href = 'login.jsp'">Buy now</button>
+                    <%
+                    } else {
+                    %>
+                    <button type="submit" class="buy-button-link"><a href="buy.jsp?uid=${uid}&cid=${detail.getId()}">Buy now</a></button>
+                    <%
+                            }
+                        }
+                    %>
                 </div>
+
             </div>
         </div>
 

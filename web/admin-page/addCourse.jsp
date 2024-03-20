@@ -4,10 +4,14 @@
     Author     : Desktop
 --%>
 
-
+<%@page import="DAO.TeacherDAO"%>
+<% 
+    TeacherDAO tdao = new TeacherDAO();
+    request.getSession().setAttribute("teachers", tdao.getAllTeacher());
+%>
 <div id="add-course-form" class="hidden" >
     <div class="overlay">
-        <form class="card card-add-form mx-auto" action="../CourseController" method="GET">
+        <form class="card card-add-form mx-auto" action="../CourseController" method="GET" style="transition: ease-in 0.5s">
             <i id="add-course-close" class="fas fa-times"></i>
             <h3 class="form-heading">Add New Course</h3>
             <input type="hidden" name="command" value="ADD" />
@@ -21,8 +25,13 @@
             </div>
 
             <div class="form-group">
-                <input type="text" name="teacher_id" placeholder="Teacher_Id" value="" />
-            </div>
+                <select class="form-group" name="teacher_id">
+                <c:forEach var="t" items="${teachers}">
+                    <option value="${t.teacher_id}">${t.teacher_name}</option>
+                </c:forEach>
+                
+
+            </select>
 
             <div class="form-group">
                 <input type="text" name="course_price" placeholder="Price" value="" />
@@ -41,6 +50,7 @@
             </div>
         </form>
     </div>
+</div>
 </div>
 
 

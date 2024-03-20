@@ -60,7 +60,7 @@
 <div id="leftBar" class="tab1  flex-column justify-content-center px-0 col-md-3 bg-primary text-center text-decoration-none gap-3" style="height: 600px; display: flex">
 
     <c:if test="${role == 1}">
-        <div class="but" ><a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-user-circle"></i> Thông tin cá nhân</a></div>
+        <div class="but" ><a style="  color: white; text-decoration:none" href="InforServlet?uid=${auth.id}"> <i class="fas fa-user-circle"></i> Thông tin cá nhân</a></div>
 
         <div class="but"> <a style="  color: white; text-decoration:none" href="myCourseServlet?status=1" > <i class="fas fa-book"></i> Khóa học của tôi</a></div>
 

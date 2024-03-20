@@ -68,6 +68,7 @@ public class myCourseServlet extends HttpServlet {
             throws ServletException, IOException {
 
         int status = Integer.parseInt(request.getParameter("status"));
+        int uid = Integer.parseInt(request.getParameter("uid"));
         int count = 0;
         OrderDAO ord = new OrderDAO();
         CourseDAO cou = new CourseDAO();
@@ -76,7 +77,7 @@ public class myCourseServlet extends HttpServlet {
         List<Course> listDone = new ArrayList<>();
         List<Course> list = new ArrayList<>();
         if (status == 0) {
-            list = ord.getCourseId(1);
+            list = ord.getCourseId(uid);
             for (Course course : list) {
                 List<Section> secList = course.getSections();
                 for (Section section : secList) {

@@ -11,7 +11,7 @@
     <div class="container-fluid">
         <button id="toggleLeftBarBtn" ><i class="fas fa-bars"></i></button>
         <div class="collapse navbar-collapse  d-flex justify-content-end " id="navbarSupportedContent" >
-            <img src="C:\Users\Desktop\Documents\NetBeansProjects\PRJProjectFinal\web\image\logo/CODE.png" alt="alt" style="width: auto; height: 3rem; border-radius: 50% "/>
+            <img src="image\logo/CODE.png" alt="alt" style="width: auto; height: 3rem; border-radius: 50% "/>
             <div class="" style="display: flex; width: 40%; gap: 10px; padding:5px">
                 <form class="d-flex" action="http://localhost:8080/PRJProjectFinal/SearchServlet" method="post">
                     <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">

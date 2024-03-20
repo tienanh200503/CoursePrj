@@ -12,19 +12,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <%@include file="includes/head.jsp" %>
-        <link rel="stylesheet" href="css/information/information.css" type="text/css">
+        <link rel="stylesheet" href="css/information/styleInfor.css" type="text/css">
 
     </head>
     <body>
-        <form action="InforServlet">
-            <%@include file="includes/nav.jsp" %>
+         <%@include file="includes/nav.jsp" %>
             <%@include file="includes/left-bar.jsp" %>
+        <form action="InforServlet">
+           
             <div class="avatar">
                 <img src="image/1.png">
             </div>
             <div class="con">
 
-                <div class="tab1">
+                <div class="tab-infor">
                     <div>
                         <h3>
                             Xin chào: ${acc.username}

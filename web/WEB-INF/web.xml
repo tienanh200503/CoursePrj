@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+    <!-- Servlet Definitions -->
+    <filter>
+        <filter-name>IsLoginFilter</filter-name>
+        <filter-class>filter.IsLoginFilter</filter-class>
+        <init-param>
+            <param-name>isLoginFilter</param-name>
+            <param-value>/*</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>IsLoginFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>servlet.LoginServlet</servlet-class>
@@ -37,10 +50,10 @@
         <servlet-class>servlet.payATMServlet</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>signUp</servlet-name>
         <servlet-class>servlet.signUp</servlet-class>
-
+    </servlet>
+    <servlet>
         <servlet-name>myCourseServlet</servlet-name>
         <servlet-class>servlet.myCourseServlet</servlet-class>
     </servlet>
@@ -61,9 +74,8 @@
     <servlet>
         <servlet-name>TeacherController</servlet-name>
         <servlet-class>Controller.TeacherController</servlet-class>
-
     </servlet>
-
+    <!-- Servlet Mappings -->
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -80,12 +92,6 @@
         <servlet-name>SignUpServlet</servlet-name>
         <url-pattern>/SignUpServlet</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>DetailServlet</servlet-name>
-        <servlet-class>servlet.DetailServlet</servlet-class>
-    </servlet>
-
     <servlet-mapping>
         <servlet-name>DetailServlet</servlet-name>
         <url-pattern>/DetailServlet</url-pattern>
@@ -107,10 +113,10 @@
         <url-pattern>/payATMServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>signUp</servlet-name>
         <url-pattern>/signUp</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>myCourseServlet</servlet-name>
         <url-pattern>/myCourseServlet</url-pattern>
     </servlet-mapping>
@@ -129,7 +135,6 @@
     <servlet-mapping>
         <servlet-name>TeacherController</servlet-name>
         <url-pattern>/TeacherController</url-pattern>
-
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

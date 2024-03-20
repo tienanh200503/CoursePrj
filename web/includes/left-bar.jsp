@@ -57,11 +57,13 @@
 </style>
 <!-- Định nghĩa left-bar -->
 
-    <div id="leftBar" class="tab1  flex-column justify-content-center px-0 col-md-3 bg-primary text-center text-decoration-none gap-3" style="height: 600px; display: flex">
+<div id="leftBar" class="tab1  flex-column justify-content-center px-0 col-md-3 bg-primary text-center text-decoration-none gap-3" style="height: 600px; display: flex">
 
     <c:if test="${role == 1}">
         <div class="but" ><a style="  color: white; text-decoration:none" href="#" > <i class="fas fa-user-circle"></i> Thông tin cá nhân</a></div>
+
         <div class="but"> <a style="  color: white; text-decoration:none" href="myCourseServlet?status=1" > <i class="fas fa-book"></i> Khóa học của tôi</a></div>
+
         <div class="but"> <a style="  color: white; text-decoration:none" href="#"> <i class="fas fa-wallet"></i> Nạp Tiền</a></div>
         <div class="but"> <a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/LogoutServlet">Log out</a></div>
     </c:if>
@@ -69,7 +71,7 @@
         <div class="but" ><a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/CourseController" > <i class="fas fa-user-circle"></i> Course</a></div>
         <div class="but"> <a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/SectionServlet" > <i class="fas fa-book"></i> Section</a></div>
         <div class="but"> <a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/TeacherController"> <i class="fas fa-wallet"></i> Teacher</a></div>
-        
+
         <div class="but"> <a style="  color: white; text-decoration:none" href="http://localhost:8080/PRJProjectFinal/LogoutServlet">Log out</a></div>
     </c:if>
     <c:if test="${ empty auth}">
@@ -78,10 +80,10 @@
                 <i  class="fas fa-user"></i> Login
             </button>
         </div>
-        <div class="but"><a style="  color: white;text-decoration:none" href="#" class="register-link"><i class="fas fa-user-plus"></i> Đăng ký</a></div>
+        <div class="but"><a style="  color: white;text-decoration:none" href="signUp" class="register-link"><i class="fas fa-user-plus"></i> Đăng ký</a></div>
     </c:if>
 </div>
-        <div id="logInForm" class="container" style="display: none" >
+<div id="logInForm" class="container" style="display: none" >
 
     <div class="overlay">
         <div class="card w-50 mx-auto my-5" >

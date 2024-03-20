@@ -3,6 +3,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
 */
 /* 
+    Created on : Mar 20, 2024, 10:49:41 PM
+    Author     : Desktop
+*/
+
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
     Created on : Mar 14, 2024, 10:54:18 AM
     Author     : Desktop
 */
@@ -14,10 +23,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     border: none; /* Loại bỏ viền */
     cursor: pointer; /* Đổi con trỏ thành dấu nhắc tay */
     padding: 0; /* Xóa khoảng cách đệm */
+    transition: transform 0.3s ease;
 }
 
 
 #toggleLeftBarBtn:hover {
-    transform: scale(1,1);
+    border-radius: 10px; 
+    transform: scale(1.1);
     background-color: rgba(0, 0, 0, 0.1); /* Màu nền khi rê chuột hoặc nhấn */
 }

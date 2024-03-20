@@ -3,28 +3,54 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
 */
 /* 
+    Created on : Mar 20, 2024, 11:01:27 PM
+    Author     : Desktop
+*/
+
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
     Created on : Mar 14, 2024, 11:44:13 AM
     Author     : Zanis
 */
 
 #status{
     margin-top: 1.5rem;
-  
-    
+
+
 }
 
 #done{
     text-decoration: none;
     margin-left: 100px;
     padding: 20px;
-    background: #007bff;
-     color: white;
+    
+    color: Black;
+    transition: transform 0.3s ease;
+    border-radius: 10px
+}
+#done:hover
+{
+    transform: scale3d(1.1, 1.1, 1.1);
+    background-color: red;
+    color: white;
+    
 }
 
 #not{
     text-decoration: none;
     padding: 20px;
-    background: red;
+    
+    color: Black;
+    transition: transform 0.3s ease;
+    border-radius: 10px
+}
+#not:hover
+{ 
+     transform: scale3d(1.1, 1.1, 1.1);
+    background-color: green;
     color: white;
 }
 
@@ -42,7 +68,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     text-decoration: none;
     background: greenyellow;
     font-size: 20px;
-    
+
 }
 .featuredCourse {
     display: grid;
@@ -51,21 +77,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     gap: 20px; /* Khoảng cách giữa các ô */
     justify-content: center; /* Căn giữa các cột */
     align-items: center; /* Căn giữa các hàng */
-   margin-top: 0;
+    margin-top: 0;
 }
 
 .course-Card {
     width: 100%; /* Chiều rộng của mỗi ô là 100% của container */
     box-sizing: border-box; /* Đảm bảo padding và border không tăng kích thước của khối */
-   border: 0;
-    
-    
+    border: 0;
+    transition: 0.3s ease;
+
 }
 .course-Card:hover{
-   
+    transform: scale(1.1);
     border: 0;
-    border-radius: 0;
-    box-shadow: 0;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 .course-Card .course-picture img{
@@ -74,7 +100,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 }
 .course-details h3
 {
-   font-size: 1rem;
+    font-size: 1rem;
 }
 .course-details a
 {
@@ -83,44 +109,47 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 }
 .sub-details
 {
-   
+
     display: flex;
     justify-content: space-between;
-      margin-right:3rem;
-     /* Căn giữa các hàng */
+    margin-right:3rem;
+    /* Căn giữa các hàng */
 }
 .sub-details p
 {
-  
-    font-size:0.7rem; 
-     /* Căn giữa các hàng */
+
+    font-size:0.7rem;
+    /* Căn giữa các hàng */
 }
 .sub-details p
-{margin: 0;
- 
- text-wrap: nowrap;
+{
+    margin: 0;
+
+    text-wrap: nowrap;
 }
 .title-course
-{   
+{
     width: 30%;
-     margin-left: 3rem;
-     margin-top: 4.5rem;
-     border-bottom: 1px orange solid;
- }
- buy-button
+    margin-left: 3rem;
+    margin-top: 4.5rem;
+    border-bottom: 1px orange solid;
+}
+.buy-button
 {
     background-color: appworkspace;
     transition: transform 0.3s ease;
     border-radius: 10px
 }
 .buy-button:hover
-{transform: scale(1.1);
- background-color: black;
- color: white
+{
+    transform: scale3d(1.1, 1.1, 1.1);
+    background-color: black;
+    color: white;
+
 }
 .title-course
-{   
+{
     width: 30%;
-     margin-left: 3rem;
-     border-bottom: 1px orange solid;
- }
+    margin-left: 3rem;
+    border-bottom: 1px orange solid;
+}

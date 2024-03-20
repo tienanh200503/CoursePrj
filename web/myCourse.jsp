@@ -23,25 +23,27 @@
     </head>
     <body>
         <style>
-            <%@include file="css/myCourse.css" %>
+            <%@include file="css/my-course/mycourse.css" %>
         </style>
 
         <%@include file="includes/nav.jsp" %>
         <%@include file="includes/left-bar.jsp" %>
-         <% Account ac = (Account) request.getSession().getAttribute("auth");
-                
-            %>
+        <% Account ac = (Account) request.getSession().getAttribute("auth");
+            int sta = (Integer) request.getSession().getAttribute("status");
+        %>
         <h2 class="title-course">
-                <i class="fas fa-book"></i> My Courses 
-            </h2>
+            <i class="fas fa-book"></i> My Courses 
+        </h2>
         <div id="status">
-            <a id="done" href="myCourseServlet?status=1&uid=<%= ac.getId() %>">Đã hoàn thành</a>
-            <a id="not" href="myCourseServlet?status=0&uid=<%= ac.getId() %>">Chưa hoàn thành</a>
+            <button id="done"  style="background-color:  <%= sta==1 ? "#DC143C" : "#87CEEB" %>" onclick="window.location.href = 'myCourseServlet?status=1&uid=<%= ac.getId()%>'">Đã hoàn thành</button>
+            <button id="not" style="background-color:  <%= sta==0 ? "#DC143C" : "#87CEEB" %>" onclick="window.location.href = 'myCourseServlet?status=0&uid=<%= ac.getId()%>'">Chưa hoàn thành</button>
+
+            
         </div>
         <br>
         <div class="featuredCourse" style="margin-top: 1rem">
             <% boolean st = (boolean) request.getSession().getAttribute("st");
-                
+
             %>
             <c:forEach  var="c" items="${sessionScope.listCourse}">
 
@@ -54,16 +56,26 @@
                         <div class="sub-details">
                             <p style="color: #333;opacity: 0.5; margin: 0"> By ${c.teacher.teacher_name}</p>
                         </div>
-                        <a href="StudyServlet?cid=${c.id}"><%= st ? "" : "Hoc Tiep"%></a
+                            <c:choose>
+                                
+                                <c:when test="<%= st==true%>">
+                                    <button class="buy-button" style="background-color: red"> Đã hoàn thành</button>
+                                </c:when>
+                                <c:otherwise>
+                                    <button class="buy-button" onclick="window.location.href = 'StudyServlet?cid=${c.id}'"> Học Tiếp</button>
+                                </c:otherwise>
+                            </c:choose>
+                            
+                        
                     </div>
 
                 </div>
-                    </div>
+
             </c:forEach>
 
-        
-    </div >  
-        
+
+        </div >  
+
         <%@include file="includes/footer.jsp" %>
     </body>
 </html>

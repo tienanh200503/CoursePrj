@@ -33,7 +33,7 @@
                     </div>
                     <div>
                         <h3> 
-                            Email: ${acc.money}VNĐ
+                            Email: ${acc.email}VNĐ
                         </h3>
                     </div>
                     <div>

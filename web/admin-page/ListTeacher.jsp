@@ -13,6 +13,7 @@
         <title>JSP Page</title>
         <%@include file="../includes/head.jsp" %>
         <link href="../css/admin/sectionAdmin.css" typetext="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" href="css/my-course/footer.css" type="text/css">
     </head>
     <body>
         <%@include file="../includes/nav.jsp" %>

@@ -15,6 +15,7 @@
     <body>
         <%@include file="includes/nav.jsp" %>
         <%@include file="includes/left-bar.jsp" %>
+        <link rel="stylesheet" href="css/footer.css" type="text/css">
         
         <div class="container">
             <div class="card w-50 mx-auto my-10">

@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <%@include file="includes/head.jsp" %>
+        <link rel="stylesheet" href="css/footer.css" type="text/css">
         <style>
             body {
                 font-family: Arial, sans-serif;

@@ -63,8 +63,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
   
     
 }
-.avatar img
-{
+.avatar img{
     border-radius: 50%; /* Tạo hình dạng hình tròn */
     width: 100px; /* Độ rộng của hình ảnh */
     height: 100px; /* Chiều cao của hình ảnh */

@@ -3,6 +3,7 @@
     Created on : Mar 2, 2024, 2:38:57 PM
     Author     : Desktop
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Thêm một nút để tắt/bật left-bar -->
 

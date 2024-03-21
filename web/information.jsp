@@ -17,10 +17,10 @@
 
     </head>
     <body>
-         <%@include file="includes/nav.jsp" %>
-            <%@include file="includes/left-bar.jsp" %>
+        <%@include file="includes/nav.jsp" %>
+        <%@include file="includes/left-bar.jsp" %>
         <form action="InforServlet">
-           
+
             <div class="avatar">
                 <img src="image/1.png">
             </div>
@@ -33,7 +33,12 @@
                         </h3>
                     </div>
                     <div>
-                        <h3>Số dư hiện có : ${acc.money}VNĐ</h1>
+                        <h3> 
+                            Email: ${acc.email}VNĐ
+                        </h3>
+                    </div>
+                    <div>
+                        <h3>Số dư hiện có : ${acc.money}VNĐ</h3>
                     </div>
 
                 </div>

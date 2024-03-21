@@ -74,7 +74,7 @@ public class LoginServlet extends HttpServlet {
                request.getSession().setAttribute("pass",password );
                request.getSession().setAttribute("role",ac.getRole() );
                
-               request.getRequestDispatcher("HomeServlet").forward(request, response);
+               response.sendRedirect("HomeServlet");
                return;
            } catch (ClassNotFoundException ex) {
                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);

@@ -220,7 +220,7 @@
                         }
                         if (bought) {
                     %>
-                    <button type="submit" class="buy-button-link"><a href="StudyServlet?cid=${detail.getId()}&sid=1">Học Ngay</a></button>
+                    <button type="submit" class="buy-button-link"><a href="StudyServlet?cid=${detail.getId()}">Học Ngay</a></button>
                     <%
                     } else {
                         if (uid == 0) {

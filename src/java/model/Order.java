@@ -4,13 +4,14 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author BIN
  */
-public class Order {
+public class Order implements Serializable{
     private int id;
     private int uid;
     private int cid;

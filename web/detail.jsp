@@ -18,7 +18,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="includes/head.jsp" %>
+
+          <link rel="stylesheet" href="css/footer.css" type="text/css">
+
         <link rel="stylesheet" href="css/footer.css" type="text/css">
+
         <title>JSP Page</title>
         <style>
             body {
@@ -151,6 +155,7 @@
         </style>
 
     </head>
+    
     <%@include file="includes/nav.jsp" %>
     <%@include file="includes/left-bar.jsp" %>
     <body>

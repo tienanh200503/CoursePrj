@@ -58,25 +58,25 @@
                     <div class="list-section">
                         <div>
                             <div class="s-heading">
-                                <h3>Nội Dung Khóa Học</h3>
+                                <h3 style="margin-bottom: 0">Nội Dung Khóa Học</h3>
                             </div>
                             <div class="s-details" >
                                 <c:forEach var="s" items="${c.sections}">
 
                                     <c:choose>
                                         <c:when test="${s.status == true}">
-                                            <div class="lesson" style="display:flex">
+                                            <div class="lesson" style="display:flex ; background-color: ${sCurrent.section_id== s.section_id ?"rgba(231, 76, 60, 0.5)":""}">
                                                 <div  style="width: 70%">
-                                                    <a style=" font-size: 1rem;color: black; text-decoration: none" href="StudyServlet?sid=${s.section_id}&cid=<%=cid%>" >${s.section}: ${s.section_name}</a>
+                                                    <a style=" font-size: 1rem;color: black; text-decoration: none; text-wrap: nowrap" href="StudyServlet?sid=${s.section_id}&cid=<%=cid%>" >${s.section}: ${s.section_name}</a>
 
                                                 </div>
-                                                <span class="success-icon" style="color: white; background-color: #008000; /* Màu xanh */
+                                                <span class="success-icon" style="color: white; background-color: #008000; position: absolute; /* Màu xanh */
                                                       font-size: 16px; border-radius: 100%; /* Kích thước */">&#10004;</span>
                                                       
                                             </div>
                                         </c:when>
                                         <c:otherwise >
-                                            <div class="lesson"><a style=" font-size: 1rem ;color: black; text-decoration: none" href="StudyServlet?sid=${s.section_id}&cid=<%=cid%>">${s.section}: ${s.section_name}</a></div>
+                                            <div style=" background-color: ${sCurrent.section_id== s.section_id ?"rgba(231, 76, 60, 0.5)":""}; text-wrap: none" class="lesson"><a style=" font-size: 1rem ;color: black; text-decoration: none" href="StudyServlet?sid=${s.section_id}&cid=<%=cid%>">${s.section}: ${s.section_name}</a></div>
 
                                         </c:otherwise>
                                     </c:choose>

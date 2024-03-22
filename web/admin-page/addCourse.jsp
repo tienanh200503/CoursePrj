@@ -32,7 +32,7 @@
                 
 
             </select>
-
+                </div>
             <div class="form-group">
                 <input type="text" name="course_price" placeholder="Price" value="" />
             </div>
@@ -51,6 +51,6 @@
         </form>
     </div>
 </div>
-</div>
+
 
 

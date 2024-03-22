@@ -4,11 +4,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author BIN
  */
-public class Teacher {
+public class Teacher implements Serializable{
     private int teacher_id;
     private String teacher_name;
 

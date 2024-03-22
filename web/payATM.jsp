@@ -11,9 +11,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <%@include file="includes/head.jsp" %>
+
         <link href="../css/StyleNav.css" typetext="text/css" rel="stylesheet"/>
 
         <link rel="stylesheet" href="css/footer.css" type="text/css">
+
 
         <style>
             body {

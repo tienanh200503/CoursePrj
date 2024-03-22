@@ -11,13 +11,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <%@include file="../includes/head.jsp" %>
+        <%@include file="../includes/nav.jsp" %>
+        <%@include file="../includes/left-bar.jsp" %>
+        <link rel="stylesheet" href="css/my-course/footer.css" type="text/css">
         <link href="../css/admin/AdminStyle.css" typetext="text/css" rel="stylesheet"/>
         <link href="../css/StyleNav.css" typetext="text/css" rel="stylesheet"/>
 
     </head>
     <body>
+
         <%@include file="../admin/AdminNav.jsp" %>
         <%@include file="../includes/left-bar.jsp" %>
+
         <table class="table-course" border="1">
             <thead class="thead-form" style="background-color: #0d6efd;">
                 <tr>

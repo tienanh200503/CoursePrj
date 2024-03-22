@@ -13,7 +13,9 @@
         <title>JSP Page</title>
         <%@include file="../includes/head.jsp" %>
         <link href="../css/admin/sectionAdmin.css" typetext="text/css" rel="stylesheet"/>
+
                 <link href="../css/StyleNav.css" typetext="text/css" rel="stylesheet"/>
+
 
     </head>
     <body>

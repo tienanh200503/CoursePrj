@@ -35,43 +35,55 @@
             <i class="fas fa-book"></i> My Courses 
         </h2>
         <div id="status">
-            <button id="done"  style="background-color:  <%= sta==1 ? "#DC143C" : "#87CEEB" %>" onclick="window.location.href = 'myCourseServlet?status=1&uid=<%= ac.getId()%>'">Đã hoàn thành</button>
-            <button id="not" style="background-color:  <%= sta==0 ? "#DC143C" : "#87CEEB" %>" onclick="window.location.href = 'myCourseServlet?status=0&uid=<%= ac.getId()%>'">Chưa hoàn thành</button>
+            <button id="done"  style="background-color:  <%= sta == 1 ? "#DC143C" : "#87CEEB"%>" onclick="window.location.href = 'myCourseServlet?status=1&uid=<%= ac.getId()%>'">Đã hoàn thành</button>
+            <button id="not" style="background-color:  <%= sta == 0 ? "#DC143C" : "#87CEEB"%>" onclick="window.location.href = 'myCourseServlet?status=0&uid=<%= ac.getId()%>'">Chưa hoàn thành</button>
 
-            
+
         </div>
         <br>
         <div class="featuredCourse" style="margin-top: 1rem">
             <% boolean st = (boolean) request.getSession().getAttribute("st");
 
             %>
-            <c:forEach  var="c" items="${sessionScope.listCourse}">
 
-                <div class="course-Card">
-                    <div class="course-picture">
-                        <img src="${c.course_img}">
-                    </div>
-                    <div class="course-details">
-                        <h3>${c.course_name}</h3>
-                        <div class="sub-details">
-                            <p style="color: #333;opacity: 0.5; margin: 0"> By ${c.teacher.teacher_name}</p>
+            <c:choose>
+                <c:when test="${empty listCourse}">
+                    <h5>
+                        Không có khóa học
+                    </h5>
+
+                </c:when>
+                <c:otherwise>
+                    <c:forEach  var="c" items="${sessionScope.listCourse}">
+
+                        <div class="course-Card">
+                            <div class="course-picture">
+                                <img src="${c.course_img}">
+                            </div>
+                            <div class="course-details">
+                                <h3>${c.course_name}</h3>
+                                <div class="sub-details">
+                                    <p style="color: #333;opacity: 0.5; margin: 0"> By ${c.teacher.teacher_name}</p>
+                                </div>
+                                <c:choose>
+
+                                    <c:when test="<%= st == true%>">
+                                        <button class="buy-button" onclick="window.location.href = 'HomeServlet'" style="background-color: red"> Đã hoàn thành</button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button class="buy-button" onclick="window.location.href = 'StudyServlet?cid=${c.id}'"> Học Tiếp</button>
+                                    </c:otherwise>
+                                </c:choose>
+
+
+                            </div>
+
                         </div>
-                            <c:choose>
-                                
-                                <c:when test="<%= st==true%>">
-                                    <button class="buy-button" style="background-color: red"> Đã hoàn thành</button>
-                                </c:when>
-                                <c:otherwise>
-                                    <button class="buy-button" onclick="window.location.href = 'StudyServlet?cid=${c.id}'"> Học Tiếp</button>
-                                </c:otherwise>
-                            </c:choose>
-                            
-                        
-                    </div>
 
-                </div>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
 
-            </c:forEach>
 
 
         </div >  

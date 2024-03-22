@@ -6,7 +6,7 @@
 <footer>
     <div class="footer-content">
         <h2>Contact Us</h2>
-        <p>Email: example@example.com</p>
+        <p>Email: CodeBanana@gmail.com</p>
         <p>Phone: +1234567890</p>
     </div>
     <div class="social-icons">

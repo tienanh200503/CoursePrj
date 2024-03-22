@@ -10,6 +10,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="includes/head.jsp" %>
+                <link href="../css/StyleNav.css" typetext="text/css" rel="stylesheet"/>
+
         <title>JSP Page</title>
         <style>
             .container {

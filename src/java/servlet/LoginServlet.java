@@ -62,8 +62,8 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String username = this.get("username", request);
-       String password = this.get("pass", request);
+       String username = get("username", request);
+       String password = get("pass", request);
         if (username != null && !username.equals("")) {
             
            try {
@@ -107,8 +107,8 @@ public class LoginServlet extends HttpServlet {
                 request.getSession().removeAttribute("error");
                 request.getSession().setAttribute("auth", user);
                 request.getSession().setAttribute("role", user.getRole());
-                this.add("username", username, 2, response);
-                this.add("pass", password, 2, response);
+                add("username", username, 2, response);
+                add("pass", password, 2, response);
                 response.sendRedirect("home.jsp");
             }else
             {

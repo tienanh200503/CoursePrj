@@ -87,21 +87,25 @@
 <div id="logInForm" class="container" style="display: none" >
 
     <div class="overlay">
-        <div class="card w-50 mx-auto my-5" >
-            <button class="toggleCloseLoginForm"><i class="fas fa-times"></i></button>
+        <div class="card mx-auto my-5"  style="width: 25%">
+            
             <div class="card-header text-center"> Login Form</div>
             <div class="card-body">
                 <form action="LoginServlet" method="post">
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="text" name="username" class="form-control" placeholder="UserName" required="">
+                    <div class="form-group" style="display: flex; justify-items: center ;justify-content: center;margin-bottom: 20px">
+
+                        <div style="background-color: rgb(233, 236, 239); padding: 0 10px 0 10px"><i class="fas fa-user" style="line-height: 50px; color: #333"></i></div> <input type="text" name="username" class="form-control" placeholder="UserName" required="">
                     </div>
-                    <div class="form-group">
-                        <label>password</label>
+                    <div class="form-group" style="display: flex; margin-bottom: 20px" >
+
+                        <div style="background-color: rgb(233, 236, 239); padding: 0 10px 0 10px">                        
+                            <i class="fas fa-lock"style="line-height: 50px; color: #333"></i>
+                        </div>
                         <input type="password" name="password" class="form-control" placeholder="password" required="">
                     </div>
                     <div class="text-center">
                         <button class="btn btn-primary" type="submit"> Login</button>
+                        <button class="toggleCloseLoginForm btn btn-primary"> Cancel</button>
                     </div>
                 </form>
             </div>

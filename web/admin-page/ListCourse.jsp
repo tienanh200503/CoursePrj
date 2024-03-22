@@ -12,9 +12,11 @@
         <title>JSP Page</title>
         <%@include file="../includes/head.jsp" %>
         <link href="../css/admin/AdminStyle.css" typetext="text/css" rel="stylesheet"/>
+        <link href="../css/StyleNav.css" typetext="text/css" rel="stylesheet"/>
+
     </head>
     <body>
-        <%@include file="../includes/nav.jsp" %>
+        <%@include file="../admin/AdminNav.jsp" %>
         <%@include file="../includes/left-bar.jsp" %>
         <table class="table-course" border="1">
             <thead class="thead-form" style="background-color: #0d6efd;">
@@ -49,14 +51,10 @@
             </thead>
             <tbody>
                 <c:forEach var="c" items="${courseList}">
-                    <c:url var="tempLink" value="../CourseController">
-                        <c:param name="command" value="LOAD"></c:param>
-                        <c:param name="cid" value="${c.getId()}"></c:param>
-                    </c:url>
 
                     <c:url var="deleteLink" value="../CourseController">
                         <c:param name="command" value="DELETE"></c:param>
-                        <c:param name="cid" value="${c.getId()}"></c:param>
+                        <c:param name="cid" value="${c.id}"></c:param>
                     </c:url>
 
                     <tr>
@@ -71,7 +69,7 @@
 
                         <td>
 
-                            <a class="update-course-button" href="ListCourse.jsp?cid=${c.getId()}" onclick="event.handleLinkClick(event);"> <i class="fas fa-edit"></i></a>
+                            <a class="update-course-button" href="ListCourse.jsp?cid=${c.id}" onclick="event.handleLinkClick(event);"> <i class="fas fa-edit"></i></a>
 
 
                             <c:if test="${not empty deleteLink}">
@@ -89,16 +87,12 @@
                     </td>
                 </tr>
 
-
-
-
-
             </tbody>
 
         </table>
         <%@include file="addCourse.jsp" %>
         <%@include file="editCourse.jsp" %>
-        <%@include file="../includes/footer.jsp" %>
-        
+
+
     </body>
 </html>

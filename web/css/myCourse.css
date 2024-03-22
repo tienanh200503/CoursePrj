@@ -71,6 +71,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 .course-Card .course-picture img{
     width: 100%;
     border-radius:10px;
+    height: 25vh;
 }
 .course-details h3
 {

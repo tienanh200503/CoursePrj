@@ -4,11 +4,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author BIN
  */
-public class Section {
+public class Section implements Serializable{
     private int section_id;
     private int c_id;
     private String section_name;

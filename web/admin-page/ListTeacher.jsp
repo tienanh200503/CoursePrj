@@ -13,9 +13,12 @@
         <title>JSP Page</title>
         <%@include file="../includes/head.jsp" %>
         <link href="../css/admin/sectionAdmin.css" typetext="text/css" rel="stylesheet"/>
+                <link href="../css/StyleNav.css" typetext="text/css" rel="stylesheet"/>
+
     </head>
     <body>
-        <%@include file="../includes/nav.jsp" %>
+        <%@include file="../admin/AdminNav.jsp" %>
+
         <%@include file="../includes/left-bar.jsp" %>
         <table class="table-course" border="1">
             <thead class="thead-form" style="background-color: #0d6efd;">
@@ -43,7 +46,7 @@
                     </c:url>
 
                     <tr>
-                         <td>${t.teacher_id}</td>
+                        <td>${t.teacher_id}</td>
                         <td>${t.teacher_name}</td>
 
 
@@ -57,7 +60,7 @@
 
                             <c:if test="${not empty deleteLink}">
                                 <a href="${deleteLink}" onclick="if (!(confirm('Sure?')))
-                                return false"><i class="fas fa-trash-alt"></i></a>
+                                            return false"><i class="fas fa-trash-alt"></i></a>
                                 </c:if>
 
                         </td>
@@ -79,7 +82,7 @@
         </table>
         <%@include file="addTeacher.jsp" %>
         <%@include file="editTeacher.jsp" %>
-        <%@include file="../includes/footer.jsp" %>
+
 
     </body>
 </html>

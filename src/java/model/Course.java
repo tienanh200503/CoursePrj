@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  *
  * @author BIN
  */
-public class Course {
+public class Course implements Serializable{
 
     private int id;
     private String course_name;

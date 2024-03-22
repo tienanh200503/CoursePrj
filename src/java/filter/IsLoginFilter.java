@@ -96,54 +96,62 @@ public class IsLoginFilter implements Filter {
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet error occurs
      */
-    public void doFilter(ServletRequest request, ServletResponse response,
-            FilterChain chain)
-            throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+        throws IOException, ServletException {
 
-        if (debug) {
-            log("IsLoginFilter:doFilter()");
-        }
-
-        doBeforeProcessing(request, response);
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
-        //kiểm tra có session hay không
-        HttpSession session = httpRequest.getSession(false);
-        boolean isLoggedIn = (session != null && session.getAttribute("auth") != null);
-        String registerURI = httpRequest.getContextPath() + "/signupTest.jsp"; // Đường dẫn đến trang đăng nhập
-        String registerServletURI = httpRequest.getContextPath() + "/signUp"; // Đường dẫn đến trang đăng nhập
-        String loginURI = httpRequest.getContextPath() + "/loginForm.jsp"; // Đường dẫn đến trang đăng nhập
-        String homeURI = httpRequest.getContextPath() + "/HomeServlet"; // Đường dẫn đến trang home
-        String homeURIJsp = httpRequest.getContextPath() + "/home.jsp"; // Đường dẫn đến trang home
-        String detailURI = httpRequest.getContextPath() + "/DetailServlet"; // Đường dẫn đến trang detail
-        String loginServletURI = httpRequest.getContextPath() + "/LoginServlet";
-        String searchURI = httpRequest.getContextPath() + "/search.jsp";
-        String searchServlet = httpRequest.getContextPath() + "/SearchServlet";
-        // Kiểm tra nếu người dùng đã đăng nhập hoặc đang yêu cầu vào trang đăng nhập,
-        // trang home hoặc trang detail
-        boolean isLoginRequest = httpRequest.getRequestURI().equals(loginURI);
-        boolean isHomeServlet = httpRequest.getRequestURI().equals(homeURI);
-        boolean isRegister = httpRequest.getRequestURI().equals(registerURI);
-        boolean isRegisterServlet = httpRequest.getRequestURI().equals(registerServletURI);
-        boolean isDetailPage = httpRequest.getRequestURI().startsWith(detailURI);
-        boolean isHomeURIJsp = httpRequest.getRequestURI().equals(homeURIJsp);
-        boolean isCSSRequest = httpRequest.getRequestURI().endsWith(".css");
-        boolean isLoginServlet = httpRequest.getRequestURI().equals(loginServletURI);
-        boolean isSearch = httpRequest.getRequestURI().equals(searchURI);
-        boolean isSearchServlet = httpRequest.getRequestURI().equals(searchServlet);
-        boolean isImageResource = httpRequest.getRequestURI().matches(".*\\.(jpg|jpeg|png|gif|webp)$");
-        if (isLoggedIn || isLoginRequest || isHomeServlet || isDetailPage || isHomeURIJsp || isCSSRequest || isLoginServlet || isSearch || isSearchServlet || isRegister || isRegisterServlet ||isImageResource) {
-            // Nếu người dùng đã đăng nhập hoặc đang yêu cầu vào trang đăng nhập,
-            // trang home hoặc trang detail, chuyển tiếp yêu cầu tới servlet tiếp theo
-            chain.doFilter(request, response);
-        } else {
-            // Nếu không, chuyển hướng đến trang đăng nhập
-            httpResponse.sendRedirect(loginURI);
-        }
-
-        doAfterProcessing(request, response);
-
+    if (debug) {
+        log("IsLoginFilter:doFilter()");
     }
+
+    doBeforeProcessing(request, response);
+    HttpServletRequest httpRequest = (HttpServletRequest) request;
+    HttpServletResponse httpResponse = (HttpServletResponse) response;
+    
+    // Check for session existence
+    HttpSession session = httpRequest.getSession(false);
+    boolean isLoggedIn = (session != null && session.getAttribute("auth") != null);
+    
+    // Define URIs
+    String registerURI = httpRequest.getContextPath() + "/signupTest.jsp"; 
+    String registerServletURI = httpRequest.getContextPath() + "/signUp";
+    String loginURI = httpRequest.getContextPath() + "/loginForm.jsp"; 
+    String homeURI = httpRequest.getContextPath() + "/HomeServlet"; 
+    String homeURIJsp = httpRequest.getContextPath() + "/home.jsp";
+    String detailURI = httpRequest.getContextPath() + "/DetailServlet"; 
+    String loginServletURI = httpRequest.getContextPath() + "/LoginServlet";
+    String searchURI = httpRequest.getContextPath() + "/search.jsp";
+    String searchServlet = httpRequest.getContextPath() + "/SearchServlet";
+    
+    // Check if the request is for specific URIs
+    boolean isLoginRequest = httpRequest.getRequestURI().equals(loginURI);
+    boolean isHomeServlet = httpRequest.getRequestURI().equals(homeURI);
+    boolean isRegister = httpRequest.getRequestURI().equals(registerURI);
+    boolean isRegisterServlet = httpRequest.getRequestURI().equals(registerServletURI);
+    boolean isDetailPage = httpRequest.getRequestURI().startsWith(detailURI);
+    boolean isHomeURIJsp = httpRequest.getRequestURI().equals(homeURIJsp);
+    boolean isCSSRequest = httpRequest.getRequestURI().endsWith(".css");
+    boolean isLoginServlet = httpRequest.getRequestURI().equals(loginServletURI);
+    boolean isSearch = httpRequest.getRequestURI().equals(searchURI);
+    boolean isSearchServlet = httpRequest.getRequestURI().equals(searchServlet);
+    
+    // Check for image resource request
+    boolean isImageResource = httpRequest.getRequestURI().matches(".*\\.(jpg|jpeg|png|gif|webp)$");
+
+    // Allow access to certain URIs or resources
+    if (isLoggedIn || isLoginRequest || isHomeServlet || isDetailPage || isHomeURIJsp || 
+        isCSSRequest || isLoginServlet || isSearch || isSearchServlet || isRegister || 
+        isRegisterServlet || isImageResource) {
+        
+        // Forward the request to the next filter in the chain
+        chain.doFilter(request, response);
+    } else {
+        // Redirect to login page if not authenticated
+        httpResponse.sendRedirect(loginURI);
+    }
+
+    doAfterProcessing(request, response);
+}
+
 
     /**
      * Return the filter configuration object for this filter.

@@ -33,7 +33,7 @@
             </div>
             <h3 class="form-heading" style="margin-bottom:  0">EditCourse</h3>
             <input type="hidden" name="command" value="UPDATE" />
-            <input type="hidden" name="cid" value="${course.getId()}" />
+            <input type="hidden" name="cid" value="${course.id}" />
             <div class="form-group">
                 <input type="text" name="course_name" placeholder="Course Name" value="${course.course_name}" />
             </div>

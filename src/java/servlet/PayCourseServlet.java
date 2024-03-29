@@ -87,9 +87,7 @@ public class PayCourseServlet extends HttpServlet {
                     odao.insertOrder(new Order(uid, cid, formattedDate));
                     request.getRequestDispatcher("HomeServlet").forward(request, response);
                 }
-            } else {
-
-            }
+            } 
         } catch (Exception ex) {
             Logger.getLogger(PayCourseServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -97,6 +97,5 @@
         <%@include file="addSection.jsp" %>
         <%@include file="editSection.jsp" %>
 
-
     </body>
 </html>

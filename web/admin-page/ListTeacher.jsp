@@ -13,8 +13,7 @@
         <title>JSP Page</title>
         <%@include file="../includes/head.jsp" %>
         <link href="../css/admin/sectionAdmin.css" typetext="text/css" rel="stylesheet"/>
-
-                <link href="../css/StyleNav.css" typetext="text/css" rel="stylesheet"/>
+        <link href="../css/StyleNav.css" typetext="text/css" rel="stylesheet"/>
 
 
     </head>
@@ -50,23 +49,13 @@
                     <tr>
                         <td>${t.teacher_id}</td>
                         <td>${t.teacher_name}</td>
-
-
-
-
-
                         <td>
-
                             <a class="update-course-button" href="ListTeacher.jsp?tid=${t.teacher_id}" onclick="event.handleLinkClick(event);"> <i class="fas fa-edit"></i></a>
-
-
-                            <c:if test="${not empty deleteLink}">
+                                <c:if test="${not empty deleteLink}">
                                 <a href="${deleteLink}" onclick="if (!(confirm('Sure?')))
                                             return false"><i class="fas fa-trash-alt"></i></a>
                                 </c:if>
-
                         </td>
-
                     </tr>
                 </c:forEach>
                 <tr>
@@ -74,17 +63,10 @@
                         <i id="add-course-button"  class=" fas fa-plus"></i>
                     </td>
                 </tr>
-
-
-
-
-
             </tbody>
-
         </table>
         <%@include file="addTeacher.jsp" %>
         <%@include file="editTeacher.jsp" %>
-
 
     </body>
 </html>
